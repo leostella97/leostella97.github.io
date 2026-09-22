@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProtocolFit — redirecionando…</title>
+  <link rel="icon" href="https://leostella97.github.io/ProtocolFit/favicon.png" />
+  <style>
+    /* Página de redirecionamento com a identidade visual do ProtocolFit. */
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #10a37f, #14b8a6); color: #fff; text-align: center;
+    }
+    .caixa { padding: 32px; max-width: 520px; }
+    h1 { font-size: 22px; margin: 14px 0 6px; }
+    p { opacity: .92; font-size: 15px; line-height: 1.6; margin: 0 0 18px; }
+    a {
+      display: inline-block; background: #fff; color: #0b7d61; font-weight: 700;
+      text-decoration: none; padding: 12px 24px; border-radius: 10px;
+    }
+    code { background: rgba(255,255,255,.18); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="caixa">
+    <div style="font-size:40px">🔎</div>
+    <h1>Redirecionando para o ProtocolFit…</h1>
+    <p>
+      O endereço do sistema diferencia letras maiúsculas de minúsculas
+      (<code>ProtocolFit</code> com P e F maiúsculos). Estamos te levando para o
+      lugar certo automaticamente.
+    </p>
+    <!-- Link manual (também usado quando o JavaScript está desativado). -->
+    <a id="linkManual" href="/ProtocolFit/">Ir agora para o ProtocolFit</a>
+  </div>
+  <script>
+    /*
+     * Este arquivo é servido pelo GitHub Pages em QUALQUER endereço não
+     * encontrado do domínio (ex.: /protocolfit/, /PROTOCOLFIT/painel/).
+     * Aqui reconstruímos o caminho correto trocando o primeiro segmento pelo
+     * nome oficial do projeto ("ProtocolFit"), preservando o resto do caminho,
+     * a query string e a âncora.
+     */
+    (function () {
+      // Caminho solicitado (ex.: "/protocolfit/painel/").
+      var caminho = window.location.pathname || '/';
+      // Divide em segmentos, ignorando barras vazias.
+      var segmentos = caminho.split('/').filter(function (parte) { return parte.length > 0; });
+      // Remove o primeiro segmento (nome do projeto escrito de qualquer forma).
+      var resto = segmentos.slice(1).join('/');
+      // Monta o destino oficial, preservando subpastas, parâmetros e âncora.
+      var destino = '/ProtocolFit/' + (resto ? resto + '/' : '') + (window.location.search || '') + (window.location.hash || '');
+      // Atualiza o link manual para o mesmo destino.
+      document.getElementById('linkManual').setAttribute('href', destino);
+      // Redireciona imediatamente (replace evita poluir o histórico).
+      window.location.replace(destino);
+    })();
+  </script>
+</body>
+</html>
