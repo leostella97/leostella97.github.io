@@ -1,9 +1,1 @@
-# ads.txt — ProtocolFit (Google AdSense)
-# ---------------------------------------------------------------------------
-# Arquivo exigido pelo Google para autorizar a venda de anúncios no site.
-# Ele fica na RAIZ DO DOMÍNIO (https://leostella97.github.io/ads.txt) e NÃO
-# dentro de /ProtocolFit/ — por isso mora neste repositório.
-#
-# Formato: <domínio da rede>, <ID do publisher>, <relação>, <ID de certificação>
-# ---------------------------------------------------------------------------
 google.com, pub-2430276497312227, DIRECT, f08c47fec0942fa0
