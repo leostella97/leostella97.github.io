@@ -59,15 +59,17 @@
       
       // Variações conhecidas que devem ser redirecionadas para seus endereços oficiais.
       // Cada entrada: chave = variação digitada (lowercase), valor = caminho oficial.
+      // TEAM_002: removidas as chaves duplicadas ('protocolfit' e 'gabaritocafe'
+      // apareciam duas vezes; num literal de objeto a última ocorrência vence,
+      // então as repetições eram código morto).
       var redirecionamentos = {
-        // ProtocolFit
+        // ProtocolFit: 'protocolfit' cobre qualquer caixa (PROTOCOLFIT etc.) e
+        // 'protocolofit' cobre o typo com "o" extra (ProtocoloFit).
         'protocolfit': '/ProtocolFit/',
         'protocolofit': '/ProtocolFit/',
-        'protocolfit': '/ProtocolFit/',
-        // GabaritoCafe
+        // GabaritoCafe: sem e com acento.
         'gabaritocafe': '/GabaritoCafe/',
-        'gabaritocafé': '/GabaritoCafe/',
-        'gabaritocafe': '/GabaritoCafe/'
+        'gabaritocafé': '/GabaritoCafe/'
       };
       
       // Verifica se o primeiro segmento é uma variação conhecida.

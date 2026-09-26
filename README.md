@@ -1,50 +1,68 @@
 # leostella97.github.io — site raiz da conta
 
-Este repositório existe por um motivo simples: o **GitHub Pages diferencia
-letras maiúsculas de minúsculas no caminho do projeto**, então o sistema
-ProtocolFit só era acessível escrevendo exatamente `ProtocolFit` (P e F
-maiúsculos).
+Este repositório publica o **portfólio pessoal de Leonardo Stella** na raiz do
+domínio e organiza os **endereços oficiais dos projetos** hospedados em
+`leostella97.github.io`.
 
-Aqui na raiz da conta não existe nenhum segmento de caminho para errar, e o
-arquivo `404.html` captura qualquer endereço digitado com a caixa errada e
-redireciona para o lugar certo.
+O GitHub Pages diferencia letras maiúsculas de minúsculas no caminho do projeto,
+então cada sistema tem uma grafia oficial (`/ProtocolFit/`, `/GabaritoCafe/`) e
+este repositório garante que as variações digitadas "erradas" cheguem ao lugar
+certo: a pasta `protocolofit/` responde com HTTP 200 e o `404.html` captura as
+demais grafias.
+
+## Projetos hospedados no domínio
+
+| Projeto | Endereço oficial | Repositório |
+| --- | --- | --- |
+| ProtocolFit — treino e dieta personalizados (PWA) | https://leostella97.github.io/ProtocolFit/ | [leostella97/ProtocolFit](https://github.com/leostella97/ProtocolFit) |
+| Gabarito Café — simulados para concursos e vestibulares | https://leostella97.github.io/GabaritoCafe/ | [leostella97/GabaritoCafe](https://github.com/leostella97/GabaritoCafe) |
 
 ## Endereços que funcionam
 
-| Endereço | O que acontece |
+| Endereço digitado | O que acontece |
 | --- | --- |
-| `https://leostella97.github.io/` | Abre o ProtocolFit (via `index.html`) |
-| `https://leostella97.github.io/ProtocolFit/` | **Endereço oficial** — abre o sistema direto |
+| `https://leostella97.github.io/` | Abre o portfólio (`index.html`) |
+| `https://leostella97.github.io/ProtocolFit/` | **Endereço oficial** — servido pelo repo `ProtocolFit` |
 | `https://leostella97.github.io/protocolofit/` | Página real (200) que redireciona para `/ProtocolFit/` |
 | `https://leostella97.github.io/ProtocoloFit/` | Cai no `404.html` e é redirecionado para `/ProtocolFit/` |
 | `https://leostella97.github.io/protocolfit/` | Cai no `404.html` e é redirecionado para `/ProtocolFit/` |
 | `https://leostella97.github.io/PROTOCOLFIT/painel/` | Redirecionado para `/ProtocolFit/painel/` (preserva o resto do caminho) |
-| `https://leostella97.github.io/outro-site/` | **404 normal** — não redireciona (outro site do domínio) |
+| `https://leostella97.github.io/GabaritoCafe/` | **Endereço oficial** — servido pelo repo `GabaritoCafe` |
+| `https://leostella97.github.io/gabaritocafe/` | Página real (200) — cópia do app versionada neste repositório |
+| `https://leostella97.github.io/GABARITOCAFE/` (e outras caixas) | Cai no `404.html` e é redirecionado para `/GabaritoCafe/` |
+| `https://leostella97.github.io/outro-site/` | **404 normal** — não redireciona (espaço livre para outros sites do domínio) |
 
-> Observação técnica: o GitHub Pages diferencia maiúsculas de minúsculas no
-> caminho, então `ProtocoloFit` e `protocolofit` **não podem** ser duas pastas
-> diferentes (no Windows elas seriam a mesma pasta — e o Git recusaria as duas
-> entradas). Por isso `protocolofit/` é uma pasta de verdade (HTTP 200) e todas
-> as outras grafias, incluindo `ProtocoloFit`, passam pelo `404.html`, que
-> redireciona na hora (JavaScript + `meta refresh`).
-> 
-> **Importante:** o `404.html` **só redireciona variações conhecidas do ProtocolFit**
-> (`protocolfit`, `protocolofit`, `PROTOCOLFIT`, `ProtocoloFit`, etc.). Qualquer
-> outro caminho que não exista (ex.: `/outro-site/`) devolve 404 normal, permitindo
-> que outros sites do domínio funcionem normalmente.
+> Observação técnica: no GitHub Pages o caminho diferencia maiúsculas de
+> minúsculas e, no Windows, `ProtocoloFit/` e `protocolofit/` seriam a mesma
+> pasta (o Git também recusaria as duas entradas). Por isso `protocolofit/` é a
+> única pasta-alias de verdade (HTTP 200); todas as outras grafias —
+> `ProtocoloFit`, `protocolfit`, `PROTOCOLFIT`, etc. — passam pelo `404.html`,
+> que redireciona na hora (JavaScript + `meta refresh`).
+>
+> **Importante:** o `404.html` **só redireciona variações conhecidas** dos
+> endereços oficiais (mapa `redirecionamentos` no script do arquivo). Qualquer
+> outro caminho inexistente devolve 404 normal, sem redirecionar.
 
 ## Arquivos
 
-- `index.html` — redireciona a raiz para `/ProtocolFit/`.
-- `protocolofit/index.html` — alias do endereço oficial (redireciona para `/ProtocolFit/`,
-  com `canonical` apontando para o endereço oficial e `noindex` para não duplicar SEO).
-- `404.html` — captura endereços não encontrados (qualquer caixa ou o typo
-  `ProtocoloFit`) e reconstrói a URL oficial, preservando subpastas, query string
-  e âncora.
+- `index.html` — portfólio pessoal (estrutura e conteúdo; textos em pt-BR).
+- `css/style.css` — estilos do portfólio, temas escuro/claro e responsivo.
+- `js/main.js` — tema, i18n (pt/en/es) e efeitos. **Para editar texto do
+  portfólio, mexa no `DICIONARIO` deste arquivo** — o HTML é só o fallback
+  inicial, os elementos `data-i18n` são sobrescritos pelo dicionário.
+- `favicon.svg`, `img/` — identidade visual e imagens do portfólio.
+- `protocolofit/index.html` — alias de `/ProtocolFit/` (redireciona na hora, com
+  `canonical` no endereço oficial e `noindex` para não duplicar SEO).
+- `gabaritocafe/` — cópia do app Gabarito Café versionada aqui; é o que responde
+  em `/gabaritocafe/` (minúsculo), enquanto `/GabaritoCafe/` vem do repo oficial.
+- `404.html` — captura endereços não encontrados e reconstrói a URL oficial das
+  variações conhecidas, preservando subpastas, query string e âncora.
 - `ads.txt` — autorização de anúncios do Google AdSense na raiz do domínio.
-- `.nojekyll` — evita o processamento do Jekyll (são apenas arquivos estáticos).
+- `robots.txt` — libera o rastreamento de todos os projetos do domínio.
+- `.nojekyll` — desativa o processamento do Jekyll (são apenas arquivos estáticos).
 
-## O sistema
+## O portfólio
 
-Código-fonte em **https://github.com/leostella97/ProtocolFit** — o aplicativo
-instalável (PWA) fica em **https://leostella97.github.io/ProtocolFit/**.
+Página única em HTML + CSS + JS puro (sem build), com tema escuro/claro
+persistido em `localStorage`, três idiomas (pt-BR, en, es) e seções de
+apresentação, formação e projetos.
