@@ -26,9 +26,11 @@
 }
 
 /* ---------- Tela de login ---------- */
+/* ATENÇÃO: não declarar "display" aqui! O display do login fica só em
+   ".tela-login.ativa" (acima). Se declarar aqui, esta regra venceria o
+   ".tela { display: none }" e o login continuaria visível após entrar. */
 .tela-login {                       /* casca da tela de login */
   min-height: 100vh;                /* ocupa a tela toda */
-  display: grid;                    /* duas colunas */
   grid-template-columns: 1.1fr 1fr; /* hero maior, painel menor */
   align-items: stretch;             /* estica as colunas */
 }
