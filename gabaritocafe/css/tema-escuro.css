@@ -156,3 +156,9 @@ html[data-tema="escuro"] .texto-suave,
 html[data-tema="escuro"] .topo-sub {
   color: var(--marrom-suave);       /* garante leitura no fundo escuro */
 }
+
+/* ---------- Linhas de destaque (data da prova) ---------- */
+html[data-tema="escuro"] .linha-dado.destaque {
+  background: #33231a;              /* fundo dourado escuro */
+  border-color: #5a3d28;            /* borda caramelo apagada */
+}

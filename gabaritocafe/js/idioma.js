@@ -214,7 +214,56 @@ const Idioma = {
       conteudo_aviso: 'ℹ️ O conteúdo de estudo (resumos, pegadinhas e questões) é em português, porque são provas brasileiras.', // aviso de conteúdo
       temas_aba_concursos: '🎯 Concursos',                  // aba
       temas_aba_vest: '🎓 Vestibular',                      // aba
-      temas_porque: 'Por quê: '                             // rótulo do motivo
+      temas_porque: 'Por quê: ',                             // rótulo do motivo
+
+      // Tela de dicas
+      nav_dicas: '💡 Dicas',                                 // item do menu
+      tela_dicas_t: 'Dicas que valem ouro',                  // título do topo
+      tela_dicas_s: 'O que separa quem passa de quem quase passa.', // legenda do topo
+      dicas_intro: 'Não é só estudar muito: é estudar do jeito certo. Aqui vai o que a gente aprendeu na prática. 💡', // introdução
+      dicas_prova_t: '📝 Dicas rápidas de prova',            // seção final
+
+      // Edital — análise inteligente
+      ed_confianca: 'Confiança da análise:',                 // rótulo da nota
+      ed_confianca_aviso: 'Quanto mais alto, mais o robô entendeu do seu edital (e menos você precisa conferir no PDF).', // aviso
+      ed_banca_t: '🏦 Banca organizadora',                   // seção
+      ed_banca_ver: '🕵️ Ver as pegadinhas dessa banca',      // botão
+      ed_banca_nenhuma: 'Não identifiquei a banca neste texto. Dá uma olhada no edital — saber a banca muda sua estratégia!', // aviso
+      ed_datas_t: '📅 Datas importantes',                    // seção
+      ed_sem_datas: 'Não encontrei datas no texto. Confere no PDF do edital!', // aviso
+      ed_data_inscricoes: 'Inscrições',                      // rótulo
+      ed_data_prova: 'Data da prova',                        // rótulo
+      ed_data_resultado: 'Resultado final',                  // rótulo
+      ed_contagem: 'Contagem regressiva',                    // rótulo
+      ed_faltam: 'Faltam {dias} dias para a prova!',         // contador
+      ed_prova_hoje: 'É hoje! Respira fundo e boa prova! 🍀', // dia da prova
+      ed_prova_passou: 'A data da prova já passou — confere o edital.', // já passou
+      ed_numeros_t: '🔢 Os números do edital',               // seção
+      ed_num_vagas: 'Vagas',                                 // rótulo
+      ed_num_salario: 'Salário',                             // rótulo
+      ed_num_taxa: 'Taxa de inscrição',                      // rótulo
+      ed_num_questoes: 'Questões da prova',                  // rótulo
+      ed_num_validade: 'Validade do concurso',               // rótulo
+      ed_numeros_vazio: 'Não encontrei os números (vagas, salário...) neste texto.', // aviso
+      ed_anos: 'anos',                                       // unidade
+      ed_meses: 'meses',                                     // unidade
+      ed_escolaridade_t: '🎓 Escolaridade exigida',          // seção
+      ed_programa_t: '📖 O que o edital pede em cada matéria', // seção
+      ed_programa_sub: 'Estes são os tópicos que o próprio edital lista. Comece pelos que você domina menos:', // explicação
+      ed_programa_vazio: 'Não consegui separar o conteúdo programático por matéria. Cola o texto do edital no campo abaixo que eu tento de novo!', // aviso
+      ed_plano_sem_data: 'Não achei a data da prova no texto — cola o edital aqui que eu monto o cronograma do estudo.', // orientação
+      ed_plano_dias_1: 'Faltam {dias} dias: reta final! Priorize revisão, caderno de erros e simulados cronometrados.', // reta final
+      ed_plano_dias_2: 'Faltam {dias} dias: dá tempo de fechar o edital com folga. Teoria + questões todos os dias.', // meio do caminho
+      ed_plano_dias_3: 'Faltam {dias} dias: ainda dá muito tempo. Monte a base com calma, sem pular etapas.', // bastante tempo
+      ed_plano_passou: 'A prova já passou (ou é hoje). Boa sorte — e bora pensar na próxima!', // já passou
+
+      // Dashboard — recomendação inteligente
+      dash_fraco_t: '🎯 Onde focar agora',                   // seção
+      dash_fraco_txt: 'Seu ponto mais fraco é {materia}, com {pct}% de acerto. Vamos treinar?', // diagnóstico
+      dash_fraco_btn: 'Treinar {materia} (10 questões)',     // botão
+      dash_fraco_bom: 'Você está indo bem em todas as matérias treinadas! Que tal aumentar o número de questões no próximo simulado?', // elogio
+      dash_fraco_pouco: 'Responda algumas questões em cada matéria e eu descubro aqui onde você precisa focar. 🕵️', // sem dados
+      toast_treino: 'Bora treinar {materia}! 📝'             // aviso
     },
 
     /* ================= ENGLISH ================= */
@@ -396,7 +445,56 @@ const Idioma = {
       conteudo_aviso: 'ℹ️ The study content (summaries, traps and questions) is in Portuguese, because these are Brazilian exams.',
       temas_aba_concursos: '🎯 Public exams',
       temas_aba_vest: '🎓 University entrance',
-      temas_porque: 'Why: '
+      temas_porque: 'Why: ',
+
+      // Tips screen
+      nav_dicas: '💡 Tips',
+      tela_dicas_t: 'Tips worth gold',
+      tela_dicas_s: 'What separates those who pass from those who almost pass.',
+      dicas_intro: 'It is not only about studying a lot: it is about studying the right way. Here is what we learned in practice. 💡',
+      dicas_prova_t: '📝 Quick test-day tips',
+
+      // Exam notice — smart analysis
+      ed_confianca: 'Analysis confidence:',
+      ed_confianca_aviso: 'The higher it is, the more the robot understood your notice (and the less you need to double-check the PDF).',
+      ed_banca_t: '🏦 Exam board',
+      ed_banca_ver: '🕵️ See this board’s traps',
+      ed_banca_nenhuma: 'I could not identify the board in this text. Take a look at the notice — knowing the board changes your strategy!',
+      ed_datas_t: '📅 Important dates',
+      ed_sem_datas: 'I found no dates in the text. Check the notice PDF!',
+      ed_data_inscricoes: 'Applications',
+      ed_data_prova: 'Test date',
+      ed_data_resultado: 'Final result',
+      ed_contagem: 'Countdown',
+      ed_faltam: '{dias} days to go until the test!',
+      ed_prova_hoje: 'It is today! Take a deep breath and good luck! 🍀',
+      ed_prova_passou: 'The test date has already passed — check the notice.',
+      ed_numeros_t: '🔢 The notice numbers',
+      ed_num_vagas: 'Vacancies',
+      ed_num_salario: 'Salary',
+      ed_num_taxa: 'Application fee',
+      ed_num_questoes: 'Test questions',
+      ed_num_validade: 'Validity of the exam',
+      ed_numeros_vazio: 'I could not find the numbers (vacancies, salary...) in this text.',
+      ed_anos: 'years',
+      ed_meses: 'months',
+      ed_escolaridade_t: '🎓 Required education',
+      ed_programa_t: '📖 What the notice asks in each subject',
+      ed_programa_sub: 'These are the topics the notice itself lists. Start with the ones you master the least:',
+      ed_programa_vazio: 'I could not split the syllabus by subject. Paste the notice text in the field below and I will try again!',
+      ed_plano_sem_data: 'I did not find the test date in the text — paste the notice here and I will build your study schedule.',
+      ed_plano_dias_1: '{dias} days to go: final stretch! Prioritise review, your mistake notebook and timed mock tests.',
+      ed_plano_dias_2: '{dias} days to go: enough time to cover the whole notice comfortably. Theory + questions every day.',
+      ed_plano_dias_3: '{dias} days to go: plenty of time. Build your base calmly, without skipping steps.',
+      ed_plano_passou: 'The test has already happened (or is today). Good luck — and let’s plan the next one!',
+
+      // Dashboard — smart recommendation
+      dash_fraco_t: '🎯 Where to focus now',
+      dash_fraco_txt: 'Your weakest spot is {materia}, with {pct}% accuracy. Shall we train?',
+      dash_fraco_btn: 'Train {materia} (10 questions)',
+      dash_fraco_bom: 'You are doing well in every subject you practised! How about increasing the number of questions in your next mock test?',
+      dash_fraco_pouco: 'Answer a few questions in each subject and I will figure out here where you need to focus. 🕵️',
+      toast_treino: 'Let’s train {materia}! 📝'
     },
 
     /* ================= ESPAÑOL ================= */
@@ -578,7 +676,56 @@ const Idioma = {
       conteudo_aviso: 'ℹ️ El contenido de estudio (resúmenes, trampas y preguntas) está en portugués, porque son exámenes brasileños.',
       temas_aba_concursos: '🎯 Oposiciones',
       temas_aba_vest: '🎓 Selectividad',
-      temas_porque: '¿Por qué? '
+      temas_porque: '¿Por qué? ',
+
+      // Pantalla de consejos
+      nav_dicas: '💡 Consejos',
+      tela_dicas_t: 'Consejos que valen oro',
+      tela_dicas_s: 'Lo que separa a quien aprueba de quien casi aprueba.',
+      dicas_intro: 'No es solo estudiar mucho: es estudiar de la manera correcta. Esto es lo que aprendimos en la práctica. 💡',
+      dicas_prova_t: '📝 Consejos rápidos para el examen',
+
+      // Convocatoria — análisis inteligente
+      ed_confianca: 'Confianza del análisis:',
+      ed_confianca_aviso: 'Cuanto más alto, más entendió el robot tu convocatoria (y menos tienes que revisar en el PDF).',
+      ed_banca_t: '🏦 Comité organizador',
+      ed_banca_ver: '🕵️ Ver las trampas de este comité',
+      ed_banca_nenhuma: 'No identifiqué el comité en este texto. ¡Revisa la convocatoria — conocer al comité cambia tu estrategia!',
+      ed_datas_t: '📅 Fechas importantes',
+      ed_sem_datas: 'No encontré fechas en el texto. ¡Revisa el PDF de la convocatoria!',
+      ed_data_inscricoes: 'Inscripciones',
+      ed_data_prova: 'Fecha del examen',
+      ed_data_resultado: 'Resultado final',
+      ed_contagem: 'Cuenta regresiva',
+      ed_faltam: '¡Faltan {dias} días para el examen!',
+      ed_prova_hoje: '¡Es hoy! ¡Respira hondo y mucha suerte! 🍀',
+      ed_prova_passou: 'La fecha del examen ya pasó — revisa la convocatoria.',
+      ed_numeros_t: '🔢 Los números de la convocatoria',
+      ed_num_vagas: 'Vacantes',
+      ed_num_salario: 'Salario',
+      ed_num_taxa: 'Tasa de inscripción',
+      ed_num_questoes: 'Preguntas del examen',
+      ed_num_validade: 'Validez del concurso',
+      ed_numeros_vazio: 'No encontré los números (vacantes, salario...) en este texto.',
+      ed_anos: 'años',
+      ed_meses: 'meses',
+      ed_escolaridade_t: '🎓 Escolaridad exigida',
+      ed_programa_t: '📖 Lo que la convocatoria pide en cada materia',
+      ed_programa_sub: 'Estos son los temas que la propia convocatoria enumera. Empieza por los que dominas menos:',
+      ed_programa_vazio: 'No pude separar el programa por materia. ¡Pega el texto de la convocatoria en el campo de abajo y lo intento otra vez!',
+      ed_plano_sem_data: 'No encontré la fecha del examen en el texto — pega la convocatoria aquí y armo tu cronograma de estudio.',
+      ed_plano_dias_1: 'Faltan {dias} días: ¡recta final! Prioriza repaso, cuaderno de errores y simulacros cronometrados.',
+      ed_plano_dias_2: 'Faltan {dias} días: hay tiempo para cubrir la convocatoria con holgura. Teoría + preguntas todos los días.',
+      ed_plano_dias_3: 'Faltan {dias} días: todavía hay mucho tiempo. Construye la base con calma, sin saltar etapas.',
+      ed_plano_passou: 'El examen ya pasó (o es hoy). ¡Mucha suerte — y a pensar en el próximo!',
+
+      // Panel — recomendación inteligente
+      dash_fraco_t: '🎯 Dónde enfocarte ahora',
+      dash_fraco_txt: 'Tu punto más débil es {materia}, con {pct}% de acierto. ¿Entrenamos?',
+      dash_fraco_btn: 'Entrenar {materia} (10 preguntas)',
+      dash_fraco_bom: '¡Vas bien en todas las materias practicadas! ¿Qué tal aumentar la cantidad de preguntas en el próximo simulacro?',
+      dash_fraco_pouco: 'Responde algunas preguntas de cada materia y descubriré aquí dónde necesitas enfocarte. 🕵️',
+      toast_treino: '¡Vamos a entrenar {materia}! 📝'
     }
   },
 

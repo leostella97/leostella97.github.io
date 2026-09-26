@@ -125,9 +125,16 @@ const EditalUI = {
     const caixa = document.getElementById('edital-resultado'); // onde o resultado aparece
     let html = '';                                          // acumulador de HTML
 
-    // ---- Cartão 1: o edital em resumo (título + trechos citados) ----
+    // ---- Cartão 1: o edital em resumo (título, confiança e trechos citados) ----
     html += '<div class="cartao destaque bloco-edital aparecer">'; // abre o cartão
     html += '<h3>📋 ' + this.escape(analise.titulo || T('ed_resumo')) + '</h3>'; // título do concurso
+    // Barra de confiança da análise (o quanto o robô conseguiu entender)
+    const corConfianca = analise.confianca >= 70 ? 'var(--verde)' : (analise.confianca >= 40 ? 'var(--caramelo)' : 'var(--vermelho)'); // cor pela nota
+    html += '<div style="display:flex;align-items:center;gap:0.6rem;margin:0.6rem 0">'; // linha da confiança
+    html += '<span style="font-weight:900;font-size:0.85rem;white-space:nowrap">' + T('ed_confianca') + ' ' + analise.confianca + '%</span>'; // rótulo
+    html += '<div class="barra-progresso" style="flex:1"><span style="width:' + analise.confianca + '%;background:' + corConfianca + '"></span></div>'; // barra
+    html += '</div>';                                       // fecha a linha
+    html += '<p class="texto-suave" style="font-size:0.8rem;margin:0">' + T('ed_confianca_aviso') + '</p>'; // aviso curto
     if (analise.trechos.length === 0) {                     // se não achamos trechos
       html += '<p class="texto-suave">' + T('ed_sem_trechos') + '</p>'; // explica
     }
@@ -137,7 +144,28 @@ const EditalUI = {
     }
     html += '</div>';                                       // fecha o cartão
 
-    // ---- Cartão 2: cargos encontrados ----
+    // ---- Cartão 2: banca organizadora + datas (o "prazo de validade" do estudo) ----
+    html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
+    html += '<h3>' + T('ed_banca_t') + '</h3>';             // título da seção
+    if (analise.banca) {                                    // se identificamos a banca
+      html += '<p style="font-weight:900;font-size:1.1rem;color:var(--cafe);margin:0.3rem 0">' + this.escape(analise.banca.rotulo) + '</p>'; // nome da banca
+      html += '<p class="texto-suave" style="font-size:0.8rem">…' + this.escape(analise.banca.trecho) + '…</p>'; // trecho de onde tiramos
+      html += '<button class="botao botao-contorno pequeno" id="btn-ver-banca">' + T('ed_banca_ver') + '</button>'; // botão para as pegadinhas
+    } else {                                                // se não identificamos
+      html += '<p class="texto-suave">' + T('ed_banca_nenhuma') + '</p>'; // avisa
+    }
+    // Datas importantes + contagem regressiva
+    html += '<div class="titulo-secao" style="margin:1.2rem 0 0.6rem"><h3>' + T('ed_datas_t') + '</h3></div>'; // subtítulo
+    html += this.blocoDatas(analise);                       // desenha as datas e o contador
+    html += '</div>';                                       // fecha o cartão
+
+    // ---- Cartão 3: os números do edital ----
+    html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
+    html += '<h3>' + T('ed_numeros_t') + '</h3>';           // título da seção
+    html += this.blocoNumeros(analise);                     // desenha vagas, salário, taxa, questões e validade
+    html += '</div>';                                       // fecha o cartão
+
+    // ---- Cartão 4: cargos encontrados ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
     html += '<h3>' + T('ed_cargos_t') + '</h3>';            // título da seção
     if (analise.cargos.length > 0) {                        // se achamos cargos
@@ -146,12 +174,21 @@ const EditalUI = {
         html += '<span class="chip materia">' + this.escape(cargo) + '</span>'; // chip de cada cargo
       }
       html += '</div>';                                     // fecha a fileira
+      // Escolaridade exigida (quando o edital fala dela)
+      if (analise.escolaridade.length > 0) {                // se achamos escolaridade
+        html += '<p style="font-weight:900;font-size:0.85rem;margin:0.9rem 0 0.3rem">' + T('ed_escolaridade_t') + '</p>'; // rótulo
+        html += '<div class="lista-chips">';                // fileira de chips
+        for (const nivel of analise.escolaridade) {         // percorre os níveis
+          html += '<span class="chip caramelo">🎓 ' + this.escape(nivel) + '</span>'; // chip do nível
+        }
+        html += '</div>';                                   // fecha a fileira
+      }
     } else {                                                // se não achamos
       html += '<p class="texto-suave">' + T('ed_cargos_vazio') + '</p>'; // pede ajuda
     }
     html += '</div>';                                       // fecha o cartão
 
-    // ---- Cartão 3: matérias identificadas ----
+    // ---- Cartão 5: matérias identificadas ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
     html += '<h3>' + T('ed_materias_t') + '</h3>';          // título da seção
     if (analise.materias.length > 0) {                      // se achamos matérias
@@ -167,9 +204,16 @@ const EditalUI = {
     }
     html += '</div>';                                       // fecha o cartão
 
-    // ---- Cartão 4: plano de estudo sugerido ----
+    // ---- Cartão 6: o conteúdo programático, matéria por matéria ----
+    html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
+    html += '<h3>' + T('ed_programa_t') + '</h3>';          // título da seção
+    html += this.blocoPrograma(analise);                    // desenha os tópicos que o edital pede
+    html += '</div>';                                       // fecha o cartão
+
+    // ---- Cartão 7: plano de estudo sugerido (com cronograma inteligente) ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
     html += '<h3>' + T('ed_plano_t') + '</h3>';             // título da seção
+    html += this.blocoCronograma(analise);                  // dica de ritmo conforme os dias que faltam
     if (analise.materias.length > 0) {                      // se temos matérias para planejar
       for (const materia of analise.materias) {             // percorre as matérias
         html += this.planoDeMateria(materia.rotulo);        // monta o item de plano de cada uma
@@ -197,6 +241,126 @@ const EditalUI = {
         App.irPara('simulado');                             // navega para a tela do simulado
       });
     }
+
+    // Liga o botão "ver as pegadinhas dessa banca"
+    const btnBanca = document.getElementById('btn-ver-banca'); // pega o botão criado
+    if (btnBanca) {                                         // se o botão existe
+      btnBanca.addEventListener('click', () => App.irPara('bancas')); // leva para a tela de bancas
+    }
+  },
+
+  // Desenha as datas importantes com contagem regressiva para a prova
+  blocoDatas(analise) {
+    const d = analise.datas;                                // atalho para as datas
+    const linhas = [];                                      // lista de linhas a mostrar
+    // Formata uma data no padrão brasileiro (ou vazio)
+    const fmt = (data) => data ? data.toLocaleDateString('pt-BR') : null; // formata dd/mm/aaaa
+    if (fmt(d.inscricoesInicio) || fmt(d.inscricoesFim)) {  // se temos datas de inscrição
+      const periodo = fmt(d.inscricoesInicio) + (fmt(d.inscricoesFim) ? ' a ' + fmt(d.inscricoesFim) : ''); // período
+      linhas.push({ rotulo: T('ed_data_inscricoes'), valor: periodo, destaque: false }); // adiciona a linha
+    }
+    if (fmt(d.prova)) linhas.push({ rotulo: T('ed_data_prova'), valor: fmt(d.prova), destaque: true }); // data da prova
+    if (fmt(d.resultado)) linhas.push({ rotulo: T('ed_data_resultado'), valor: fmt(d.resultado), destaque: false }); // resultado
+
+    if (linhas.length === 0) return '<p class="texto-suave">' + T('ed_sem_datas') + '</p>'; // nada achado
+
+    // Monta o contador regressivo quando há data de prova
+    let html = '';                                          // acumulador
+    if (d.prova) {                                          // se sabemos a data da prova
+      const dias = this.diasAte(d.prova);                   // quantos dias faltam
+      let aviso;                                            // texto do aviso
+      let estilo = 'nota';                                  // estilo do aviso
+      if (dias > 0) { aviso = T('ed_faltam', { dias: dias }); }          // faltam N dias
+      else if (dias === 0) { aviso = T('ed_prova_hoje'); estilo = 'cartao'; } // é hoje!
+      else { aviso = T('ed_prova_passou'); estilo = 'nota'; }            // já passou
+      html += '<div class="' + estilo + '" style="margin-bottom:0.8rem"><strong>' + T('ed_contagem') + ':</strong> ' + aviso + '</div>'; // mostra o contador
+    }
+
+    // Tabelinha de datas
+    html += '<div class="lista-datas">';                    // abre a lista
+    for (const linha of linhas) {                           // percorre as linhas
+      html += '<div class="linha-dado' + (linha.destaque ? ' destaque' : '') + '">'; // abre a linha
+      html += '<span class="dado-rotulo">' + this.escape(linha.rotulo) + '</span>'; // rótulo
+      html += '<span class="dado-valor">' + this.escape(linha.valor) + '</span>';   // valor
+      html += '</div>';                                     // fecha a linha
+    }
+    html += '</div>';                                       // fecha a lista
+    return html;                                            // devolve o bloco
+  },
+
+  // Desenha os números do edital (vagas, salário, taxa, questões, validade)
+  blocoNumeros(analise) {
+    const n = analise.numeros;                              // atalho para os números
+    const linhas = [];                                      // linhas a mostrar
+    if (n.vagas) linhas.push({ rotulo: T('ed_num_vagas'), valor: String(n.vagas) }); // vagas
+    if (n.salarioMin) {                                     // se temos salário
+      const faixa = n.salarioMax && n.salarioMax !== n.salarioMin // faixa ou valor único?
+        ? this.moeda(n.salarioMin) + ' a ' + this.moeda(n.salarioMax) // faixa
+        : this.moeda(n.salarioMin);                         // valor único
+      linhas.push({ rotulo: T('ed_num_salario'), valor: faixa }); // salário
+    }
+    if (n.taxa) linhas.push({ rotulo: T('ed_num_taxa'), valor: this.moeda(n.taxa) }); // taxa
+    if (n.questoes) linhas.push({ rotulo: T('ed_num_questoes'), valor: String(n.questoes) }); // questões
+    if (n.validade) {                                       // validade
+      const unidade = n.validade.unidade === 'anos' ? T('ed_anos') : T('ed_meses'); // traduz a unidade
+      linhas.push({ rotulo: T('ed_num_validade'), valor: n.validade.quantidade + ' ' + unidade }); // valor
+    }
+    if (linhas.length === 0) return '<p class="texto-suave">' + T('ed_numeros_vazio') + '</p>'; // nada achado
+
+    let html = '<div class="lista-datas">';                 // abre a lista
+    for (const linha of linhas) {                           // percorre as linhas
+      html += '<div class="linha-dado">';                   // abre a linha
+      html += '<span class="dado-rotulo">' + this.escape(linha.rotulo) + '</span>'; // rótulo
+      html += '<span class="dado-valor">' + this.escape(linha.valor) + '</span>';   // valor
+      html += '</div>';                                     // fecha a linha
+    }
+    html += '</div>';                                       // fecha a lista
+    return html;                                            // devolve o bloco
+  },
+
+  // Desenha o conteúdo programático que o edital pede, matéria por matéria
+  blocoPrograma(analise) {
+    const comTopicos = analise.materias.filter(m => m.topicos && m.topicos.length > 0); // matérias com tópicos
+    if (comTopicos.length === 0) return '<p class="texto-suave">' + T('ed_programa_vazio') + '</p>'; // nada achado
+    let html = '<p class="texto-suave" style="font-size:0.85rem">' + T('ed_programa_sub') + '</p>'; // explicação
+    for (const materia of comTopicos) {                     // percorre as matérias com tópicos
+      html += '<div class="plano-item">';                   // abre o bloco da matéria
+      html += '<span class="materia-nome">' + this.escape(materia.rotulo) + (materia.temBanco ? ' ✓' : '') + '</span>'; // nome da matéria
+      html += '<div class="lista-topicos">';                // abre a lista de tópicos
+      for (const topico of materia.topicos) {               // percorre os tópicos do edital
+        html += '<span class="chip">' + this.escape(topico) + '</span>'; // chip de cada tópico
+      }
+      html += '</div>';                                     // fecha a lista
+      html += '</div>';                                     // fecha o bloco
+    }
+    return html;                                            // devolve o bloco
+  },
+
+  // Dá uma orientação de ritmo de estudo conforme os dias que faltam para a prova
+  blocoCronograma(analise) {
+    if (!analise.datas.prova) {                             // sem data de prova
+      return '<p class="texto-suave" style="font-size:0.88rem">' + T('ed_plano_sem_data') + '</p>'; // orienta a achar a data
+    }
+    const dias = this.diasAte(analise.datas.prova);          // dias restantes
+    let dica;                                               // texto da dica
+    if (dias <= 0) dica = T('ed_plano_passou');              // prova passou (ou é hoje)
+    else if (dias <= 30) dica = T('ed_plano_dias_1', { dias: dias });   // reta final
+    else if (dias <= 90) dica = T('ed_plano_dias_2', { dias: dias });   // meio de caminho
+    else dica = T('ed_plano_dias_3', { dias: dias });                   // bastante tempo
+    return '<div class="postit" style="margin-bottom:0.9rem">' + dica + '</div>'; // mostra em post-it
+  },
+
+  // Quantos dias faltam para uma data (0 = hoje, negativo = já passou)
+  diasAte(data) {
+    const hoje = new Date();                                // agora
+    const alvo = new Date(data.getFullYear(), data.getMonth(), data.getDate()); // zera a hora do alvo
+    const base = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()); // zera a hora de hoje
+    return Math.round((alvo - base) / 86400000);            // diferença em dias
+  },
+
+  // Formata um número como dinheiro brasileiro (R$ 2.500,00)
+  moeda(valor) {
+    return 'R$ ' + valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // formata 2 casas
   },
 
   // Monta o bloco de plano de estudo de uma matéria

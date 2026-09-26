@@ -17,7 +17,8 @@ const App = {
     edital: { titulo: 'tela_edital_t', sub: 'tela_edital_s' },          // edital
     simulado: { titulo: 'tela_simulado_t', sub: 'tela_simulado_s' },    // simulado
     bancas: { titulo: 'tela_bancas_t', sub: 'tela_bancas_s' },          // bancas
-    temas: { titulo: 'tela_temas_t', sub: 'tela_temas_s' }              // temas
+    temas: { titulo: 'tela_temas_t', sub: 'tela_temas_s' },             // temas
+    dicas: { titulo: 'tela_dicas_t', sub: 'tela_dicas_s' }              // dicas
   },
 
   // Inicializa o app inteiro (chamado uma vez, no fim da página)
@@ -62,6 +63,7 @@ const App = {
     if (tela === 'simulado') SimuladoUI.atualizarIdioma();  // simulado (config/perguntas/resultado)
     if (tela === 'bancas') ConteudoUI.renderizarBancas();   // bancas
     if (tela === 'temas') ConteudoUI.renderizarTemas();     // temas
+    if (tela === 'dicas') ConteudoUI.renderizarDicas();     // dicas importantes
     if (tela === 'edital' && EditalUI.ultimaAnalise) EditalUI.renderizarResultado(EditalUI.ultimaAnalise); // edital analisado
   },
 
@@ -180,6 +182,7 @@ const App = {
     if (tela === 'simulado' && document.getElementById('tela-simulado').innerHTML.trim() === '') SimuladoUI.abrir({}); // simulado vazio abre a configuração
     if (tela === 'bancas') ConteudoUI.renderizarBancas();   // desenha as bancas
     if (tela === 'temas') ConteudoUI.renderizarTemas();     // desenha os temas
+    if (tela === 'dicas') ConteudoUI.renderizarDicas();     // desenha as dicas importantes
 
     window.scrollTo({ top: 0, behavior: 'smooth' });        // volta ao topo da página
   },

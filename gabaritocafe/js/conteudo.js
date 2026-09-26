@@ -76,6 +76,40 @@ const ConteudoUI = {
     mostrar(DadosTemas.concursos);                          // começa mostrando concursos
   },
 
+  // Devolve as dicas rápidas no idioma atual (com reserva no português)
+  dicasRapidasDoIdioma() {
+    const porIdioma = DadosTemas.dicasRapidas;              // dicas separadas por idioma
+    return porIdioma[Idioma.atual] || porIdioma.pt;         // do idioma atual ou português
+  },
+
+  // Desenha a tela de dicas importantes (organizadas por categoria)
+  renderizarDicas() {
+    const caixa = document.getElementById('tela-dicas');    // pega a seção da tela
+    const porIdioma = DadosTemas.dicasImportantes;          // dicas importantes por idioma
+    const categorias = porIdioma[Idioma.atual] || porIdioma.pt; // usa o idioma atual (ou pt)
+    let html = '<p class="texto-suave">' + T('dicas_intro') + '</p>'; // introdução traduzida
+    // Um cartão para cada categoria de dicas
+    for (const categoria of categorias) {                   // percorre as categorias
+      html += '<div class="cartao aparecer categoria-dicas">'; // abre o cartão
+      html += '<div class="categoria-titulo">' + categoria.icone + ' ' + this.escape(categoria.titulo) + '</div>'; // título
+      for (const dica of categoria.dicas) {                 // percorre as dicas da categoria
+        html += '<div class="dica-item">';                  // abre a dica
+        html += '<div class="dica-titulo">' + this.escape(dica.titulo) + '</div>'; // título da dica
+        html += '<p class="dica-texto">' + this.escape(dica.texto) + '</p>'; // explicação
+        html += '</div>';                                   // fecha a dica
+      }
+      html += '</div>';                                     // fecha o cartão
+    }
+    // Bloco final: as dicas rápidas de prova (mesmas que aparecem no simulado)
+    html += '<div class="titulo-secao"><h3>' + T('dicas_prova_t') + '</h3></div>'; // título da seção
+    html += '<div class="cartao"><ul class="banca-lista" style="font-size:0.92rem">'; // abre a lista
+    for (const dica of this.dicasRapidasDoIdioma()) {       // percorre as dicas rápidas
+      html += '<li>' + this.escape(dica) + '</li>';         // cada dica
+    }
+    html += '</ul></div>';                                  // fecha lista e cartão
+    caixa.innerHTML = html;                                 // despeja na tela
+  },
+
   // Foge do HTML (segurança)
   escape(texto) {
     return String(texto)                                    // garante texto

@@ -498,3 +498,63 @@
   background: rgba(255, 255, 255, 0.1); /* fundo translúcido */
   border-color: rgba(255, 255, 255, 0.15); /* borda translúcida */
 }
+
+/* ---------- Lista de dados (datas e números do edital) ---------- */
+.lista-datas {                      /* lista de linhas rótulo → valor */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha as linhas */
+  gap: 0.4rem;                      /* respiro entre elas */
+}
+
+.linha-dado {                       /* cada linha de dado */
+  display: flex;                    /* rótulo de um lado, valor do outro */
+  justify-content: space-between;   /* separa nas pontas */
+  gap: 1rem;                        /* respiro no meio */
+  padding: 0.6rem 0.9rem;           /* respiro interno */
+  background: var(--creme-escuro);  /* fundo creme */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+}
+
+.linha-dado.destaque {              /* linha importante (data da prova) */
+  background: #fbeedb;              /* fundo dourado */
+  border: 1px solid var(--caramelo-claro); /* borda caramelo */
+}
+
+.dado-rotulo {                      /* rótulo do dado */
+  color: var(--marrom-suave);       /* tom apagado */
+  font-weight: 700;                 /* firme */
+  font-size: 0.88rem;               /* discreto */
+}
+
+.dado-valor {                       /* valor do dado */
+  font-weight: 900;                 /* bem firme */
+  color: var(--cafe-escuro);        /* escuro */
+  white-space: nowrap;              /* não quebra no meio */
+}
+
+.lista-topicos {                    /* fileira de tópicos do edital */
+  display: flex;                    /* flexível */
+  flex-wrap: wrap;                  /* quebra quando enche */
+  gap: 0.35rem;                     /* respiro */
+  margin-top: 0.5rem;               /* separa do nome da matéria */
+}
+
+/* ---------- Tela de dicas ---------- */
+.categoria-dicas {                  /* bloco de uma categoria de dicas */
+  margin-bottom: 1.2rem;            /* respiro entre categorias */
+}
+
+.categoria-titulo {                 /* título da categoria */
+  font-family: 'Fraunces', serif;   /* serifa artesanal */
+  font-size: 1.25rem;               /* destaque */
+  font-weight: 900;                 /* pesado */
+  margin-bottom: 0.2rem;            /* perto das dicas */
+}
+
+.dica-item {                        /* cada dica */
+  border-top: 1px dashed var(--borda); /* filete pontilhado */
+  padding: 0.7rem 0;                /* respiro vertical */
+}
+
+.dica-item .dica-titulo { font-weight: 900; }             /* título da dica */
+.dica-item .dica-texto { font-size: 0.9rem; margin: 0.15rem 0 0; } /* texto da dica */

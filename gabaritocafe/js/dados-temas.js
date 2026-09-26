@@ -270,5 +270,135 @@ const DadosTemas = {
       'Teoría, pregunta, corrección del error. Repite. Es simple, no fácil.',
       'Los pequeños avances diarios construyen grandes notas.'
     ]
+  },
+
+  // ---------- Dicas importantes, organizadas por categoria (por idioma) ----------
+  dicasImportantes: {
+    pt: [
+      {
+        icone: '🗓️',                                   // emoji da categoria
+        titulo: 'Rotina que funciona',                  // título da categoria
+        dicas: [                                        // lista de dicas
+          { titulo: 'Estude todo dia, nem que seja 30 minutos', texto: 'A memória consolida com frequência, não com maratona. Meia hora por dia rende mais que 5 horas no domingo.' },
+          { titulo: 'Defina o horário e proteja ele', texto: 'Trate o horário de estudo como consulta médica: ninguém marca outra coisa em cima.' },
+          { titulo: 'Blocos de foco com pausa de verdade', texto: 'Estude 25 a 50 minutos concentrado e descanse 5 a 10. Cérebro cansado começa a fingir que aprende.' },
+          { titulo: 'Anote o plano antes de abrir o caderno', texto: 'Chegar sem saber o que estudar gasta metade do tempo só decidindo por onde começar.' }
+        ]
+      },
+      {
+        icone: '🧠',
+        titulo: 'Técnicas que fazem a nota subir',
+        dicas: [
+          { titulo: 'Resolva questões ANTES de reler a teoria', texto: 'Errar primeiro faz o cérebro prestar atenção na explicação. É o caminho mais rápido para aprender.' },
+          { titulo: 'Monte um caderno de erros', texto: 'Anote cada questão errada e o motivo do erro. Reler esse caderno 1x por semana é revisar o que você mais precisa.' },
+          { titulo: 'Revisão espaçada (a arma secreta)', texto: 'Revise no mesmo dia, em uma semana e em um mês. Sem revisão, você esquece boa parte do que estudou.' },
+          { titulo: 'Explique em voz alta (técnica Feynman)', texto: 'Se não consegue explicar de forma simples, ainda não entendeu. Fale como se estivesse ensinando alguém.' }
+        ]
+      },
+      {
+        icone: '✍️',
+        titulo: 'Na hora da prova',
+        dicas: [
+          { titulo: 'Leia o comando duas vezes e sublinhe', texto: 'A banca esconde o que quer atrás de texto bonito. Sublinhe palavras-chave: "assinale", "exceto", "incorreta".' },
+          { titulo: 'Responda primeiro o que você domina', texto: 'Garanta os pontos fáceis e volte nas difíceis. Não deixe questão fácil para o fim com o relógio apertado.' },
+          { titulo: 'Chute com critério: elimine 2 alternativas', texto: 'Entre 3 opções o chute vale 33%; entre 5, apenas 20%. Eliminar alternativas já é estudar.' },
+          { titulo: 'Controle o tempo por blocos', texto: 'Divida a prova em blocos e confira o relógio. Cerca de 3 minutos por questão é o ritmo médio.' }
+        ]
+      },
+      {
+        icone: '🧘',
+        titulo: 'Corpo, mente e véspera',
+        dicas: [
+          { titulo: 'Durma 7 a 8 horas (principalmente na véspera)', texto: 'É durante o sono que a memória se fixa. Virar a noite antes da prova derruba sua nota.' },
+          { titulo: 'Na véspera, revise leve e durma cedo', texto: 'Nada de matéria nova. Reveja seus resumos, separe documento e caneta e vá dormir.' },
+          { titulo: 'Não compare seu processo com o dos outros', texto: 'Nas redes sociais todo mundo aprova. Compare você de hoje com você de um mês atrás.' },
+          { titulo: 'Cuide do básico: água, comida e movimento', texto: 'Cérebro desidratado não raciocina. Água, comida de verdade e uma caminhada de 15 minutos fazem diferença.' }
+        ]
+      }
+    ],
+    en: [
+      {
+        icone: '🗓️',
+        titulo: 'A routine that works',
+        dicas: [
+          { titulo: 'Study every day, even 30 minutes', texto: 'Memory is built by frequency, not by marathon sessions. Half an hour a day beats 5 hours on Sunday.' },
+          { titulo: 'Set a time and protect it', texto: 'Treat your study time like a doctor’s appointment: nobody schedules anything on top of it.' },
+          { titulo: 'Focus blocks with real breaks', texto: 'Study 25 to 50 minutes focused, then rest 5 to 10. A tired brain only pretends to learn.' },
+          { titulo: 'Write your plan before opening the book', texto: 'Arriving without knowing what to study wastes half your time just deciding where to start.' }
+        ]
+      },
+      {
+        icone: '🧠',
+        titulo: 'Techniques that raise your score',
+        dicas: [
+          { titulo: 'Answer questions BEFORE rereading the theory', texto: 'Getting it wrong first makes your brain pay attention to the explanation. It is the fastest way to learn.' },
+          { titulo: 'Keep a mistake notebook', texto: 'Write down every wrong question and why you missed it. Reviewing it once a week covers exactly what you need.' },
+          { titulo: 'Spaced repetition (the secret weapon)', texto: 'Review the same day, in a week and in a month. Without reviewing, you forget much of what you studied.' },
+          { titulo: 'Explain it out loud (Feynman technique)', texto: 'If you cannot explain it simply, you have not understood it yet. Talk as if you were teaching someone.' }
+        ]
+      },
+      {
+        icone: '✍️',
+        titulo: 'During the test',
+        dicas: [
+          { titulo: 'Read the command twice and underline', texto: 'The exam board hides what it wants behind pretty text. Underline key words: "choose", "except", "incorrect".' },
+          { titulo: 'Answer what you master first', texto: 'Secure the easy points and come back to the hard ones. Never leave easy questions for the final minutes.' },
+          { titulo: 'Guess smart: eliminate 2 options', texto: 'Among 3 options a guess is worth 33%; among 5, only 20%. Eliminating options is already studying.' },
+          { titulo: 'Control time in blocks', texto: 'Split the test into blocks and check the clock. Around 3 minutes per question is the average pace.' }
+        ]
+      },
+      {
+        icone: '🧘',
+        titulo: 'Body, mind and the day before',
+        dicas: [
+          { titulo: 'Sleep 7 to 8 hours (especially the night before)', texto: 'Memory is consolidated while you sleep. Pulling an all-nighter before the test lowers your score.' },
+          { titulo: 'The day before: light review and early sleep', texto: 'No new subjects. Review your summaries, pack your documents and pen, and go to bed.' },
+          { titulo: 'Do not compare your journey with others', texto: 'On social media everyone passes. Compare today’s you with the you from a month ago.' },
+          { titulo: 'Take care of the basics: water, food, movement', texto: 'A dehydrated brain cannot reason. Water, real food and a 15-minute walk make a difference.' }
+        ]
+      }
+    ],
+    es: [
+      {
+        icone: '🗓️',
+        titulo: 'Una rutina que funciona',
+        dicas: [
+          { titulo: 'Estudia todos los días, aunque sean 30 minutos', texto: 'La memoria se construye con frecuencia, no con maratones. Media hora al día rinde más que 5 horas el domingo.' },
+          { titulo: 'Fija el horario y protégelo', texto: 'Trata tu horario de estudio como una cita médica: nadie agenda nada encima.' },
+          { titulo: 'Bloques de foco con pausas reales', texto: 'Estudia 25 a 50 minutos concentrado y descansa 5 a 10. Un cerebro cansado solo finge aprender.' },
+          { titulo: 'Anota el plan antes de abrir el cuaderno', texto: 'Llegar sin saber qué estudiar gasta la mitad del tiempo solo decidiendo por dónde empezar.' }
+        ]
+      },
+      {
+        icone: '🧠',
+        titulo: 'Técnicas que suben la nota',
+        dicas: [
+          { titulo: 'Resuelve preguntas ANTES de releer la teoría', texto: 'Equivocarse primero hace que el cerebro preste atención a la explicación. Es el camino más rápido para aprender.' },
+          { titulo: 'Arma un cuaderno de errores', texto: 'Anota cada pregunta fallada y el motivo. Repasarlo una vez por semana es repasar justo lo que necesitas.' },
+          { titulo: 'Repaso espaciado (el arma secreta)', texto: 'Repasa el mismo día, en una semana y en un mes. Sin repaso, olvidas buena parte de lo estudiado.' },
+          { titulo: 'Explícalo en voz alta (técnica Feynman)', texto: 'Si no puedes explicarlo de forma simple, aún no lo entendiste. Habla como si enseñaras a alguien.' }
+        ]
+      },
+      {
+        icone: '✍️',
+        titulo: 'En el momento del examen',
+        dicas: [
+          { titulo: 'Lee el enunciado dos veces y subraya', texto: 'El comité esconde lo que quiere detrás de un texto bonito. Subraya palabras clave: "señala", "excepto", "incorrecta".' },
+          { titulo: 'Responde primero lo que dominas', texto: 'Asegura los puntos fáciles y vuelve a las difíciles. No dejes preguntas fáciles para el final con el reloj apretado.' },
+          { titulo: 'Adivina con criterio: elimina 2 opciones', texto: 'Entre 3 opciones el acierto vale 33%; entre 5, solo 20%. Eliminar opciones ya es estudiar.' },
+          { titulo: 'Controla el tiempo por bloques', texto: 'Divide el examen en bloques y revisa el reloj. Unos 3 minutos por pregunta es el ritmo medio.' }
+        ]
+      },
+      {
+        icone: '🧘',
+        titulo: 'Cuerpo, mente y la víspera',
+        dicas: [
+          { titulo: 'Duerme 7 u 8 horas (sobre todo la noche anterior)', texto: 'La memoria se fija mientras duermes. Trasnochar antes del examen baja tu nota.' },
+          { titulo: 'La víspera: repaso ligero y dormir temprano', texto: 'Nada de materia nueva. Revisa tus resúmenes, prepara documento y bolígrafo y a dormir.' },
+          { titulo: 'No compares tu proceso con el de otros', texto: 'En las redes todos aprueban. Compara tu yo de hoy con tu yo de hace un mes.' },
+          { titulo: 'Cuida lo básico: agua, comida y movimiento', texto: 'Un cerebro deshidratado no razona. Agua, comida de verdad y una caminata de 15 minutos hacen diferencia.' }
+        ]
+      }
+    ]
   }
 };

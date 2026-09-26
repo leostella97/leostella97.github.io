@@ -47,6 +47,15 @@ const Auth = {
     return usuario || null;                   // devolve o usuário (ou null se sumiu)
   },
 
+  // Devolve o id de quem está usando o app agora (conta logada ou visitante)
+  // O visitante não está na lista de contas, por isso não dá para usar usuarioAtual()
+  idAtual() {
+    const usuario = this.usuarioAtual();                    // tenta achar a conta logada
+    if (usuario) return usuario.id;                         // conta logada, devolve o id dela
+    const sessao = Armazenamento.ler(this.CHAVE_SESSAO, null); // lê a sessão salva
+    return sessao ? sessao.usuarioId : null;                // visitante (ou ninguém logado)
+  },
+
   // Cria uma conta nova (com validações amigáveis)
   async cadastrar(nome, email, senha) {
     nome = String(nome || '').trim();         // limpa espaços do nome

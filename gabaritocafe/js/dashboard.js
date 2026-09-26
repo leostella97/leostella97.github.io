@@ -8,11 +8,11 @@
 // Objeto global do dashboard
 const DashboardUI = {
 
-  // Devolve o histórico de resultados do usuário atual
+  // Devolve o histórico de resultados do usuário atual (conta ou visitante)
   historico() {
-    const usuario = Auth.usuarioAtual();                    // pega quem está logado
-    if (!usuario) return [];                                // sem usuário, sem histórico
-    return Armazenamento.ler('gc_resultados_' + usuario.id, []); // lê o histórico da conta
+    const id = Auth.idAtual();                              // id de quem está usando agora
+    if (!id) return [];                                     // sem sessão, sem histórico
+    return Armazenamento.ler('gc_resultados_' + id, []);    // lê o histórico da conta/visitante
   },
 
   // Desenha o dashboard inteiro
@@ -71,6 +71,10 @@ const DashboardUI = {
     html += '<div class="estatistica"><div class="valor">🔥 ' + sequencia + '</div><div class="rotulo">' + T('dash_stat_sequencia') + '</div></div>'; // sequência
     html += '</div>';                                       // fecha a grade
 
+    // ---- Recomendação inteligente: qual matéria treinar agora ----
+    html += '<div class="titulo-secao"><h3>' + T('dash_fraco_t') + '</h3></div>'; // título da seção
+    html += '<div class="cartao">' + this.recomendacao(historico) + '</div>'; // cartão do conselho
+
     // ---- Gráfico de evolução (últimas 10 provas) ----
     html += '<div class="titulo-secao"><h3>' + T('dash_evolucao') + '</h3></div>'; // título da seção
     html += '<div class="cartao">';                         // abre o cartão do gráfico
@@ -116,10 +120,53 @@ const DashboardUI = {
     this.ligarAtalhos(caixa);                               // liga os botões de atalho
   },
 
+  // Analisa o histórico e recomenda treinar a matéria mais fraca (o "conselho do barista")
+  recomendacao(historico) {
+    const porMateria = {};                                  // matéria → {total, acertos}
+    for (const r of historico) {                            // percorre o histórico
+      for (const materia in r.porMateria) {                 // percorre as matérias do resultado
+        if (!porMateria[materia]) porMateria[materia] = { total: 0, acertos: 0 }; // cria o registro
+        porMateria[materia].total += r.porMateria[materia].total;   // soma questões
+        porMateria[materia].acertos += r.porMateria[materia].acertos; // soma acertos
+      }
+    }
+    // Só considera matérias com amostra suficiente (3+ questões respondidas)
+    const candidatas = Object.keys(porMateria).filter(m => porMateria[m].total >= 3); // matérias com dados
+    if (candidatas.length === 0) {                          // ainda não dá para saber
+      return '<p class="texto-suave">' + T('dash_fraco_pouco') + '</p>'; // pede mais questões
+    }
+    // Procura a matéria com o pior aproveitamento
+    let pior = candidatas[0];                               // começa pela primeira
+    for (const materia of candidatas) {                     // percorre as candidatas
+      const atual = porMateria[materia].acertos / porMateria[materia].total; // aproveitamento atual
+      const piorAproveitamento = porMateria[pior].acertos / porMateria[pior].total; // do pior até agora
+      if (atual < piorAproveitamento) pior = materia;       // achou uma pior, troca
+    }
+    const pct = Math.round((porMateria[pior].acertos / porMateria[pior].total) * 100); // percentual do pior
+    // Se está tudo bem, dá um conselho de subir o nível em vez de treinar
+    if (pct >= 75) {
+      return '<p class="texto-suave">' + T('dash_fraco_bom') + '</p>'; // elogia e sugere subir o nível
+    }
+    // Monta o cartão com o ponto fraco e o botão de treino
+    let html = '<p style="font-weight:800">' + T('dash_fraco_txt', { materia: this.escape(pior), pct: pct }) + '</p>'; // diagnóstico
+    html += '<div class="barra-progresso" style="margin:0.6rem 0"><span style="width:' + pct + '%;background:var(--vermelho)"></span></div>'; // barra
+    html += '<button class="botao botao-primario" data-treinar="' + this.escape(pior) + '">' + T('dash_fraco_btn', { materia: this.escape(pior) }) + '</button>'; // botão de treino
+    return html;                                            // devolve o conselho
+  },
+
   // Liga os botões "data-ir" (atalhos de navegação)
   ligarAtalhos(caixa) {
     caixa.querySelectorAll('[data-ir]').forEach(btn => {    // para cada botão de atalho
       btn.addEventListener('click', () => App.irPara(btn.dataset.ir)); // navega para a tela
+    });
+    // Botões de treino: abrem um simulado focado na matéria recomendada
+    caixa.querySelectorAll('[data-treinar]').forEach(btn => { // para cada botão de treino
+      btn.addEventListener('click', () => {                 // no clique
+        const materia = btn.dataset.treinar;                // matéria do botão
+        App.torrada(T('toast_treino', { materia: materia })); // avisa
+        SimuladoUI.abrir({ materias: [materia], origem: 'dashboard' }); // abre o simulado focado
+        App.irPara('simulado');                             // navega para o simulado
+      });
     });
   },
 

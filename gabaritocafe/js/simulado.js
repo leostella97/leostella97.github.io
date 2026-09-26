@@ -382,10 +382,10 @@ const SimuladoUI = {
       }))
     };
 
-    // Salva o resultado no histórico do usuário
-    const usuario = Auth.usuarioAtual();                    // pega o usuário logado
-    if (usuario) {                                          // se há usuário
-      const chave = 'gc_resultados_' + usuario.id;          // chave do histórico
+    // Salva o resultado no histórico (funciona para conta e para visitante)
+    const id = Auth.idAtual();                              // id de quem está usando agora
+    if (id) {                                               // se há conta ou visitante
+      const chave = 'gc_resultados_' + id;                  // chave do histórico
       const historico = Armazenamento.ler(chave, []);       // lê o histórico atual
       historico.push(resultado);                            // adiciona o novo resultado
       Armazenamento.salvar(chave, historico);               // grava de volta

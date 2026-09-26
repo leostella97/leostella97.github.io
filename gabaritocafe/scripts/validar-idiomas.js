@@ -101,6 +101,22 @@ for (const campo of ['frasesMotivacionais', 'dicasRapidas']) { // percorre os do
   else console.log('✅ ' + campo + ': ' + tamanhos.join(' ')); // ok
 }
 
+// ---------- 5) Dicas importantes: mesma estrutura em todos os idiomas ----------
+const dicas = DadosTemas.dicasImportantes;                  // dicas por idioma
+const idiomasDicas = Object.keys(dicas);                    // idiomas disponíveis
+// Resume a estrutura (quantidade de dicas por categoria) para comparar
+const estrutura = (lista) => lista.map(c => c.dicas.length).join('-'); // ex.: "4-4-4-4"
+console.log('dicasImportantes: ' + idiomasDicas.map(i => i + '=' + dicas[i].length + ' categorias (' + estrutura(dicas[i]) + ')').join(' ')); // resumo
+for (const idioma of idiomasDicas) {                        // percorre os idiomas
+  if (estrutura(dicas[idioma]) !== estrutura(dicas.pt)) problemas('dicasImportantes com estrutura diferente em ' + idioma + ': ' + estrutura(dicas[idioma])); // compara
+  dicas[idioma].forEach((categoria, ci) => {                // percorre as categorias
+    if (!categoria.icone || !categoria.titulo) problemas('dicasImportantes ' + idioma + ' categoria ' + ci + ' sem ícone ou título'); // campos obrigatórios
+    categoria.dicas.forEach((d, di) => {                    // percorre as dicas
+      if (!d.titulo || !d.texto) problemas('dicasImportantes ' + idioma + ' dica ' + ci + '.' + di + ' incompleta'); // campos obrigatórios
+    });
+  });
+}
+
 // ---------- Resultado final ----------
 console.log('=========================================='); // rodapé
 console.log(erros === 0 ? '✅ Tudo certo! Traduções completas e coerentes.' : '❌ Problemas encontrados: ' + erros); // veredito
