@@ -36,23 +36,51 @@
   </div>
   <script>
     /*
-     * Este arquivo é servido pelo GitHub Pages em QUALQUER endereço não
-     * encontrado do domínio (ex.: /protocolfit/, /PROTOCOLFIT/painel/).
-     * Aqui reconstruímos o caminho correto trocando o primeiro segmento pelo
-     * nome oficial do projeto ("ProtocolFit"), preservando o resto do caminho,
-     * a query string e a âncora.
+     * Este arquivo é servido pelo GitHub Pages em endereços não encontrados.
+     * Redireciona APENAS variações conhecidas do ProtocolFit:
+     *   - protocolfit (minúsculo)
+     *   - ProtocoloFit (com "o" extra)
+     *   - PROTOCOLFIT (maiúsculo)
+     *   - qualquer outra caixa dessas variações
+     * Outros caminhos (outros sites do domínio) NÃO são redirecionados.
      */
     (function () {
       // Caminho solicitado (ex.: "/protocolfit/painel/").
       var caminho = window.location.pathname || '/';
       // Divide em segmentos, ignorando barras vazias.
       var segmentos = caminho.split('/').filter(function (parte) { return parte.length > 0; });
-      // Remove o primeiro segmento (nome do projeto escrito de qualquer forma).
+      
+      if (segmentos.length === 0) {
+        // Raiz do domínio - não redireciona (o index.html já cuida disso)
+        return;
+      }
+      
+      // Primeiro segmento do caminho (nome do "projeto" digitado).
+      var primeiro = segmentos[0].toLowerCase();
+      
+      // Variações conhecidas do ProtocolFit que devem ser redirecionadas.
+      var variacoesProtocolFit = [
+        'protocolfit',   // minúsculo
+        'protocolofit',  // com 'o' extra (o typo comum)
+        'protocolfit'    // sem o 'o' extra mas minúsculo
+      ];
+      
+      // Verifica se o primeiro segmento é uma variação conhecida do ProtocolFit.
+      var ehVariacaoProtocolFit = variacoesProtocolFit.indexOf(primeiro) !== -1;
+      
+      if (!ehVariacaoProtocolFit) {
+        // Não é uma variação do ProtocolFit - não redireciona.
+        // O navegador mostra esta página 404 normalmente.
+        return;
+      }
+      
+      // É uma variação do ProtocolFit - redireciona para o endereço oficial.
       var resto = segmentos.slice(1).join('/');
-      // Monta o destino oficial, preservando subpastas, parâmetros e âncora.
       var destino = '/ProtocolFit/' + (resto ? resto + '/' : '') + (window.location.search || '') + (window.location.hash || '');
+      
       // Atualiza o link manual para o mesmo destino.
       document.getElementById('linkManual').setAttribute('href', destino);
+      
       // Redireciona imediatamente (replace evita poluir o histórico).
       window.location.replace(destino);
     })();

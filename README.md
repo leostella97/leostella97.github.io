@@ -19,6 +19,7 @@ redireciona para o lugar certo.
 | `https://leostella97.github.io/ProtocoloFit/` | Cai no `404.html` e é redirecionado para `/ProtocolFit/` |
 | `https://leostella97.github.io/protocolfit/` | Cai no `404.html` e é redirecionado para `/ProtocolFit/` |
 | `https://leostella97.github.io/PROTOCOLFIT/painel/` | Redirecionado para `/ProtocolFit/painel/` (preserva o resto do caminho) |
+| `https://leostella97.github.io/outro-site/` | **404 normal** — não redireciona (outro site do domínio) |
 
 > Observação técnica: o GitHub Pages diferencia maiúsculas de minúsculas no
 > caminho, então `ProtocoloFit` e `protocolofit` **não podem** ser duas pastas
@@ -26,6 +27,11 @@ redireciona para o lugar certo.
 > entradas). Por isso `protocolofit/` é uma pasta de verdade (HTTP 200) e todas
 > as outras grafias, incluindo `ProtocoloFit`, passam pelo `404.html`, que
 > redireciona na hora (JavaScript + `meta refresh`).
+> 
+> **Importante:** o `404.html` **só redireciona variações conhecidas do ProtocolFit**
+> (`protocolfit`, `protocolofit`, `PROTOCOLFIT`, `ProtocoloFit`, etc.). Qualquer
+> outro caminho que não exista (ex.: `/outro-site/`) devolve 404 normal, permitindo
+> que outros sites do domínio funcionem normalmente.
 
 ## Arquivos
 
