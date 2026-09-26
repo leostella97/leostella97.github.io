@@ -1,27 +1,212 @@
 <!DOCTYPE html>
+<!-- Gabarito Café — sistema de estudos para concursos e vestibulares -->
 <html lang="pt-BR">
 <head>
+  <!-- Codificação padrão com suporte a acentos -->
   <meta charset="UTF-8">
+  <!-- Faz o layout se adaptar a celulares e tablets -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecionando para o Gabarito Cafe</title>
-  <meta name="robots" content="noindex">
-  <link rel="canonical" href="https://leostella97.github.io/GabaritoCafe/">
-  <meta http-equiv="refresh" content="0; url=https://leostella97.github.io/GabaritoCafe/">
-  <style>
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-           background: #faf5ec; color: #3d2b1f;
-           font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; }
-    .card { text-align: center; padding: 2rem; }
-    h1 { font-size: 1.8rem; margin: 0 0 0.5rem; }
-    a { color: #6f4e37; font-weight: 700; }
-  </style>
+  <!-- Descrição que aparece ao compartilhar o link -->
+  <meta name="description" content="Gabarito Café — importe o edital, descubra o que estudar, faça simulados e acompanhe seu progresso. Estude com sabor de aprovação.">
+  <!-- Título da aba do navegador -->
+  <title>Gabarito Café ☕ Estude com sabor</title>
+  <!-- Ícone da aba (a xicrinha com o visto) -->
+  <link rel="icon" type="image/svg+xml" href="assets/icone.svg">
+  <!-- Pré-conexão com o Google Fonts (deixa o carregamento mais rápido) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fontes do tema: Fraunces (serifa artesanal), Nunito (corpo) e Caveat (letra de mão) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,700&family=Nunito:wght@400;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Estilos do app: base, componentes e telas -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/telas.css">
+  <!-- PDF.js (biblioteca que lê o PDF do edital direto no navegador) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
-  <div class="card">
-    <h1>Gabarito Cafe</h1>
-    <p>Levando voce para o endereco oficial...</p>
-    <p><a href="https://leostella97.github.io/GabaritoCafe/">Ir agora para o Gabarito Cafe</a></p>
+
+  <!-- Pilha de avisos (torradas) que aparecem no canto da tela -->
+  <div id="torradas" class="torradas" aria-live="polite"></div>
+
+  <!-- ===================== TELA DE LOGIN ===================== -->
+  <section id="tela-login" class="tela tela-login ativa">
+
+    <!-- Metade esquerda: a "vitrine" do café -->
+    <div class="login-hero">
+      <!-- Logo animado com vapor -->
+      <img src="assets/logo.svg" alt="Logo do Gabarito Café: xícara de café com um visto">
+      <!-- Nome do sistema -->
+      <h1>Gabarito <span>Café</span></h1>
+      <!-- Slogan manuscrito -->
+      <p class="login-slogan">estude com sabor de aprovação</p>
+      <!-- O que o visitante encontra por aqui -->
+      <ul class="login-destaques">
+        <li>📄 Importe o edital e descubra cargos e matérias</li>
+        <li>📝 Simulados de 5 a 50 questões, com correção comentada</li>
+        <li>🎥 Errou? Veja a explicação e uma aula no YouTube</li>
+        <li>🕵️ Aprenda as pegadinhas das bancas famosas</li>
+        <li>📈 Acompanhe seu progresso no dashboard</li>
+      </ul>
+      <!-- Frase de barista, para dar o tom -->
+      <blockquote class="login-citacao">“Aprovação não se faz num gole só: se faz em goles diários.” — o barista</blockquote>
+    </div>
+
+    <!-- Metade direita: o cartão de entrada -->
+    <div class="login-painel">
+      <div class="cartao login-cartao">
+        <!-- Abas para alternar entre entrar e criar conta -->
+        <div class="abas">
+          <button id="aba-entrar" class="aba ativa" type="button">Já tenho conta</button>
+          <button id="aba-cadastro" class="aba" type="button">Criar conta</button>
+        </div>
+
+        <!-- Formulário de login -->
+        <form id="form-entrar">
+          <h2>Bem-vindo(a) de volta ☕</h2>
+          <p class="login-sub">Passa um café e bora revisar?</p>
+          <div class="campo">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="login-senha">Senha</label>
+            <input id="login-senha" type="password" placeholder="Sua senha" autocomplete="current-password">
+          </div>
+          <button class="botao botao-primario" type="submit" style="width:100%">Entrar na cafeteria</button>
+        </form>
+
+        <!-- Formulário de cadastro (começa escondido) -->
+        <form id="form-cadastro" class="oculto">
+          <h2>Criar conta grátis ☕</h2>
+          <p class="login-sub">Leva menos tempo que passar um espresso.</p>
+          <div class="campo">
+            <label for="cad-nome">Seu nome</label>
+            <input id="cad-nome" type="text" placeholder="Como devemos te chamar?" autocomplete="name">
+          </div>
+          <div class="campo">
+            <label for="cad-email">E-mail</label>
+            <input id="cad-email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="cad-senha">Senha</label>
+            <input id="cad-senha" type="password" placeholder="No mínimo 4 caracteres" autocomplete="new-password">
+          </div>
+          <button class="botao botao-primario" type="submit" style="width:100%">Abrir minha conta</button>
+        </form>
+
+        <!-- Divisor "ou" -->
+        <div class="login-divisor"><span>ou</span></div>
+
+        <!-- Entrada sem cadastro: o modo degustação -->
+        <button id="btn-visitante" class="botao botao-contorno" type="button" style="width:100%">☕ Entrar como visitante (modo degustação)</button>
+
+        <!-- Aviso honesto sobre onde os dados ficam -->
+        <p class="login-aviso">🔒 Contas e resultados ficam salvos apenas neste navegador (localStorage). Nada vai para servidores.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ÁREA DO APP (após o login) ===================== -->
+  <div id="area-app" class="area-app oculto">
+
+    <!-- Painel lateral de navegação -->
+    <aside class="barra-lateral">
+      <!-- Marca no topo da lateral -->
+      <div class="marca">
+        <img src="assets/logo.svg" alt="Logo do Gabarito Café">
+        <span>Gabarito Café</span>
+      </div>
+      <!-- Menu de telas -->
+      <nav class="menu">
+        <button class="item-menu ativo" data-tela="dashboard" type="button">🏠 Dashboard</button>
+        <button class="item-menu" data-tela="edital" type="button">📄 Meu edital</button>
+        <button class="item-menu" data-tela="simulado" type="button">📝 Simulado</button>
+        <button class="item-menu" data-tela="bancas" type="button">🕵️ Bancas</button>
+        <button class="item-menu" data-tela="temas" type="button">📚 Temas que caem</button>
+      </nav>
+      <!-- Perfil do usuário e saída -->
+      <div class="lateral-rodape">
+        <div id="perfil-nome" class="perfil-nome">Estudante</div>
+        <div id="perfil-foco" class="perfil-foco"></div>
+        <button id="btn-sair" class="botao botao-fantasma pequeno" type="button">↩ Sair da conta</button>
+      </div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="conteudo">
+      <!-- Cabeçalho com título da tela e saudação -->
+      <header class="topo">
+        <div>
+          <h2 id="topo-titulo">Dashboard</h2>
+          <p id="topo-subtitulo" class="topo-sub">Seu progresso, fresquinho como café passado na hora.</p>
+        </div>
+        <div id="topo-saudacao" class="topo-saudacao"></div>
+      </header>
+
+      <!-- Tela: Dashboard (conteúdo montado pelo JavaScript) -->
+      <section id="tela-dashboard" class="tela ativa"></section>
+
+      <!-- Tela: Meu edital -->
+      <section id="tela-edital" class="tela">
+        <!-- Zona de arrastar e soltar o PDF -->
+        <div id="zona-pdf" class="zona-pdf" role="button" tabindex="0" aria-label="Enviar PDF do edital">
+          <div class="pdf-icone">📄</div>
+          <h3>Bota o edital na mesa</h3>
+          <p class="texto-suave">Arraste o PDF do edital (ou manual do candidato) aqui, ou clique para escolher o arquivo.</p>
+          <p class="texto-suave" style="font-size:0.8rem">O arquivo é lido no seu navegador — nada é enviado para a internet.</p>
+        </div>
+        <!-- Campo de arquivo invisível (a zona acima aciona ele) -->
+        <input id="input-pdf" type="file" accept=".pdf,application/pdf" class="oculto">
+        <!-- Status da leitura: lendo, pronto ou erro -->
+        <div id="edital-estado" class="estado-edital oculto"></div>
+        <!-- Resultado da análise (montado pelo JavaScript) -->
+        <div id="edital-resultado"></div>
+
+        <!-- Plano B: colar o texto do edital (se o PDF não abrir) -->
+        <div class="titulo-secao"><h3>Sem PDF? Cola o texto aqui</h3></div>
+        <div class="campo">
+          <textarea id="edital-cola" placeholder="Cole aqui o conteúdo do edital (conteúdo programático, cargos, requisitos...)"></textarea>
+        </div>
+        <button id="btn-analisar-cola" class="botao botao-contorno" type="button">🔍 Analisar texto colado</button>
+
+        <!-- Foco do usuário: qual cargo ele está disputando -->
+        <div class="titulo-secao"><h3>Meu foco 🎯</h3></div>
+        <div class="cartao" style="display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center">
+          <div class="campo" style="flex:1;margin:0">
+            <label for="edital-cargo">Qual cargo você vai disputar?</label>
+            <input id="edital-cargo" type="text" placeholder="Ex.: Técnico Administrativo, Auditor Fiscal, Medicina...">
+          </div>
+          <button id="btn-salvar-cargo" class="botao botao-primario" type="button">Guardar foco</button>
+        </div>
+      </section>
+
+      <!-- Tela: Simulado (montada inteira pelo JavaScript) -->
+      <section id="tela-simulado" class="tela"></section>
+
+      <!-- Tela: Bancas (montada pelo JavaScript) -->
+      <section id="tela-bancas" class="tela"></section>
+
+      <!-- Tela: Temas que caem (montada pelo JavaScript) -->
+      <section id="tela-temas" class="tela"></section>
+
+      <!-- Rodapé carinhoso -->
+      <footer class="rodape">Feito com ☕ e muitas horas de estudo — Gabarito Café · seus dados ficam só com você</footer>
+    </main>
   </div>
-  <script>location.replace("https://leostella97.github.io/GabaritoCafe/");</script>
+
+  <!-- Scripts em ordem de dependência (dados antes, lógica depois) -->
+  <script src="js/armazenamento.js"></script>
+  <script src="js/dados-temas.js"></script>
+  <script src="js/dados-bancas.js"></script>
+  <script src="js/banco-questoes.js"></script>
+  <script src="js/analise-edital.js"></script>
+  <script src="js/motor-simulado.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/edital.js"></script>
+  <script src="js/conteudo.js"></script>
+  <script src="js/simulado.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

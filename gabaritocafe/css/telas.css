@@ -1,0 +1,614 @@
+/* ============================================================
+   GABARITO CAFÉ — css/telas.css
+   Layouts das telas: login, dashboard, edital, simulado,
+   resultado, revisão, bancas, temas e responsividade.
+   ============================================================ */
+
+/* ---------- Estrutura geral do app ---------- */
+.tela { display: none; }            /* telas ficam escondidas por padrão */
+.tela.ativa {                       /* tela visível */
+  display: block;                   /* aparece */
+  animation: aparecer 0.35s ease both; /* entra com fade suave */
+}
+
+/* O login é a exceção: ele usa GRID (texto à esquerda, login ao lado) */
+.tela-login.ativa { display: grid; } /* duas colunas lado a lado quando ativa */
+
+.area-app {                         /* casca do app logado */
+  display: flex;                    /* lateral + conteúdo lado a lado */
+  min-height: 100vh;                /* ocupa a tela toda */
+}
+
+.conteudo {                         /* área principal à direita */
+  flex: 1;                          /* ocupa o que sobra da lateral */
+  padding: 2rem clamp(1rem, 4vw, 2.6rem); /* respiro generoso */
+  max-width: 1100px;                /* não estica demais em telonas */
+}
+
+/* ---------- Tela de login ---------- */
+.tela-login {                       /* casca da tela de login */
+  min-height: 100vh;                /* ocupa a tela toda */
+  display: grid;                    /* duas colunas */
+  grid-template-columns: 1.1fr 1fr; /* hero maior, painel menor */
+  align-items: stretch;             /* estica as colunas */
+}
+
+.login-hero {                       /* metade esquerda: a "vitrine" */
+  background: linear-gradient(160deg, #4a3323, #2c1e15); /* gradiente de café escuro */
+  color: #f5e9d7;                   /* texto creme */
+  padding: clamp(2rem, 6vw, 4.5rem); /* respiro generoso */
+  display: flex;                    /* coluna centralizada */
+  flex-direction: column;           /* empilha */
+  justify-content: center;          /* centraliza verticalmente */
+  position: relative;               /* para as bolhas decorativas */
+  overflow: hidden;                 /* corta decorações que vazam */
+}
+
+/* Bolhas decorativas de vapor/café no fundo do hero */
+.login-hero::before {               /* bolha grande */
+  content: '';                      /* decorativo */
+  position: absolute;               /* flutua sobre o fundo */
+  width: 380px;                     /* tamanho */
+  height: 380px;                    /* tamanho */
+  border-radius: 50%;               /* círculo */
+  background: rgba(201, 138, 94, 0.12); /* caramelo translúcido */
+  top: -120px;                      /* transborda para cima */
+  right: -120px;                    /* transborda para a direita */
+}
+
+.login-hero::after {                /* bolha pequena */
+  content: '';                      /* decorativo */
+  position: absolute;               /* flutua */
+  width: 200px;                     /* tamanho */
+  height: 200px;                    /* tamanho */
+  border-radius: 50%;               /* círculo */
+  background: rgba(230, 185, 138, 0.1); /* caramelo claro translúcido */
+  bottom: -70px;                    /* transborda para baixo */
+  left: -70px;                      /* transborda para a esquerda */
+}
+
+/* Mantém o conteúdo do hero acima das bolhas decorativas do fundo */
+.login-hero > * { position: relative; z-index: 1; }  /* conteúdo sobre as decorações */
+
+.login-hero img { width: 96px; height: 96px; margin-bottom: 1.2rem; } /* logo grande */
+
+.login-hero h1 {                    /* nome do app gigante */
+  color: #fdf6ea;                   /* creme clarinho */
+  font-size: clamp(2.6rem, 6vw, 4rem); /* bem grande */
+}
+
+.login-hero h1 span {               /* a palavra "Café" */
+  color: var(--caramelo-claro);     /* caramelo para destacar */
+  font-style: italic;               /* itálico de letreiro */
+}
+
+.login-slogan {                     /* frase abaixo do nome */
+  font-family: 'Caveat', cursive;   /* letra de mão */
+  font-size: 1.7rem;                /* tamanho de bilhete */
+  color: var(--caramelo-claro);     /* caramelo */
+  margin-bottom: 2rem;              /* respiro */
+}
+
+.login-destaques {                  /* lista de "o que você encontra" */
+  list-style: none;                 /* sem bolinhas */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha */
+  gap: 0.8rem;                      /* respiro */
+  margin-bottom: 2rem;              /* distância da citação */
+}
+
+.login-destaques li {               /* cada item */
+  display: flex;                    /* ícone + texto */
+  align-items: center;              /* alinhados */
+  gap: 0.7rem;                      /* espaço */
+  font-weight: 700;                 /* firme */
+  font-size: 1.02rem;               /* legível */
+}
+
+.login-citacao {                    /* frase de barista */
+  font-family: 'Fraunces', serif;   /* serifa */
+  font-style: italic;               /* itálico de citação */
+  border-left: 3px solid var(--caramelo); /* filete caramelo */
+  padding-left: 1rem;               /* recuo do texto */
+  color: #e8d9c4;                   /* creme apagado */
+  position: relative;               /* acima das bolhas */
+  z-index: 1;                       /* fica sobre as decorações */
+}
+
+.login-painel {                     /* metade direita */
+  display: flex;                    /* centraliza o cartão */
+  align-items: center;              /* vertical */
+  justify-content: center;          /* horizontal */
+  padding: 2rem;                    /* respiro */
+  background:
+    radial-gradient(circle at 20% 20%, rgba(201, 138, 94, 0.08) 0, transparent 45%), /* mancha suave */
+    var(--creme);                   /* fundo creme */
+}
+
+.login-cartao { width: 100%; max-width: 400px; } /* cartão de login com largura controlada */
+
+.login-cartao h2 { margin-bottom: 0.4rem; }      /* título do cartão */
+
+.login-sub { color: var(--marrom-suave); font-size: 0.92rem; margin-bottom: 1.2rem; } /* legenda */
+
+.login-divisor {                    /* "ou" entre formulário e visitante */
+  display: flex;                    /* linha + texto + linha */
+  align-items: center;              /* centralizado */
+  gap: 0.8rem;                      /* espaço */
+  color: var(--marrom-suave);       /* apagado */
+  font-size: 0.85rem;               /* discreto */
+  margin: 1.1rem 0;                 /* respiro */
+}
+
+.login-divisor::before,
+.login-divisor::after {             /* as linhas dos lados */
+  content: '';                      /* decorativo */
+  flex: 1;                          /* esticam */
+  height: 1px;                      /* fininhas */
+  background: var(--borda);         /* cor de palha */
+}
+
+.login-aviso {                      /* aviso de privacidade local */
+  margin-top: 1.1rem;               /* respiro acima */
+  font-size: 0.8rem;                /* miúdo */
+  color: var(--marrom-suave);       /* apagado */
+  text-align: center;               /* centralizado */
+}
+
+/* ---------- Dashboard ---------- */
+.dash-cabecalho {                   /* cartão de boas-vindas */
+  display: flex;                    /* texto + ilustração */
+  align-items: center;              /* centralizado */
+  gap: 1.2rem;                      /* espaço */
+  margin-bottom: 1.2rem;            /* respiro */
+}
+
+.dash-cabecalho img { width: 64px; height: 64px; } /* xícara ilustrativa */
+
+.dash-frase {                       /* frase motivacional do dia */
+  font-family: 'Caveat', cursive;   /* letra de mão */
+  font-size: 1.35rem;               /* tamanho de bilhete */
+  color: var(--cafe-medio);         /* café com leite */
+}
+
+.dash-acoes {                       /* fileira de atalhos rápidos */
+  display: grid;                    /* grade */
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); /* adaptável */
+  gap: 1rem;                        /* respiro */
+  margin-bottom: 1.2rem;            /* distância do resto */
+}
+
+.dash-atalho {                      /* cartão de atalho clicável */
+  text-align: left;                 /* texto à esquerda */
+  padding: 1.2rem;                  /* respiro */
+  border-radius: var(--raio);       /* cantos padrão */
+  background: var(--superficie);    /* fundo claro */
+  border: 1px solid var(--borda);   /* borda de palha */
+  box-shadow: var(--sombra-suave);  /* sombrinha */
+  transition: transform 0.15s ease, box-shadow 0.15s ease; /* reação suave */
+}
+
+.dash-atalho:hover {                /* ao passar o mouse */
+  transform: translateY(-3px);      /* levita */
+  box-shadow: var(--sombra-media);  /* sombra cresce */
+}
+
+.dash-atalho .atalho-icone { font-size: 1.8rem; } /* emoji do atalho */
+
+.dash-atalho .atalho-titulo { font-weight: 900; display: block; margin-top: 0.4rem; } /* nome */
+.dash-atalho .atalho-sub { font-size: 0.8rem; color: var(--marrom-suave); } /* legenda */
+
+.grafico {                          /* área do gráfico de progresso */
+  display: flex;                    /* barras lado a lado */
+  align-items: flex-end;            /* apoiadas no chão */
+  gap: 0.5rem;                      /* espaço entre barras */
+  height: 160px;                    /* altura do gráfico */
+  padding-top: 1rem;                /* respiro acima */
+}
+
+.grafico .coluna {                  /* cada coluna (uma prova) */
+  flex: 1;                          /* divide a largura */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* barra em cima, rótulo embaixo */
+  align-items: center;              /* centralizado */
+  gap: 0.35rem;                     /* espaço */
+  height: 100%;                     /* altura total do gráfico */
+}
+
+.grafico .barra {                   /* a barra em si */
+  width: 60%;                       /* largura da barra */
+  max-width: 44px;                  /* nunca muito gorda */
+  max-height: 108px;                /* nunca estoura a área do gráfico */
+  background: linear-gradient(180deg, var(--caramelo), var(--cafe-medio)); /* gradiente quente */
+  border-radius: 8px 8px 4px 4px;   /* topo arredondado */
+  margin-top: auto;                 /* empurra para o chão */
+  min-height: 6px;                  /* visível mesmo com 0% */
+  transition: height 0.5s ease;     /* cresce suave */
+}
+
+.grafico .rotulo {                  /* data embaixo da barra */
+  font-size: 0.68rem;               /* miúdo */
+  color: var(--marrom-suave);       /* apagado */
+  writing-mode: vertical-rl;        /* data na vertical para caber */
+  transform: rotate(180deg);        /* vira para ler de baixo pra cima */
+  max-height: 44px;                 /* limita a altura do texto */
+  overflow: hidden;                 /* corta se passar */
+}
+
+.linha-materia {                    /* linha de desempenho por matéria */
+  display: grid;                    /* nome + barra + percentual */
+  grid-template-columns: 150px 1fr 52px; /* colunas fixas */
+  align-items: center;              /* alinhadas */
+  gap: 0.8rem;                      /* espaço */
+  margin-bottom: 0.7rem;            /* respiro entre linhas */
+  font-size: 0.9rem;                /* discreto */
+}
+
+.linha-materia .nome { font-weight: 800; } /* nome da matéria */
+
+.linha-materia .pct { text-align: right; font-weight: 900; color: var(--cafe); } /* percentual */
+
+/* ---------- Tela do edital ---------- */
+.zona-pdf {                         /* área de soltar o arquivo */
+  border: 3px dashed var(--caramelo-claro); /* borda tracejada caramelo */
+  border-radius: var(--raio);       /* cantos padrão */
+  background: #fffbf2;              /* fundo creme clarinho */
+  padding: 3rem 1.5rem;             /* bem espaçado */
+  text-align: center;               /* centralizado */
+  cursor: pointer;                  /* mãozinha: é clicável */
+  transition: all 0.15s ease;       /* reação suave */
+  margin-bottom: 1.2rem;            /* distância do resto */
+}
+
+.zona-pdf:hover,
+.zona-pdf.arrastando {              /* hover ou arquivo sendo arrastado */
+  border-color: var(--cafe);        /* borda escurece */
+  background: #fdf3e0;              /* fundo dourado */
+  transform: translateY(-2px);      /* levita de leve */
+}
+
+.zona-pdf .pdf-icone { font-size: 3rem; } /* emoji do PDF */
+
+.estado-edital {                    /* caixa de status (lendo, pronto, erro) */
+  text-align: center;               /* centralizado */
+  padding: 1.5rem;                  /* respiro */
+}
+
+.estado-edital .mensagem { font-weight: 800; color: var(--cafe); } /* frase principal */
+
+.bloco-edital { margin-bottom: 1.2rem; } /* cada bloco de resultado da análise */
+
+.lista-chips {                      /* fileira de chips que quebra linha */
+  display: flex;                    /* flex */
+  flex-wrap: wrap;                  /* quebra quando enche */
+  gap: 0.5rem;                      /* respiro */
+}
+
+.trecho-citado {                    /* citação de trecho do edital */
+  background: var(--creme-escuro);  /* fundo creme */
+  border-left: 4px solid var(--cafe); /* filete café */
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0; /* cantos à direita */
+  padding: 0.8rem 1rem;             /* respiro */
+  font-size: 0.88rem;               /* miúdo */
+  color: var(--cafe-escuro);        /* legível */
+  margin-bottom: 0.6rem;            /* espaço entre trechos */
+  max-height: 120px;                /* limita a altura */
+  overflow: auto;                   /* rola se passar */
+}
+
+.plano-item {                       /* item do plano de estudo */
+  border: 1px solid var(--borda);   /* borda de palha */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  padding: 0.9rem 1rem;             /* respiro */
+  margin-bottom: 0.6rem;            /* espaço entre itens */
+  background: var(--superficie);    /* fundo claro */
+}
+
+.plano-item .materia-nome { font-weight: 900; color: var(--cafe); } /* nome da matéria */
+
+/* ---------- Simulado ---------- */
+.sim-escolhas {                     /* fileira de opções de quantidade */
+  display: flex;                    /* flex */
+  flex-wrap: wrap;                  /* quebra se faltar espaço */
+  gap: 0.6rem;                      /* respiro */
+}
+
+.sim-quantidade {                   /* botão de quantidade de questões */
+  min-width: 64px;                  /* tamanho mínimo */
+  padding: 0.8rem 1rem;             /* área clicável */
+  border-radius: 14px;              /* cantos médios */
+  background: var(--superficie);    /* fundo claro */
+  border: 2px solid var(--borda);   /* borda de palha */
+  font-weight: 900;                 /* número firme */
+  font-family: 'Fraunces', serif;   /* serifa de número bonito */
+  font-size: 1.15rem;               /* legível */
+  color: var(--cafe);               /* café */
+  transition: all 0.15s ease;       /* reação suave */
+}
+
+.sim-quantidade:hover { border-color: var(--caramelo); } /* borda acende no hover */
+
+.sim-quantidade.selecionado {       /* opção escolhida */
+  background: var(--cafe);          /* fundo café */
+  color: #fff7ea;                   /* texto creme */
+  border-color: var(--cafe);        /* borda café */
+  box-shadow: 0 6px 14px rgba(111, 78, 55, 0.3); /* sombrinha */
+}
+
+.questao-topo {                     /* cabeçalho da questão (nº, matéria, relógio) */
+  display: flex;                    /* linha */
+  flex-wrap: wrap;                  /* quebra em telas pequenas */
+  align-items: center;              /* alinhados */
+  gap: 0.7rem;                      /* respiro */
+  margin-bottom: 1rem;              /* distância do enunciado */
+}
+
+.questao-numero {                   /* "Questão 3 de 20" */
+  font-family: 'Fraunces', serif;   /* serifa */
+  font-weight: 900;                 /* pesado */
+  font-size: 1.1rem;                /* legível */
+  color: var(--cafe);               /* café */
+}
+
+.questao-relogio { margin-left: auto; font-weight: 800; color: var(--marrom-suave); } /* cronômetro à direita */
+
+.enunciado {                        /* o texto da questão */
+  font-size: 1.05rem;               /* um tiquinho maior */
+  margin: 0.8rem 0 1.2rem;          /* respiro */
+  color: var(--cafe-escuro);        /* escuro */
+}
+
+.alternativas {                     /* coluna de alternativas */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha */
+  gap: 0.6rem;                      /* respiro */
+}
+
+.alternativa {                      /* cada alternativa */
+  display: flex;                    /* letra + texto */
+  align-items: flex-start;          /* alinhados no topo */
+  gap: 0.8rem;                      /* espaço */
+  width: 100%;                      /* ocupa o cartão */
+  text-align: left;                 /* texto à esquerda */
+  padding: 0.8rem 1rem;             /* área clicável */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  background: var(--superficie);    /* fundo claro */
+  border: 2px solid var(--borda);   /* borda de palha */
+  transition: all 0.15s ease;       /* reação suave */
+}
+
+.alternativa:hover:not(:disabled) { border-color: var(--caramelo); } /* acende no hover */
+
+.alternativa .letra {               /* a letrinha A/B/C... */
+  width: 26px;                      /* círculo */
+  height: 26px;                     /* círculo */
+  border-radius: 50%;               /* redondo */
+  background: var(--creme-escuro);  /* fundo creme */
+  display: flex;                    /* centraliza a letra */
+  align-items: center;              /* vertical */
+  justify-content: center;          /* horizontal */
+  font-weight: 900;                 /* firme */
+  font-size: 0.85rem;               /* miúda */
+  flex-shrink: 0;                   /* não amassa */
+}
+
+.alternativa.selecionada { border-color: var(--cafe); background: #fdf3e0; } /* escolhida pelo usuário */
+.alternativa.selecionada .letra { background: var(--cafe); color: #fff7ea; }  /* letra da escolhida */
+
+.alternativa.certa {                /* a resposta certa revelada */
+  border-color: var(--verde);       /* borda verde */
+  background: var(--verde-claro);   /* fundo verde clarinho */
+}
+.alternativa.certa .letra { background: var(--verde); color: #fff; } /* letra verde */
+
+.alternativa.errada {               /* a escolha errada do usuário */
+  border-color: var(--vermelho);    /* borda vermelha */
+  background: var(--vermelho-claro); /* fundo vermelho clarinho */
+}
+.alternativa.errada .letra { background: var(--vermelho); color: #fff; } /* letra vermelha */
+
+.feedback {                         /* bloco de explicação após responder */
+  margin-top: 1.2rem;               /* distância das alternativas */
+  padding: 1.2rem;                  /* respiro */
+  border-radius: var(--raio);       /* cantos padrão */
+  animation: aparecer 0.35s ease both; /* entra suave */
+}
+
+.feedback.certo { background: var(--verde-claro); border: 1.5px solid #bcd8c4; }    /* feedback de acerto */
+.feedback.errado { background: var(--vermelho-claro); border: 1.5px solid #ecc3bc; } /* feedback de erro */
+
+.feedback h3 { margin-bottom: 0.4rem; } /* título do feedback */
+
+.feedback .explicacao { font-size: 0.95rem; } /* texto da explicação */
+
+.feedback .bloco { margin-top: 0.9rem; } /* sub-blocos (passos, dica, vídeo) */
+
+/* ---------- Resultado final ---------- */
+.resultado-cabeca {                 /* cabeçalho do resultado */
+  display: flex;                    /* círculo + números */
+  align-items: center;              /* centralizado */
+  gap: 1.6rem;                      /* espaço */
+  flex-wrap: wrap;                  /* quebra em telas pequenas */
+}
+
+.anel-resultado {                   /* círculo de percentual */
+  position: relative;               /* para o número por cima */
+  width: 150px;                     /* tamanho */
+  height: 150px;                    /* tamanho */
+  flex-shrink: 0;                   /* não amassa */
+}
+
+.anel-resultado svg { transform: rotate(-90deg); } /* começa o arco no topo */
+
+.anel-fundo { fill: none; stroke: var(--creme-escuro); stroke-width: 12; }    /* anel de fundo */
+.anel-preenchido {                  /* anel de progresso */
+  fill: none;                       /* só a borda */
+  stroke: var(--verde);             /* verde de aprovação */
+  stroke-width: 12;                 /* mesma espessura do fundo */
+  stroke-linecap: round;            /* pontas arredondadas */
+  transition: stroke-dashoffset 0.9s ease; /* anima o preenchimento */
+}
+
+.anel-numero {                      /* percentual no meio do anel */
+  position: absolute;               /* sobrepõe o SVG */
+  inset: 0;                         /* ocupa o círculo todo */
+  display: flex;                    /* centraliza */
+  align-items: center;              /* vertical */
+  justify-content: center;          /* horizontal */
+  font-family: 'Fraunces', serif;   /* serifa */
+  font-size: 1.9rem;                /* grande */
+  font-weight: 900;                 /* pesado */
+  color: var(--cafe-escuro);        /* escuro */
+}
+
+.resultado-frase {                  /* frase de desempenho */
+  font-family: 'Caveat', cursive;   /* letra de mão */
+  font-size: 1.7rem;                /* tamanho de bilhete */
+  color: var(--cafe-medio);         /* café com leite */
+  line-height: 1.3;                 /* confortável */
+}
+
+.lista-erradas {                    /* coluna de questões erradas */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha */
+  gap: 0.7rem;                      /* respiro */
+}
+
+details.questao-revisao {           /* acordeão de revisão */
+  border: 1px solid var(--borda);   /* borda de palha */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  background: var(--superficie);    /* fundo claro */
+  overflow: hidden;                 /* corta cantos */
+}
+
+details.questao-revisao summary {   /* o cabeçalho clicável */
+  padding: 0.8rem 1rem;             /* respiro */
+  cursor: pointer;                  /* mãozinha */
+  font-weight: 800;                 /* firme */
+  display: flex;                    /* linha */
+  align-items: center;              /* alinhados */
+  gap: 0.6rem;                      /* espaço */
+  list-style: none;                 /* tira a setinha padrão */
+}
+
+details.questao-revisao summary::before { /* setinha customizada */
+  content: '▸';                     /* triângulo */
+  transition: transform 0.2s ease;  /* gira suave */
+  color: var(--caramelo);           /* caramelo */
+}
+
+details.questao-revisao[open] summary::before { transform: rotate(90deg); } /* abre a setinha */
+
+details.questao-revisao .corpo { padding: 0 1rem 1rem; } /* conteúdo do acordeão */
+
+/* ---------- Bancas ---------- */
+.grade-bancas {                     /* grade de cartões de banca */
+  display: grid;                    /* grade */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* adaptável */
+  gap: 1.2rem;                      /* respiro */
+}
+
+.banca-cartao {                     /* cartão de uma banca */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha conteúdo */
+  gap: 0.7rem;                      /* respiro interno */
+}
+
+.banca-nome {                       /* nome da banca */
+  font-family: 'Fraunces', serif;   /* serifa */
+  font-size: 1.3rem;                /* destaque */
+  font-weight: 900;                 /* pesado */
+  color: var(--cafe);               /* café */
+}
+
+.banca-perfil { font-size: 0.92rem; } /* descrição da banca */
+
+.banca-lista {                      /* lista de pegadinhas */
+  list-style: none;                 /* sem bolinhas */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha */
+  gap: 0.4rem;                      /* respiro */
+  font-size: 0.88rem;               /* miúdo */
+}
+
+.banca-lista li::before { content: '⚠️ '; } /* alertinha antes de cada pegadinha */
+
+.banca-dica {                       /* "como se dar bem" */
+  background: var(--verde-claro);   /* fundo verde suave */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  padding: 0.7rem 0.9rem;           /* respiro */
+  font-size: 0.9rem;                /* discreto */
+  margin-top: auto;                 /* gruda no rodapé do cartão */
+}
+
+/* ---------- Temas que mais caem ---------- */
+.grade-temas {                      /* grade de cartões de matéria */
+  display: grid;                    /* grade */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* adaptável */
+  gap: 1.2rem;                      /* respiro */
+}
+
+.tema-topico {                      /* cada tópico dentro da matéria */
+  border-top: 1px dashed var(--borda); /* filete pontilhado separa tópicos */
+  padding: 0.65rem 0;               /* respiro vertical */
+}
+
+.tema-topico .topico-nome { font-weight: 900; } /* nome do tópico */
+
+.xicaras { color: var(--caramelo); letter-spacing: 1px; } /* fileira de xícaras de frequência */
+
+.tema-como {                        /* "como estudar" em destaque */
+  background: var(--creme-escuro);  /* fundo creme */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  padding: 0.55rem 0.8rem;          /* respiro */
+  font-size: 0.85rem;               /* miúdo */
+  margin-top: 0.3rem;               /* colado no texto */
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 900px) {         /* telas médias e pequenas */
+  .tela-login.ativa { grid-template-columns: 1fr; } /* no celular, login vira coluna única (empilha) */
+
+  .login-hero {                     /* hero encurta no celular */
+    padding: 2.2rem 1.6rem;         /* respiro menor */
+    text-align: center;             /* centralizado */
+    align-items: center;            /* centraliza itens */
+  }
+
+  .login-destaques { text-align: left; } /* itens continuam alinhados à esquerda */
+
+  .area-app { flex-direction: column; } /* lateral vira barra no topo */
+
+  .barra-lateral {                  /* barra horizontal no celular */
+    width: 100%;                    /* largura total */
+    height: auto;                   /* altura natural */
+    position: static;               /* para de fixar */
+    padding: 0.8rem 1rem;           /* respiro */
+  }
+
+  .marca { margin-bottom: 0.8rem; } /* menos espaço abaixo da marca */
+
+  .menu {                           /* menu vira fileira rolável */
+    flex-direction: row;            /* lado a lado */
+    overflow-x: auto;               /* rola na horizontal */
+    padding-bottom: 0.3rem;         /* respiro para a rolagem */
+  }
+
+  .item-menu { white-space: nowrap; } /* itens não quebram linha */
+
+  .lateral-rodape {                 /* perfil no topo, compacto */
+    display: flex;                  /* linha */
+    align-items: center;            /* alinhados */
+    gap: 0.8rem;                    /* espaço */
+    border-top: none;               /* sem filete */
+    padding-top: 0.6rem;            /* respiro menor */
+  }
+
+  .perfil-foco { margin-bottom: 0; } /* tira o respiro extra */
+
+  .conteudo { padding: 1.4rem 1rem; } /* conteúdo com menos respiro */
+
+  .linha-materia { grid-template-columns: 110px 1fr 46px; } /* colunas mais estreitas */
+
+  .resultado-cabeca { justify-content: center; } /* resultado centralizado */
+}

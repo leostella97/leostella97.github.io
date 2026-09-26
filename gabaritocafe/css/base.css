@@ -1,0 +1,143 @@
+/* ============================================================
+   GABARITO CAFÉ — css/base.css
+   Reset, variáveis de cor (paleta café), tipografia e utilitários.
+   ============================================================ */
+
+/* ---------- Reset básico: tira as diferenças entre navegadores ---------- */
+*,
+*::before,
+*::after {                          /* vale para todos os elementos e pseudoelementos */
+  margin: 0;                        /* zera a margem externa */
+  padding: 0;                       /* zera o preenchimento interno */
+  box-sizing: border-box;           /* largura passa a incluir borda e padding */
+}
+
+html {                              /* raiz do documento */
+  scroll-behavior: smooth;          /* rolagem suave ao navegar por âncoras */
+}
+
+body {                              /* corpo da página */
+  font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif; /* fonte redonda e amigável */
+  background-color: var(--creme);   /* fundo creme, cor de café com leite */
+  color: var(--cafe-escuro);        /* texto em marrom bem escuro */
+  min-height: 100vh;                /* ocupa no mínimo a altura da tela */
+  line-height: 1.6;                 /* respiro confortável entre linhas */
+}
+
+img {                               /* qualquer imagem */
+  max-width: 100%;                  /* nunca estoura o contêiner */
+  display: block;                   /* remove o espaço fantasma embaixo da imagem */
+}
+
+button {                            /* qualquer botão */
+  font: inherit;                    /* herda a fonte do app (navegador não padroniza) */
+  cursor: pointer;                  /* mostra a mãozinha ao passar o mouse */
+  border: none;                     /* tira a borda padrão feia do navegador */
+  background: none;                 /* tira o fundo padrão do navegador */
+  color: inherit;                   /* herda a cor do texto ao redor */
+}
+
+input,
+textarea,
+select {                            /* campos de formulário */
+  font: inherit;                    /* herdam a fonte do app */
+  color: inherit;                   /* herdam a cor do texto */
+}
+
+a {                                 /* links */
+  color: inherit;                   /* herdam a cor do contexto (evita azul padrão) */
+  text-decoration: none;            /* sem sublinhado padrão */
+}
+
+/* ---------- Paleta de cores do tema café ---------- */
+:root {
+  --cafe-escuro: #3d2b1f;           /* marrom quase preto: textos principais */
+  --cafe: #6f4e37;                  /* café torrado: cor primária */
+  --cafe-medio: #8a6248;            /* café com leite: cor secundária */
+  --caramelo: #c98a5e;              /* caramelo: destaques e detalhes */
+  --caramelo-claro: #e6b98a;        /* caramelo claro: hover e fundos suaves */
+  --creme: #faf5ec;                 /* fundo geral da página */
+  --creme-escuro: #f2e8d8;          /* fundo de seções alternadas */
+  --superficie: #fffdf8;            /* superfície dos cartões, quase branca */
+  --borda: #eadbc4;                 /* cor das bordas delicadas */
+  --marrom-suave: #a98f76;          /* marrom apagado: textos secundários */
+  --verde: #4e8a63;                 /* verde mate: acertos e sucessos */
+  --verde-claro: #e4f0e7;           /* verde clarinho: fundo de sucesso */
+  --vermelho: #b9554a;              /* vermelho terroso: erros */
+  --vermelho-claro: #f7e4e1;        /* vermelho clarinho: fundo de erro */
+  --amarelo: #f6e0ac;               /* amarelo post-it: fundo das dicas */
+  --sombra-suave: 0 10px 24px rgba(61, 43, 31, 0.07);   /* sombra padrão dos cartões */
+  --sombra-media: 0 16px 40px rgba(61, 43, 31, 0.12);   /* sombra de elementos flutuantes */
+  --raio: 16px;                     /* cantos arredondados padrão */
+  --raio-pequeno: 10px;             /* cantos arredondados de elementos menores */
+}
+
+/* ---------- Tipografia ---------- */
+h1,
+h2,
+h3,
+h4 {                                /* títulos */
+  font-family: 'Fraunces', Georgia, serif; /* serifa quentinha de cafeteria artesanal */
+  color: var(--cafe-escuro);        /* marrom escuro */
+  line-height: 1.25;                /* entrelinha mais apertada em títulos */
+  font-weight: 700;                 /* peso robusto, sem ficar gritante */
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); }   /* título gigante da tela de login */
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }   /* título das telas */
+h3 { font-size: 1.25rem; }                    /* título de cartões */
+h4 { font-size: 1.05rem; }                    /* título de blocos menores */
+
+p {                                 /* parágrafos */
+  margin-bottom: 0.6em;             /* respiro padrão abaixo do parágrafo */
+}
+
+/* Fonte manuscrita para bilhetinhos, dicas e assinaturas (toque humano) */
+.escrita-mao {
+  font-family: 'Caveat', cursive;   /* letra de mão, como bilhete de barista */
+}
+
+/* ---------- Utilidades ---------- */
+.oculto { display: none !important; }  /* esconde elemento de verdade (vence outras regras) */
+
+.texto-suave { color: var(--marrom-suave); }   /* texto secundário em marrom apagado */
+
+.texto-central { text-align: center; }         /* centraliza texto */
+
+/* Remove a barra de rolagem "dura" padrão e coloca uma no tom do tema */
+::-webkit-scrollbar { width: 10px; }           /* largura da barra de rolagem */
+::-webkit-scrollbar-track { background: var(--creme-escuro); }  /* trilho da barra */
+::-webkit-scrollbar-thumb { background: var(--caramelo-claro); border-radius: 8px; } /* "polegar" da barra */
+
+/* Anel de foco acessível e no tom do tema (aparece ao navegar por teclado) */
+:focus-visible {
+  outline: 3px solid var(--caramelo);          /* contorno caramelo */
+  outline-offset: 2px;                         /* descola o contorno do elemento */
+}
+
+/* ---------- Animações ---------- */
+@keyframes vapor-subindo {          /* o vapor do logo sobe e some, em loop */
+  0%   { transform: translateY(0); opacity: 0; }    /* começa invisível, embaixo */
+  30%  { opacity: 1; }                             /* aparece */
+  100% { transform: translateY(-6px); opacity: 0; } /* sobe e some */
+}
+
+@keyframes aparecer {               /* entrada suave de elementos */
+  from { opacity: 0; transform: translateY(10px); } /* começa translúcido e deslocado */
+  to   { opacity: 1; transform: translateY(0); }    /* termina no lugar e opaco */
+}
+
+@keyframes balancar {               /* balanço sutil para chamar atenção */
+  0%, 100% { transform: rotate(0deg); }               /* parado nas pontas */
+  25%      { transform: rotate(-2deg); }              /* inclina para um lado */
+  75%      { transform: rotate(2deg); }               /* inclina para o outro */
+}
+
+.aparecer { animation: aparecer 0.35s ease both; }    /* classe pronta de entrada suave */
+
+/* Vapor animado dentro do logo (os tracinhos sobem e somem) */
+.vapor {
+  animation: vapor-subindo 2.4s ease-in-out infinite; /* loop contínuo */
+}
+.vapor:nth-of-type(2) { animation-delay: 0.4s; }      /* segundo traço atrasa um pouco */
+.vapor:nth-of-type(3) { animation-delay: 0.8s; }      /* terceiro traço atrasa mais */

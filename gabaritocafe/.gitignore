@@ -1,0 +1,19 @@
+# Arquivos que o Git deve ignorar (nada de lixo no repositório)
+
+# Dependências (caso um dia o projeto ganhe tooling)
+node_modules/
+
+# Arquivos de sistema do Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos de sistema do macOS
+.DS_Store
+
+# Logs e temporários
+*.log
+*.tmp
+
+# Editor de código
+.vscode/
+.idea/

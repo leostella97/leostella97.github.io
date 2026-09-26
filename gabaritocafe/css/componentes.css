@@ -1,0 +1,413 @@
+/* ============================================================
+   GABARITO CAFÉ — css/componentes.css
+   Peças reutilizáveis: botões, cartões, chips, campos, abas,
+   toast (torradas), post-its, barras de progresso e navegação.
+   ============================================================ */
+
+/* ---------- Botões ---------- */
+.botao {                            /* base de todo botão do app */
+  display: inline-flex;             /* flex para centralizar ícone + texto */
+  align-items: center;              /* centraliza na vertical */
+  justify-content: center;          /* centraliza na horizontal */
+  gap: 0.5rem;                      /* espaço entre ícone e texto */
+  padding: 0.7rem 1.4rem;           /* área clicável generosa */
+  border-radius: 999px;             /* pílula (cantos bem redondos) */
+  font-weight: 800;                 /* texto firme */
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; /* reações suaves */
+  white-space: nowrap;              /* rótulo não quebra em duas linhas */
+}
+
+.botao:hover { transform: translateY(-2px); }   /* botão "levita" no hover */
+.botao:active { transform: translateY(0); }     /* afunda ao clicar */
+.botao:disabled {
+  opacity: 0.45;                    /* esmaece quando desabilitado */
+  cursor: not-allowed;              /* cursor de bloqueado */
+  transform: none;                  /* sem levitação */
+}
+
+.botao-primario {                   /* ação principal: café forte */
+  background: linear-gradient(135deg, var(--cafe-medio), var(--cafe)); /* gradiente de café */
+  color: #fff7ea;                   /* texto creme */
+  box-shadow: 0 8px 18px rgba(111, 78, 55, 0.35); /* sombra marrom quentinha */
+}
+.botao-primario:hover { box-shadow: 0 12px 24px rgba(111, 78, 55, 0.45); } /* sombra cresce */
+
+.botao-contorno {                   /* ação secundária: contorno de café */
+  border: 2px solid var(--cafe);    /* borda café */
+  color: var(--cafe);               /* texto café */
+  background: transparent;          /* fundo vazado */
+}
+.botao-contorno:hover { background: rgba(111, 78, 55, 0.08); } /* preenche levemente */
+
+.botao-fantasma {                   /* ação discreta, quase invisível */
+  color: var(--marrom-suave);       /* texto apagado */
+  padding: 0.5rem 0.9rem;           /* mais compacto */
+}
+.botao-fantasma:hover { color: var(--cafe); background: rgba(111, 78, 55, 0.08); } /* acorda no hover */
+
+.botao-sucesso { background: var(--verde); color: #fff; }   /* botão verde (acertou o caminho) */
+.botao-perigo { background: var(--vermelho); color: #fff; } /* botão vermelho (sair etc.) */
+
+.botao.pequeno { padding: 0.45rem 0.9rem; font-size: 0.85rem; } /* versão compacta */
+.botao.grande { padding: 0.9rem 2rem; font-size: 1.05rem; }     /* versão gigante de CTA */
+
+/* ---------- Cartões ---------- */
+.cartao {                           /* caixinha branca padrão */
+  background: var(--superficie);    /* fundo quase branco */
+  border: 1px solid var(--borda);   /* borda delicada cor de palha */
+  border-radius: var(--raio);       /* cantos arredondados */
+  padding: 1.5rem;                  /* respiro interno */
+  box-shadow: var(--sombra-suave);  /* sombra suave para flutuar */
+}
+
+.cartao.destaque {                  /* cartão com cara de "olha pra mim" */
+  border: 2px solid var(--caramelo-claro); /* borda caramelo mais grossa */
+  background: linear-gradient(180deg, #fffaf0, var(--superficie)); /* fundo levemente dourado */
+}
+
+/* ---------- Chips (etiquetas) ---------- */
+.chip {                             /* etiqueta pequena tipo "pílula" */
+  display: inline-flex;             /* centraliza conteúdo */
+  align-items: center;              /* vertical */
+  gap: 0.35rem;                     /* espaço entre ícone e texto */
+  padding: 0.3rem 0.8rem;           /* compacto */
+  border-radius: 999px;             /* pílula */
+  background: var(--creme-escuro);  /* fundo creme escuro */
+  border: 1px solid var(--borda);   /* borda fina */
+  font-size: 0.82rem;               /* letra miúda */
+  font-weight: 700;                 /* mas firme */
+  color: var(--cafe-escuro);        /* texto escuro */
+}
+
+.chip.caramelo { background: #fbeedb; border-color: var(--caramelo-claro); color: #7a4f26; } /* chip destaque */
+.chip.verde { background: var(--verde-claro); border-color: #bcd8c4; color: var(--verde); }   /* chip de acerto */
+.chip.vermelho { background: var(--vermelho-claro); border-color: #ecc3bc; color: var(--vermelho); } /* chip de erro */
+.chip.materia { background: var(--cafe); color: #fff7ea; border-color: var(--cafe); } /* chip de matéria, café sólido */
+
+/* ---------- Campos de formulário ---------- */
+.campo { margin-bottom: 1rem; }     /* espaço entre campos */
+
+.campo label {                      /* rótulo do campo */
+  display: block;                   /* fica acima do input */
+  font-weight: 800;                 /* firme */
+  font-size: 0.9rem;                /* discreto */
+  margin-bottom: 0.35rem;           /* colado no input */
+  color: var(--cafe-escuro);        /* escuro */
+}
+
+.campo input,
+.campo textarea,
+.campo select {                     /* a caixinha em si */
+  width: 100%;                      /* ocupa a largura do cartão */
+  padding: 0.7rem 1rem;             /* confortável para digitar */
+  border: 2px solid var(--borda);   /* borda de palha */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  background: #fffefb;              /* quase branco */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease; /* reação ao foco */
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {               /* quando o campo está ativo */
+  outline: none;                    /* tira o contorno padrão (usamos borda) */
+  border-color: var(--caramelo);    /* borda caramelo */
+  box-shadow: 0 0 0 4px rgba(201, 138, 94, 0.18); /* brilho suave em volta */
+}
+
+.campo textarea { min-height: 110px; resize: vertical; } /* área de texto com altura mínima */
+
+/* ---------- Abas (trocador de formulários) ---------- */
+.abas {                             /* trilho das abas */
+  display: flex;                    /* abas lado a lado */
+  gap: 0.4rem;                      /* respiro entre elas */
+  background: var(--creme-escuro);  /* trilho creme */
+  padding: 0.35rem;                 /* preenchimento interno do trilho */
+  border-radius: 999px;             /* trilho em pílula */
+  margin-bottom: 1.2rem;            /* espaço para o conteúdo abaixo */
+}
+
+.aba {                              /* cada aba */
+  flex: 1;                          /* divide o espaço igualmente */
+  padding: 0.55rem 1rem;            /* área clicável */
+  border-radius: 999px;             /* pílula */
+  font-weight: 800;                 /* firme */
+  color: var(--marrom-suave);       /* apagada quando inativa */
+  transition: all 0.15s ease;       /* transição suave */
+}
+
+.aba.ativa {                        /* aba selecionada */
+  background: var(--superficie);    /* fundo branco destacado */
+  color: var(--cafe);               /* texto café */
+  box-shadow: 0 3px 8px rgba(61, 43, 31, 0.12); /* sombrinha */
+}
+
+/* ---------- Toast (torradas do café) ---------- */
+.torradas {                         /* pilha de avisos no canto */
+  position: fixed;                  /* fixo na tela */
+  bottom: 1.2rem;                   /* colado embaixo */
+  right: 1.2rem;                    /* no canto direito */
+  display: flex;                    /* empilha com flex */
+  flex-direction: column;           /* uma embaixo da outra */
+  gap: 0.6rem;                      /* espaço entre avisos */
+  z-index: 1000;                    /* acima de tudo */
+}
+
+.torrada {                          /* cada aviso */
+  background: var(--cafe-escuro);   /* fundo marrom escuro */
+  color: #fff7ea;                   /* texto creme */
+  padding: 0.75rem 1.2rem;          /* respiro */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  box-shadow: var(--sombra-media);  /* sombra para flutuar */
+  font-weight: 700;                 /* firme */
+  max-width: 340px;                 /* não vira faixa */
+  animation: aparecer 0.3s ease both; /* entra suave */
+}
+
+.torrada.sucesso { background: var(--verde); }    /* aviso verde de sucesso */
+.torrada.erro { background: var(--vermelho); }    /* aviso vermelho de erro */
+
+/* ---------- Post-it (dica do barista) ---------- */
+.postit {                           /* bilhetinho amarelo de dica */
+  background: var(--amarelo);       /* amarelo post-it */
+  border-radius: 4px 14px 14px 14px; /* canto dobrado de verdade */
+  padding: 0.9rem 1.1rem;           /* respiro */
+  box-shadow: 0 6px 14px rgba(61, 43, 31, 0.16); /* sombra de papel */
+  transform: rotate(-1deg);         /* levemente torto, feito à mão */
+  font-family: 'Caveat', cursive;   /* letra de mão */
+  font-size: 1.25rem;               /* tamanho de bilhete */
+  line-height: 1.35;                /* apertado como bilhete */
+  color: #5a4226;                   /* marrom de caneta */
+  position: relative;               /* para o "fita" grudado em cima */
+}
+
+.postit::before {                   /* a fitinha adesiva no topo */
+  content: '';                      /* precisa de conteúdo para existir */
+  position: absolute;               /* sobrepõe o bilhete */
+  top: -9px;                        /* transborda para cima */
+  left: 50%;                        /* centralizada */
+  transform: translateX(-50%) rotate(-3deg); /* centraliza e inclina */
+  width: 70px;                      /* largura da fita */
+  height: 18px;                     /* altura da fita */
+  background: rgba(255, 255, 255, 0.55); /* fita translúcida */
+  border-radius: 3px;               /* fita arredondadinha */
+}
+
+/* ---------- Barras de progresso ---------- */
+.barra-progresso {                  /* trilho da barra */
+  height: 10px;                     /* altura fininha */
+  background: var(--creme-escuro);  /* trilho creme */
+  border-radius: 999px;             /* trilho em pílula */
+  overflow: hidden;                 /* corta o preenchimento nas pontas */
+}
+
+.barra-progresso > span {           /* preenchimento */
+  display: block;                   /* ocupa espaço real */
+  height: 100%;                     /* altura total do trilho */
+  background: linear-gradient(90deg, var(--caramelo), var(--cafe-medio)); /* gradiente quente */
+  border-radius: 999px;             /* pontas redondas */
+  transition: width 0.4s ease;      /* cresce suave */
+}
+
+/* ---------- Navegação lateral ---------- */
+.barra-lateral {                    /* painel esquerdo */
+  width: 240px;                     /* largura fixa */
+  background: linear-gradient(180deg, #3d2b1f, #2c1e15); /* gradiente de café escuro */
+  color: #f5e9d7;                   /* texto creme */
+  display: flex;                    /* coluna flexível */
+  flex-direction: column;           /* empilha marca, menu e rodapé */
+  padding: 1.4rem 1rem;             /* respiro */
+  position: sticky;                 /* fica fixo ao rolar */
+  top: 0;                           /* colado no topo */
+  height: 100vh;                    /* altura da tela */
+}
+
+.marca {                            /* logo + nome na lateral */
+  display: flex;                    /* lado a lado */
+  align-items: center;              /* centralizado */
+  gap: 0.6rem;                      /* espaço entre logo e texto */
+  font-family: 'Fraunces', serif;   /* serifa do nome */
+  font-weight: 700;                 /* firme */
+  font-size: 1.15rem;               /* tamanho de placa */
+  margin-bottom: 1.6rem;            /* distância do menu */
+}
+
+.marca img { width: 42px; height: 42px; }  /* tamanho do logo na lateral */
+
+.menu {                             /* lista de navegação */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* um item embaixo do outro */
+  gap: 0.3rem;                      /* respiro pequeno */
+  flex: 1;                          /* empurra o rodapé para baixo */
+}
+
+.item-menu {                        /* cada botão do menu */
+  display: flex;                    /* ícone + texto alinhados */
+  align-items: center;              /* vertical */
+  gap: 0.65rem;                     /* espaço entre ícone e texto */
+  padding: 0.7rem 1rem;             /* área clicável */
+  border-radius: 12px;              /* cantos médios */
+  color: #e8d9c4;                   /* creme apagado */
+  font-weight: 700;                 /* firme */
+  text-align: left;                 /* texto à esquerda */
+  transition: all 0.15s ease;       /* reação suave */
+  width: 100%;                      /* ocupa o painel */
+}
+
+.item-menu:hover { background: rgba(255, 255, 255, 0.08); } /* clareia no hover */
+
+.item-menu.ativo {                  /* item da tela atual */
+  background: var(--caramelo);      /* fundo caramelo */
+  color: #2c1e15;                   /* texto escuro por cima */
+}
+
+.lateral-rodape {                   /* rodapé da lateral (perfil + sair) */
+  border-top: 1px solid rgba(255, 255, 255, 0.12); /* filete separador */
+  padding-top: 1rem;                /* respiro acima */
+}
+
+.perfil-nome { font-weight: 900; font-size: 0.95rem; }   /* nome do usuário */
+.perfil-foco { font-size: 0.78rem; color: var(--caramelo-claro); margin-bottom: 0.5rem; } /* cargo focado */
+
+/* ---------- Topo e rodapé do conteúdo ---------- */
+.topo {                             /* cabeçalho da área de conteúdo */
+  display: flex;                    /* título e saudação em pontas */
+  align-items: flex-start;          /* alinhados no topo */
+  justify-content: space-between;   /* um em cada ponta */
+  gap: 1rem;                        /* respiro */
+  margin-bottom: 1.4rem;            /* distância do conteúdo */
+  flex-wrap: wrap;                  /* quebra em telas estreitas */
+}
+
+.topo-sub { color: var(--marrom-suave); font-size: 0.95rem; }  /* subtítulo do topo */
+
+.topo-saudacao {                    /* frasquinha de boas-vindas */
+  background: var(--superficie);    /* fundo claro */
+  border: 1px solid var(--borda);   /* borda de palha */
+  border-radius: 999px;             /* pílula */
+  padding: 0.45rem 1rem;            /* compacto */
+  font-family: 'Caveat', cursive;   /* letra de mão */
+  font-size: 1.2rem;                /* tamanho de bilhete */
+  color: var(--cafe-medio);         /* café com leite */
+  box-shadow: var(--sombra-suave);  /* sombrinha */
+}
+
+.rodape {                           /* rodapé da área de conteúdo */
+  margin-top: 3rem;                 /* distância do conteúdo */
+  padding: 1.4rem 0;                /* respiro */
+  text-align: center;               /* centralizado */
+  color: var(--marrom-suave);       /* apagado */
+  font-size: 0.9rem;                /* discreto */
+}
+
+/* ---------- Notas informativas ---------- */
+.nota {                             /* aviso discreto em fundo creme */
+  background: var(--creme-escuro);  /* fundo creme escuro */
+  border-left: 4px solid var(--caramelo); /* filete caramelo na esquerda */
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0; /* cantos só à direita */
+  padding: 0.8rem 1rem;             /* respiro */
+  font-size: 0.9rem;                /* discreto */
+  color: var(--cafe-escuro);        /* legível */
+}
+
+/* ---------- Estado vazio ---------- */
+.vazio {                            /* caixa de "ainda não tem nada aqui" */
+  text-align: center;               /* centralizado */
+  padding: 3rem 1.5rem;             /* bem espaçado */
+  color: var(--marrom-suave);       /* tom apagado */
+}
+
+.vazio .vazio-icone { font-size: 3rem; margin-bottom: 0.6rem; } /* emoji gigante */
+
+/* ---------- Spinner (carregando) ---------- */
+.girando {                          /* círculo girando */
+  width: 34px;                      /* tamanho */
+  height: 34px;                     /* tamanho */
+  border: 4px solid var(--creme-escuro); /* anel claro */
+  border-top-color: var(--cafe);    /* topo café (o giro aparece aqui) */
+  border-radius: 50%;               /* círculo */
+  animation: girar 0.8s linear infinite; /* gira sem parar */
+  margin: 1rem auto;                /* centralizado */
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }  /* volta completa */
+
+/* ---------- Título de seção ---------- */
+.titulo-secao {                     /* título com risquinho decorativo */
+  display: flex;                    /* texto e risco na mesma linha */
+  align-items: center;              /* centralizado */
+  gap: 0.7rem;                      /* espaço entre texto e risco */
+  margin: 1.8rem 0 1rem;            /* respiro */
+}
+
+.titulo-secao::after {              /* risquinho que completa a linha */
+  content: '';                      /* elemento decorativo */
+  flex: 1;                          /* estica até a borda */
+  height: 2px;                      /* fininho */
+  background: linear-gradient(90deg, var(--borda), transparent); /* some no fim */
+}
+
+/* ---------- Link de vídeo do YouTube ---------- */
+.link-video {                       /* botão "assistir aula" */
+  display: inline-flex;             /* ícone + texto */
+  align-items: center;              /* vertical */
+  gap: 0.5rem;                      /* espaço */
+  background: #fff0f0;              /* fundo rosado suave (vermelho YouTube apagado) */
+  color: #c4302b;                   /* vermelho do YouTube */
+  border: 1.5px solid #f3c1bf;      /* borda rosada */
+  border-radius: 999px;             /* pílula */
+  padding: 0.55rem 1.1rem;          /* área clicável */
+  font-weight: 800;                 /* firme */
+  transition: all 0.15s ease;       /* reação suave */
+}
+
+.link-video:hover { background: #ffe3e2; transform: translateY(-2px); } /* acende no hover */
+
+/* ---------- Lista de passos (como resolver) ---------- */
+.passos {                           /* passo a passo numerado */
+  list-style: none;                 /* tira os números padrão */
+  display: flex;                    /* coluna */
+  flex-direction: column;           /* empilha */
+  gap: 0.45rem;                     /* respiro entre passos */
+  padding-left: 0;                  /* sem recuo extra */
+}
+
+.passos li {                        /* cada passo */
+  background: var(--creme-escuro);  /* fundo creme */
+  border-radius: var(--raio-pequeno); /* cantos médios */
+  padding: 0.55rem 0.9rem;          /* respiro */
+  font-size: 0.92rem;               /* discreto */
+}
+
+.passos li::before {                /* número do passo na frente */
+  content: counter(passo) 'º ';     /* usa o contador com ordinal */
+  counter-increment: passo;         /* incrementa a cada item */
+  font-weight: 900;                 /* número firme */
+  color: var(--cafe);               /* número em café */
+}
+
+.passos { counter-reset: passo; }   /* zera o contador no início da lista */
+
+/* ---------- Grid de estatísticas ---------- */
+.grade-estatisticas {               /* fileira de cartõezinhos de número */
+  display: grid;                    /* grade */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* se ajusta à largura */
+  gap: 1rem;                        /* respiro entre cartões */
+}
+
+.estatistica {                      /* cada cartãozinho */
+  background: var(--superficie);    /* fundo claro */
+  border: 1px solid var(--borda);   /* borda de palha */
+  border-radius: var(--raio);       /* cantos padrão */
+  padding: 1.1rem 1.2rem;           /* respiro */
+  box-shadow: var(--sombra-suave);  /* sombrinha */
+}
+
+.estatistica .valor {               /* número grande */
+  font-family: 'Fraunces', serif;   /* serifa de destaque */
+  font-size: 1.9rem;                /* grande */
+  font-weight: 900;                 /* pesado */
+  color: var(--cafe);               /* café */
+  line-height: 1.2;                 /* apertado */
+}
+
+.estatistica .rotulo { font-size: 0.82rem; color: var(--marrom-suave); font-weight: 700; } /* legendinha */
