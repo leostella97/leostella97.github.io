@@ -1713,5 +1713,802 @@ const BancoQuestoes = [
     explicacao: 'Phishing ("pescaria") é o golpe da mensagem falsa: e-mail ou SMS imitando banco, loja ou governo para fisgar senhas e dados, geralmente com um link para um site falso.', // explicação
     dica: 'Pegadinha de prova: phishing não é vírus — é engenharia social. A vítima entrega os dados de boa vontade, achando que fala com o banco. O alvo é você, não a máquina.', // pegadinha
     video: 'o que é phishing segurança da informação para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — PORTUGUÊS (p18 a p25) ===================== */
+  {
+    id: 'p18',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Ortografia (mas x mais)',    // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Complete corretamente: "Eu queria estudar, ___ estava muito cansado."', // pergunta
+    alternativas: [                     // opções
+      'mais',
+      'mas',
+      'más',
+      'máis'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: '"Mas" é conjunção adversativa (equivale a "porém"). "Mais" indica quantidade ou intensidade. "Más" é adjetivo feminino plural (ruins, malvadas).', // explicação
+    dica: 'Troque por "porém": se couber, é "mas". A banca explora a semelhança sonora entre "mas" e "mais" — é uma das trocas mais cobradas em prova.', // pegadinha
+    video: 'mas ou mais diferença ortografia para concurso' // busca no YouTube
+  },
+  {
+    id: 'p19',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Acentuação gráfica (hiato)', // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Assinale a alternativa em que TODAS as palavras estão grafadas corretamente:', // pergunta
+    alternativas: [                     // opções
+      'saude, pais, raiz',
+      'saúde, país, raiz',
+      'saúde, pais, raíz',
+      'saude, país, raíz',
+      'saúde, paíz, raiz'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Acentuam-se o "i" e o "u" tônicos quando formam hiato com a vogal anterior (sa-ú-de, pa-ís, ba-ú). Já "raiz" não é acentuada, porque o "i" vem seguido de "z" na mesma sílaba (ra-iz).', // explicação
+    dica: 'A banca adora "raiz" e "juiz": têm "i" tônico, mas NÃO levam acento. Hiato acentuado só quando o i/u fica sozinho na sílaba.', // pegadinha
+    video: 'acentuação hiato i u tônico para concurso' // busca no YouTube
+  },
+  {
+    id: 'p20',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Regência do verbo assistir', // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Assinale a frase correta quanto à regência do verbo "assistir" no sentido de "ver":', // pergunta
+    alternativas: [                     // opções
+      'Assisti o filme ontem.',
+      'Assisti ao filme ontem.',
+      'Assisti no filme ontem.',
+      'Assisti pelo filme ontem.',
+      'Assisti com o filme ontem.'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: '"Assistir" no sentido de ver/presenciar é transitivo indireto e exige a preposição "a": assistir AO filme. No sentido de ajudar (prestar assistência), é transitivo direto: assistir O paciente.', // explicação
+    dica: 'O sentido muda a regência: assistir A = ver; assistir O = ajudar. A FCC cobra exatamente essa dupla, sempre com as duas frases nas alternativas.', // pegadinha
+    video: 'regência do verbo assistir para concurso' // busca no YouTube
+  },
+  {
+    id: 'p21',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Onde x aonde',               // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Complete: "A cidade ___ eu nasci é pequena."', // pergunta
+    alternativas: [                     // opções
+      'aonde',
+      'onde',
+      'cujo',
+      'de que',
+      'a que'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: '"Onde" equivale a "em que" e combina com verbos que pedem essa preposição (nascer EM, morar EM). "Aonde" equivale a "a que" e indica movimento (ir A, chegar A).', // explicação
+    dica: 'Teste rápido: se o verbo pede "em" (nascer, morar, estar), use "onde". Se pede "a" (ir, chegar), use "aonde". A banca troca os dois de propósito.', // pegadinha
+    video: 'uso de onde e aonde para concurso' // busca no YouTube
+  },
+  {
+    id: 'p22',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Concordância com sujeito composto', // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'Assinale a frase correta:', // pergunta
+    alternativas: [                     // opções
+      'Chegou os candidatos e o fiscal.',
+      'Chegaram os candidatos e o fiscal.',
+      'Chegou os candidatos e os fiscais.',
+      'Chegaram o candidato.',
+      'Chegou-se os candidatos.'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Com sujeito composto, o verbo vai para o plural, mesmo que o sujeito venha depois dele: "chegaram os candidatos e o fiscal".', // explicação
+    dica: 'Muita gente erra porque o verbo aparece antes do sujeito. Sujeito composto = verbo no plural, esteja ele antes ou depois.', // pegadinha
+    video: 'concordância verbal sujeito composto posposto concurso' // busca no YouTube
+  },
+  {
+    id: 'p23',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Uso de há x a (tempo)',      // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Complete: "___ dois anos que eu não viajo e daqui ___ três meses farei a prova."', // pergunta
+    alternativas: [                     // opções
+      'Há ... a',
+      'A ... há',
+      'Há ... há',
+      'A ... a',
+      'Há ... à'
+    ],
+    correta: 0,                         // índice da certa
+    explicacao: '"Há" (verbo haver) indica tempo PASSADO: "há dois anos" = faz dois anos. "A" indica tempo FUTURO: "daqui a três meses".', // explicação
+    dica: 'Troque por "faz": se couber "faz", é "há" (passado). Futuro sempre com "a" e SEM acento — não existe crase antes de tempo futuro.', // pegadinha
+    video: 'ha ou a tempo passado futuro para concurso' // busca no YouTube
+  },
+  {
+    id: 'p24',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Vozes verbais',              // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'A frase "O edital foi publicado pela banca" está na voz:', // pergunta
+    alternativas: [                     // opções
+      'ativa',
+      'passiva analítica',
+      'passiva sintética',
+      'reflexiva',
+      'passiva pronominal'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Voz passiva analítica = verbo SER + particípio (+ agente da passiva com "por"). Em "foi publicado pela banca": foi (ser) + publicado (particípio) + pela banca (agente da passiva).', // explicação
+    dica: 'Passiva analítica: ser + particípio. Passiva sintética: verbo + "se" ("publicou-se o edital"). A banca troca as duas nas alternativas.', // pegadinha
+    video: 'voz passiva analítica e sintética para concurso' // busca no YouTube
+  },
+  {
+    id: 'p25',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Tipos de sujeito',           // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Na frase "Choveu muito ontem na cidade", o sujeito é:', // pergunta
+    alternativas: [                     // opções
+      'simples',
+      'oculto',
+      'inexistente',
+      'indeterminado',
+      'composto'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: 'Verbos que indicam fenômenos da natureza (chover, nevar, ventar) são impessoais: não têm sujeito. Logo, a oração tem sujeito inexistente.', // explicação
+    dica: '"Choveu muito" parece ter sujeito, mas "muito" é advérbio de intensidade, não sujeito. A banca oferece "simples" exatamente para pegar essa confusão.', // pegadinha
+    video: 'sujeito inexistente verbos impessoais para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — MATEMÁTICA (m17 a m18) ===================== */
+  {
+    id: 'm17',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Aumentos e descontos sucessivos', // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Um produto de R$ 200,00 teve um aumento de 10% e, depois, um desconto de 10%. O preço final é:', // pergunta
+    alternativas: [                     // opções
+      'R$ 200,00',
+      'R$ 198,00',
+      'R$ 202,00',
+      'R$ 190,00',
+      'R$ 220,00'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Aumento de 10%: 200 × 1,10 = R$ 220,00.',
+      'Desconto de 10% sobre o novo valor: 220 × 0,90 = R$ 198,00.',
+      'Atalho: 200 × 1,10 × 0,90 = 198.'
+    ],
+    explicacao: 'Os percentuais NÃO se cancelam, porque o desconto incide sobre o valor já aumentado. O resultado é R$ 198,00 — sempre um pouco menor que o inicial.', // explicação
+    dica: 'Pegadinha clássica: "10% de aumento e 10% de desconto volta ao mesmo valor". NÃO volta! Multiplique pelos fatores (1,10 e 0,90), nunca some ou subtraia percentuais.', // pegadinha
+    video: 'aumento e desconto sucessivos porcentagem para concurso' // busca no YouTube
+  },
+  {
+    id: 'm18',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Regra de três simples inversa', // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Se 8 pedreiros constroem um muro em 6 dias, quantos dias 12 pedreiros, no mesmo ritmo, levariam para construir o mesmo muro?', // pergunta
+    alternativas: [                     // opções
+      '9 dias',
+      '4 dias',
+      '6 dias',
+      '8 dias',
+      '3 dias'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Grandezas inversas: mais pedreiros significam menos dias.',
+      'O produto é constante: 8 × 6 = 48 "dias-pedreiro".',
+      '48 ÷ 12 = 4 dias.'
+    ],
+    explicacao: 'Em regra de três inversa, multiplica-se na horizontal (o produto não muda). Com 50% mais pedreiros, o tempo cai para 4 dias.', // explicação
+    dica: 'Sinal de grandeza inversa: uma aumenta e a outra diminui. Nesse caso NÃO cruze as setas — a banca espera o cruzamento errado para oferecer 9 dias.', // pegadinha
+    video: 'regra de três simples inversa para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — MATEMÁTICA (m19 a m24) ===================== */
+  {
+    id: 'm19',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'MDC (divisão em partes iguais)', // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Um professor tem 24 lápis vermelhos e 36 azuis e quer montar kits iguais, com o maior número possível de kits. Quantos kits ele fará?', // pergunta
+    alternativas: [                     // opções
+      '6',
+      '12',
+      '18',
+      '24',
+      '36'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'A pergunta pede o MAIOR número de grupos iguais: isso é o MDC.',
+      'Fatorando: 24 = 2³ × 3 e 36 = 2² × 3².',
+      'MDC = 2² × 3 = 12 kits (cada um com 2 vermelhos e 3 azuis).'
+    ],
+    explicacao: 'O maior número de kits iguais é o MDC(24, 36) = 12. Cada kit fica com 2 lápis vermelhos e 3 azuis.', // explicação
+    dica: 'MMC = "quando vão se encontrar de novo". MDC = "dividir em partes iguais". Trocar os dois é o erro número 1 dessa matéria.', // pegadinha
+    video: 'mdc e mmc quando usar para concurso' // busca no YouTube
+  },
+  {
+    id: 'm20',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Área do círculo',            // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Um jardim circular tem 10 m de diâmetro. Usando π = 3,14, a área desse jardim é aproximadamente:', // pergunta
+    alternativas: [                     // opções
+      '31,4 m²',
+      '78,5 m²',
+      '157 m²',
+      '314 m²',
+      '62,8 m²'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'O raio é metade do diâmetro: 10 ÷ 2 = 5 m.',
+      'Área = π × r² = 3,14 × 5².',
+      '3,14 × 25 = 78,5 m².'
+    ],
+    explicacao: 'A área do círculo é πr². O enunciado deu o DIÂMETRO (10 m); o raio usado na fórmula é 5 m.', // explicação
+    dica: 'A banca entrega o diâmetro para você errar o raio: 3,14 × 100 = 314 — e essa alternativa está lá. Sempre cheque se o dado é raio ou diâmetro.', // pegadinha
+    video: 'área do círculo raio e diâmetro para concurso' // busca no YouTube
+  },
+  {
+    id: 'm21',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Probabilidade',              // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Em um sorteio com os números de 1 a 20, qual é a probabilidade de sair um múltiplo de 5?', // pergunta
+    alternativas: [                     // opções
+      '1/20',
+      '1/5',
+      '1/4',
+      '1/10',
+      '1/2'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Múltiplos de 5 entre 1 e 20: 5, 10, 15 e 20 → 4 casos favoráveis.',
+      'Total de casos possíveis: 20.',
+      'Probabilidade = 4/20 = 1/5 = 20%.'
+    ],
+    explicacao: 'Probabilidade = casos favoráveis ÷ casos possíveis = 4/20 = 1/5.', // explicação
+    dica: 'A alternativa "1/4" (que seria 5/20) aparece para pegar quem conta 5 múltiplos em vez de 4. Conte no papel: 5, 10, 15, 20.', // pegadinha
+    video: 'probabilidade para concursos exercícios resolvidos' // busca no YouTube
+  },
+  {
+    id: 'm22',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Divisão proporcional (regra de sociedade)', // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Dois sócios investiram R$ 2.000,00 e R$ 3.000,00. Ao fim do ano, o lucro de R$ 5.000,00 será dividido em:', // pergunta
+    alternativas: [                     // opções
+      'R$ 2.500,00 e R$ 2.500,00',
+      'R$ 2.000,00 e R$ 3.000,00',
+      'R$ 1.000,00 e R$ 4.000,00',
+      'R$ 3.000,00 e R$ 2.000,00',
+      'R$ 2.200,00 e R$ 2.800,00'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'A divisão é proporcional ao capital investido (2.000 : 3.000 = 2 : 3).',
+      'Total investido: 5.000.',
+      'Lucro por real investido: 5.000 ÷ 5.000 = 1.',
+      'Sócio 1: 2.000 × 1 = R$ 2.000; sócio 2: 3.000 × 1 = R$ 3.000.'
+    ],
+    explicacao: 'Lucros e prejuízos se dividem na proporção do capital. Como o lucro é exatamente igual ao total investido, a divisão fica R$ 2.000 e R$ 3.000.', // explicação
+    dica: 'A opção do meio a meio (R$ 2.500 para cada) é a armadilha. Sociedade divide por proporção do capital, nunca em partes iguais.', // pegadinha
+    video: 'divisão proporcional regra de sociedade para concurso' // busca no YouTube
+  },
+  {
+    id: 'm23',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Progressão geométrica',      // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'Na progressão geométrica 3, 6, 12, 24, ..., o 6º termo é:', // pergunta
+    alternativas: [                     // opções
+      '48',
+      '96',
+      '192',
+      '72',
+      '64'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'A razão é q = 6 ÷ 3 = 2.',
+      'Termo geral: a(n) = a1 × q^(n−1) = 3 × 2⁵.',
+      '3 × 32 = 96.'
+    ],
+    explicacao: 'Multiplicando por 2 a cada passo: 3, 6, 12, 24, 48, 96. O 6º termo é 96.', // explicação
+    dica: 'Erro mais comum: usar 2⁶ em vez de 2⁵ (daria 192, que está nas alternativas). Em PA e PG o expoente/índice é sempre (n − 1).', // pegadinha
+    video: 'progressão geométrica termo geral para concurso' // busca no YouTube
+  },
+  {
+    id: 'm24',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'MMC (problemas de encontro)', // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Dois ônibus partem juntos às 8h. Um passa no ponto a cada 15 minutos e o outro a cada 20 minutos. A que horas eles partirão juntos novamente?', // pergunta
+    alternativas: [                     // opções
+      '8h35',
+      '9h00',
+      '9h30',
+      '8h45',
+      '10h00'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'O encontro acontece no MMC dos intervalos: MMC(15, 20).',
+      '15 = 3 × 5 e 20 = 2² × 5.',
+      'MMC = 2² × 3 × 5 = 60 minutos.',
+      '8h + 60 min = 9h00.'
+    ],
+    explicacao: '"Se encontram novamente" é a palavra-chave do MMC. O MMC(15, 20) = 60 minutos, então eles se reencontram às 9h.', // explicação
+    dica: 'Dica de ouro: "de novo juntos" = MMC; "dividir em partes iguais" = MDC. A banca usa as duas expressões para confundir.', // pegadinha
+    video: 'mmc problemas de encontro para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — RACIOCÍNIO LÓGICO (r13 a r16) ===================== */
+  {
+    id: 'r13',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Tabela-verdade do condicional', // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'A proposição "Se estudo, então passo" só é FALSA quando:', // pergunta
+    alternativas: [                     // opções
+      'Estudo e passo',
+      'Estudo e não passo',
+      'Não estudo e passo',
+      'Não estudo e não passo',
+      'Nunca é falsa'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'O condicional "p → q" só é falso quando a primeira parte é verdadeira e a segunda é falsa (V → F = F). Todas as outras combinações tornam a proposição verdadeira.', // explicação
+    dica: 'Grave a ÚNICA linha falsa do "se... então": VF = F ("Vera Fischer"). A banca cobra isso quase toda prova de lógica.', // pegadinha
+    video: 'tabela verdade condicional se então para concurso' // busca no YouTube
+  },
+  {
+    id: 'r14',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Anagramas e permutação',     // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Quantos anagramas diferentes tem a palavra CAFÉ (todas as letras distintas)?', // pergunta
+    alternativas: [                     // opções
+      '4',
+      '12',
+      '24',
+      '120',
+      '16'
+    ],
+    correta: 2,                         // índice da certa
+    passos: [                           // passo a passo
+      'São 4 letras, todas diferentes.',
+      'Anagramas = permutação de 4 = 4!',
+      '4! = 4 × 3 × 2 × 1 = 24.'
+    ],
+    explicacao: 'Com letras todas distintas, o número de anagramas é 4! = 24.', // explicação
+    dica: 'Se houvesse letra repetida (ex.: CASA), seria preciso dividir pelo fatorial da repetição (4! ÷ 2!). A banca troca "letras distintas" por "com repetição" para pegar você.', // pegadinha
+    video: 'anagramas permutação para concurso' // busca no YouTube
+  },
+  {
+    id: 'r15',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Ordenação',                  // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Ana é mais alta que Bia; Bia é mais alta que Caio; Caio é mais alto que Dani. Quem é a pessoa mais baixa?', // pergunta
+    alternativas: [                     // opções
+      'Ana',
+      'Bia',
+      'Caio',
+      'Dani',
+      'Não é possível saber'
+    ],
+    correta: 3,                         // índice da certa
+    explicacao: 'Encadeando as comparações: Ana > Bia > Caio > Dani. Dani fica no fim da fila, portanto é a pessoa mais baixa.', // explicação
+    dica: 'Escreva a cadeia com os sinais (A > B > C > D) antes de responder. A banca embaralha a ordem das frases de propósito.', // pegadinha
+    video: 'questões de ordenação raciocínio lógico para concurso' // busca no YouTube
+  },
+  {
+    id: 'r16',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Negação de "algum"',         // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'A negação da proposição "Algum candidato passou" é:', // pergunta
+    alternativas: [                     // opções
+      'Algum candidato não passou',
+      'Nenhum candidato passou',
+      'Todo candidato passou',
+      'Poucos candidatos passaram',
+      'Alguns candidatos passaram'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'A negação de "algum" é "nenhum": se é falso que algum passou, então nenhum passou.', // explicação
+    dica: 'Decore os dois pares de negação: TODO ↔ ALGUM NÃO e ALGUM ↔ NENHUM. Trocar o par é o erro mais comum da lógica de proposições.', // pegadinha
+    video: 'negação de proposições algum nenhum todo para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — RACIOCÍNIO LÓGICO (r17 a r18) ===================== */
+  {
+    id: 'r17',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Trabalho conjunto (torneiras)', // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Uma torneira enche um tanque em 6 horas e outra enche o mesmo tanque em 3 horas. Abertas juntas, elas enchem o tanque em:', // pergunta
+    alternativas: [                     // opções
+      '2 horas',
+      '1h30',
+      '4 horas',
+      '4h30',
+      '9 horas'
+    ],
+    correta: 0,                         // índice da certa
+    passos: [                           // passo a passo
+      'Em 1 hora, a 1ª torneira enche 1/6 do tanque e a 2ª enche 1/3.',
+      'Juntas, por hora: 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 do tanque.',
+      'Se em 1 hora elas fazem metade, o tanque inteiro leva 2 horas.'
+    ],
+    explicacao: 'Somam-se as "velocidades" (frações do tanque por hora). Como juntas fazem 1/2 por hora, o total sai em 2 horas.', // explicação
+    dica: 'Pegadinha: juntas NÃO é a média (6+3)÷2 = 4h30 — está nas alternativas! Duas torneiras sempre enchem mais rápido que a mais rápida sozinha (menos de 3h).', // pegadinha
+    video: 'problemas de torneiras trabalho conjunto para concurso' // busca no YouTube
+  },
+  {
+    id: 'r18',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Sequências alternadas',      // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Na sequência 1, 4, 2, 8, 3, 12, 4, ..., os dois próximos termos são:', // pergunta
+    alternativas: [                     // opções
+      '16 e 5',
+      '5 e 16',
+      '8 e 5',
+      '20 e 5',
+      '16 e 6'
+    ],
+    correta: 0,                         // índice da certa
+    passos: [                           // passo a passo
+      'Separe em duas sequências: posições ímpares e posições pares.',
+      'Ímpares: 1, 2, 3, 4... (soma 1 a cada termo).',
+      'Pares: 4, 8, 12... (soma 4 a cada termo) → o próximo par é 16.',
+      'Depois do 16 vem o 5 (próximo ímpar).'
+    ],
+    explicacao: 'São duas sequências entrelaçadas. Os termos das posições pares são 4, 8, 12, 16... e os das ímpares são 1, 2, 3, 4, 5... Logo: 16 e 5.', // explicação
+    dica: 'Quando a sequência "muda de ritmo", separe em duas listas (ímpares e pares). Quem tenta achar um padrão único trava e erra.', // pegadinha
+    video: 'sequências alternadas raciocínio lógico para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — INFORMÁTICA (i12 a i16) ===================== */
+  {
+    id: 'i12',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Windows — atalhos',          // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'No Windows, o atalho Alt + Tab serve para:', // pergunta
+    alternativas: [                     // opções
+      'Fechar a janela ativa',
+      'Alternar entre as janelas abertas',
+      'Renomear o arquivo selecionado',
+      'Abrir o menu Iniciar',
+      'Bloquear o computador'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Alt + Tab percorre as janelas abertas: segurando Alt e apertando Tab você escolhe para qual janela ir. Alt + F4 fecha a janela ativa.', // explicação
+    dica: 'A banca troca Alt + Tab (alternar) por Alt + F4 (fechar). Grave: Tab alterna, F4 fecha. Tecla Windows abre o Iniciar; Windows + L bloqueia.', // pegadinha
+    video: 'atalhos do windows para concurso' // busca no YouTube
+  },
+  {
+    id: 'i13',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Excel — função SE',          // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'No Excel, a fórmula =SE(A1>=7;"Aprovado";"Reprovado") faz o seguinte:', // pergunta
+    alternativas: [                     // opções
+      'Soma a quantidade de aprovados',
+      'Mostra "Aprovado" se A1 for maior ou igual a 7 e "Reprovado" caso contrário',
+      'Conta quantos alunos foram aprovados',
+      'Arredonda o valor de A1 para 7',
+      'Formata a célula A1 como texto'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'A função SE(testar; valor se verdadeiro; valor se falso) faz um teste lógico e devolve um dos dois valores. Aqui: se A1 ≥ 7, aparece "Aprovado"; senão, "Reprovado".', // explicação
+    dica: 'A pegadinha está na ORDEM dos argumentos: primeiro o teste, depois o valor de VERDADEIRO e por último o de FALSO. A banca inverte os dois últimos.', // pegadinha
+    video: 'função se no excel para concurso' // busca no YouTube
+  },
+  {
+    id: 'i14',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Extensões de arquivo',       // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'A extensão .xlsx corresponde a um arquivo de:', // pergunta
+    alternativas: [                     // opções
+      'Texto do Word',
+      'Planilha do Excel',
+      'Apresentação do PowerPoint',
+      'Documento PDF',
+      'Imagem digital'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Cada programa do pacote Office usa uma extensão: .docx = Word, .xlsx = Excel e .pptx = PowerPoint. O PDF é de leitura e o .jpg/.png são imagens.', // explicação
+    dica: 'Pegadinha de uma letra: .docx (Word) x .xlsx (Excel). A banca troca o "d" pelo "x" e pega quem lê rápido demais.', // pegadinha
+    video: 'extensões de arquivos docx xlsx pptx para concurso' // busca no YouTube
+  },
+  {
+    id: 'i15',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Navegadores — cookies',      // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'Sobre os cookies de navegador, é correto afirmar que:', // pergunta
+    alternativas: [                     // opções
+      'São vírus que danificam o computador',
+      'São pequenos arquivos que guardam informações da navegação, como preferências e sessão de login',
+      'Substituem o antivírus',
+      'Aumentam a velocidade da conexão',
+      'São programas instalados no sistema operacional'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Cookies são arquivos de texto que o site grava no navegador para lembrar preferências, manter você logado e guardar itens de carrinho. Não são vírus nem programas.', // explicação
+    dica: 'A confusão clássica é chamar cookie de vírus. Cookie é DADO salvo; malware é PROGRAMA malicioso. A CESPE explora exatamente isso.', // pegadinha
+    video: 'o que são cookies do navegador para concurso' // busca no YouTube
+  },
+  {
+    id: 'i16',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Segurança — firewall',       // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'A principal função de um firewall é:', // pergunta
+    alternativas: [                     // opções
+      'Apagar vírus já instalados no computador',
+      'Filtrar o tráfego de rede, bloqueando conexões não autorizadas',
+      'Fazer backup automático dos arquivos',
+      'Compactar arquivos para ocupar menos espaço',
+      'Atualizar o sistema operacional'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'O firewall controla o que entra e o que sai da rede (portas e conexões), funcionando como um porteiro. Quem identifica e remove vírus é o antivírus.', // explicação
+    dica: 'Guarde a analogia: firewall = porteiro (controla a entrada); antivírus = faxineiro (limpa o que já entrou). A banca troca as funções de propósito.', // pegadinha
+    video: 'firewall e antivírus diferença para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — DIREITO CONSTITUCIONAL (c08 a c10) ===================== */
+  {
+    id: 'c08',                          // identificador único
+    materia: 'Direito Constitucional',  // matéria
+    tema: 'Direitos políticos — voto facultativo', // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'No Brasil, o voto é FACULTATIVO para:', // pergunta
+    alternativas: [                     // opções
+      'Todos os maiores de 18 anos',
+      'Analfabetos, maiores de 70 anos e jovens de 16 e 17 anos',
+      'Apenas os militares',
+      'Todos os maiores de 60 anos',
+      'Somente quem está fora do país'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Art. 14, §1º, II da Constituição: o voto é facultativo para os analfabetos, os maiores de 70 anos e os maiores de 16 e menores de 18 anos.', // explicação
+    dica: 'As idades caem direto: obrigatório de 18 a 70; facultativo de 16 a 18 e acima de 70. E os ANALFABETOS também entram no facultativo — muita gente esquece.', // pegadinha
+    video: 'direitos políticos voto facultativo artigo 14 para concurso' // busca no YouTube
+  },
+  {
+    id: 'c09',                          // identificador único
+    materia: 'Direito Constitucional',  // matéria
+    tema: 'Art. 5º — liberdade de expressão', // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Segundo a Constituição, é livre a manifestação do pensamento, sendo:', // pergunta
+    alternativas: [                     // opções
+      'permitido o anonimato',
+      'vedado o anonimato',
+      'obrigatória a autorização judicial prévia',
+      'proibida em qualquer meio de comunicação',
+      'restrita aos maiores de 18 anos'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Art. 5º, IV: "é livre a manifestação do pensamento, sendo vedado o anonimato". A vedação existe para garantir o direito de resposta a quem se sentir ofendido.', // explicação
+    dica: 'A palavra que a banca cobra é VEDADO. Ela escreve "permitido o anonimato" para pegar quem lê correndo — e ainda mistura com o inciso V (direito de resposta).', // pegadinha
+    video: 'artigo 5 liberdade de expressão vedado o anonimato concurso' // busca no YouTube
+  },
+  {
+    id: 'c10',                          // identificador único
+    materia: 'Direito Constitucional',  // matéria
+    tema: 'Competências (art. 22)',     // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Compete PRIVATIVAMENTE à União legislar sobre:', // pergunta
+    alternativas: [                     // opções
+      'Direito civil, penal e eleitoral',
+      'Ensino fundamental',
+      'Transporte coletivo municipal',
+      'Uso do solo urbano',
+      'Criação de municípios'
+    ],
+    correta: 0,                         // índice da certa
+    explicacao: 'Art. 22 da Constituição: é competência privativa da União legislar sobre direito civil, penal, eleitoral, comercial, do trabalho e outras matérias listadas nos incisos.', // explicação
+    dica: 'Pegadinha de esfera: direito civil, penal e eleitoral são da União; transporte coletivo e uso do solo urbano são do MUNICÍPIO (interesse local). A banca mistura União, Estados e Municípios.', // pegadinha
+    video: 'competência privativa da união artigo 22 para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — DIREITO CONSTITUCIONAL (c11 a c12) ===================== */
+  {
+    id: 'c11',                          // identificador único
+    materia: 'Direito Constitucional',  // matéria
+    tema: 'Poder Executivo — mandato',  // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'O mandato do Presidente da República é de:', // pergunta
+    alternativas: [                     // opções
+      '4 anos, sem possibilidade de reeleição',
+      '4 anos, permitida uma reeleição para o período subsequente',
+      '5 anos, sem possibilidade de reeleição',
+      '6 anos, permitida a reeleição',
+      '4 anos, com reeleições ilimitadas'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Art. 82 da Constituição: o mandato é de 4 anos. A Emenda Constitucional 16/1997 passou a permitir UMA reeleição para o período subsequente.', // explicação
+    dica: 'A banca troca "uma reeleição" por "reeleição ilimitada". Leia o advérbio com atenção: é UMA única reeleição, e no período subsequente.', // pegadinha
+    video: 'mandato do presidente da república reeleição emenda 16 concurso' // busca no YouTube
+  },
+  {
+    id: 'c12',                          // identificador único
+    materia: 'Direito Constitucional',  // matéria
+    tema: 'Segurança pública (art. 144)', // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'São órgãos de segurança pública previstos no art. 144 da Constituição, EXCETO:', // pergunta
+    alternativas: [                     // opções
+      'Polícia Federal',
+      'Polícia Rodoviária Federal',
+      'Polícias Civis',
+      'Exército Brasileiro',
+      'Polícias Militares'
+    ],
+    correta: 3,                         // índice da certa
+    explicacao: 'O art. 144 lista: Polícia Federal, Polícia Rodoviária Federal, Polícia Ferroviária Federal, Polícias Civis, Polícias Militares e Corpos de Bombeiros Militares, além das polícias penais. As Forças Armadas estão no art. 142 e não integram a segurança pública.', // explicação
+    dica: 'Exército, Marinha e Aeronáutica são FORÇAS ARMADAS (art. 142), não segurança pública (art. 144). Essa separação de artigos cai muito em prova.', // pegadinha
+    video: 'segurança pública artigo 144 órgãos para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — DIREITO ADMINISTRATIVO (a08 a a11) ===================== */
+  {
+    id: 'a08',                          // identificador único
+    materia: 'Direito Administrativo',  // matéria
+    tema: 'Princípios — impessoalidade', // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Um prefeito nomeia seu sobrinho para um cargo em comissão. Esse ato viola diretamente o princípio da:', // pergunta
+    alternativas: [                     // opções
+      'Legalidade',
+      'Impessoalidade',
+      'Publicidade',
+      'Eficiência',
+      'Autotutela'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'O princípio da impessoalidade proíbe favorecimento pessoal e veda o nepotismo (Súmula Vinculante 13). A atuação deve mirar o interesse público, não o interesse do agente ou de parentes.', // explicação
+    dica: 'Nepotismo e promoção pessoal atacam a IMPESSOALIDADE. A banca oferece "moralidade" para confundir: os dois princípios são atingidos, mas o alvo direto do nepotismo é a impessoalidade.', // pegadinha
+    video: 'princípio da impessoalidade nepotismo súmula vinculante 13' // busca no YouTube
+  },
+  {
+    id: 'a09',                          // identificador único
+    materia: 'Direito Administrativo',  // matéria
+    tema: 'Licitação — dispensa x inexigibilidade', // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'A contratação de um artista consagrado pela crítica especializada ou pela opinião pública é hipótese de:', // pergunta
+    alternativas: [                     // opções
+      'Licitação dispensável',
+      'Inexigibilidade de licitação',
+      'Dispensa de licitação',
+      'Licitação deserta',
+      'Licitação fracassada'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Na inexigibilidade há impossibilidade de competição (artista consagrado, fornecedor exclusivo). Na dispensa a competição seria possível, mas a lei autoriza não licitar (valores baixos, emergência, entre outros).', // explicação
+    dica: 'Diferença que a CESPE cobra todo ano: INEXIGÍVEL = competição IMPOSSÍVEL; DISPENSÁVEL = competição possível, mas a lei libera. Grave essa frase.', // pegadinha
+    video: 'dispensa e inexigibilidade de licitação diferença para concurso' // busca no YouTube
+  },
+  {
+    id: 'a10',                          // identificador único
+    materia: 'Direito Administrativo',  // matéria
+    tema: 'Provimento x vacância',      // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'São formas de PROVIMENTO de cargo público, EXCETO:', // pergunta
+    alternativas: [                     // opções
+      'Nomeação',
+      'Promoção',
+      'Readaptação',
+      'Reversão',
+      'Exoneração'
+    ],
+    correta: 4,                         // índice da certa
+    explicacao: 'A exoneração é forma de VACÂNCIA (saída do cargo), não de provimento. São formas de provimento: nomeação, promoção, readaptação, reversão, aproveitamento, reintegração e recondução.', // explicação
+    dica: 'Decore o par: PROVIMENTO = entrar; VACÂNCIA = sair. Exoneração, demissão, aposentadoria, falecimento e posse em outro cargo inacumulável são vacância.', // pegadinha
+    video: 'formas de provimento e vacância cargo público para concurso' // busca no YouTube
+  },
+  {
+    id: 'a11',                          // identificador único
+    materia: 'Direito Administrativo',  // matéria
+    tema: 'Contratos — cláusulas exorbitantes', // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'São exemplos de cláusulas exorbitantes dos contratos administrativos:', // pergunta
+    alternativas: [                     // opções
+      'Alteração unilateral e rescisão unilateral pela Administração',
+      'Direito de o contratado alterar sozinho o objeto do contrato',
+      'Impossibilidade de fiscalização pela Administração',
+      'Renúncia prévia a todos os direitos pela Administração',
+      'Garantia de equilíbrio econômico-financeiro'
+    ],
+    correta: 0,                         // índice da certa
+    explicacao: 'As cláusulas exorbitantes dão à Administração prerrogativas que o particular não tem: alterar e rescindir unilateralmente, fiscalizar a execução, aplicar sanções e ocupar provisoriamente bens e serviços.', // explicação
+    dica: 'A alternativa (e) "equilíbrio econômico-financeiro" é garantia do CONTRATADO, não cláusula exorbitante. A banca coloca esse "primo" no meio para confundir.', // pegadinha
+    video: 'cláusulas exorbitantes contratos administrativos para concurso' // busca no YouTube
+  },
+
+  /* ===================== LOTE NOVO — ATUALIDADES (t07 a t10) ===================== */
+  {
+    id: 't07',                          // identificador único
+    materia: 'Atualidades',             // matéria
+    tema: 'ONU — Conselho de Segurança', // assunto
+    banca: 'Instituto AOCP',            // banca inspiradora
+    enunciado: 'São membros permanentes do Conselho de Segurança da ONU, com direito a veto:', // pergunta
+    alternativas: [                     // opções
+      'Estados Unidos, Rússia, China, França e Reino Unido',
+      'Estados Unidos, China, Brasil, Índia e Rússia',
+      'Estados Unidos, Japão, Alemanha, França e Rússia',
+      'Brasil, Rússia, Índia, China e África do Sul',
+      'Estados Unidos, Canadá, México, França e Reino Unido'
+    ],
+    correta: 0,                         // índice da certa
+    explicacao: 'Os cinco membros permanentes (o chamado P5) são Estados Unidos, Rússia, China, França e Reino Unido. Os demais membros são rotativos e não têm direito a veto.', // explicação
+    dica: 'O "P5" cai direto em atualidades. Cuidado com a alternativa BRICS (Brasil, Rússia, Índia, China e África do Sul): BRICS é bloco econômico, não Conselho de Segurança.', // pegadinha
+    video: 'conselho de segurança da onu membros permanentes veto' // busca no YouTube
+  },
+  {
+    id: 't08',                          // identificador único
+    materia: 'Atualidades',             // matéria
+    tema: 'Acordo de Paris',            // assunto
+    banca: 'ENEM (vestibular)',         // banca inspiradora
+    enunciado: 'O Acordo de Paris, firmado em 2015, tem como objetivo central:', // pergunta
+    alternativas: [                     // opções
+      'Acabar com o uso de energia nuclear no mundo',
+      'Limitar o aumento da temperatura global bem abaixo de 2 ºC, buscando 1,5 ºC',
+      'Criar uma moeda única para o comércio internacional',
+      'Proibir o desmatamento em todos os países signatários',
+      'Facilitar o comércio entre os países das Américas'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'O Acordo de Paris (COP21) definiu metas para conter o aquecimento global: manter o aumento da temperatura bem abaixo de 2 ºC e buscar 1,5 ºC. Cada país apresenta sua contribuição nacional (NDC).', // explicação
+    dica: 'Números que caem: 2015, 2 ºC e 1,5 ºC. A banca troca os valores (por exemplo, "abaixo de 5 ºC") para pegar quem decorou pela metade.', // pegadinha
+    video: 'acordo de paris 2015 mudanças climáticas resumo' // busca no YouTube
+  },
+  {
+    id: 't09',                          // identificador único
+    materia: 'Atualidades',             // matéria
+    tema: 'LGPD',                       // assunto
+    banca: 'Instituto AOCP',            // banca inspiradora
+    enunciado: 'A Lei Geral de Proteção de Dados (LGPD) trata:', // pergunta
+    alternativas: [                     // opções
+      'Da proteção de dados pessoais e da privacidade dos titulares',
+      'Da criminalização de todos os crimes cibernéticos',
+      'Da criação de impostos sobre tecnologia',
+      'Do bloqueio de redes sociais durante as eleições',
+      'Da obrigatoriedade de usar antivírus no serviço público'
+    ],
+    correta: 0,                         // índice da certa
+    explicacao: 'A LGPD (Lei 13.709/2018) estabelece regras para coleta, uso, armazenamento e compartilhamento de dados pessoais, criando direitos para o titular e deveres para empresas e órgãos públicos.', // explicação
+    dica: 'Pegadinha de sigla: LGPD é sobre proteção de DADOS pessoais, não sobre crimes cibernéticos. O marco civil da internet é outra lei (12.965/2014).', // pegadinha
+    video: 'lgpd lei geral de proteção de dados resumo' // busca no YouTube
+  },
+  {
+    id: 't10',                          // identificador único
+    materia: 'Atualidades',             // matéria
+    tema: 'PIX',                        // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Sobre o PIX, criado pelo Banco Central do Brasil, é correto afirmar:', // pergunta
+    alternativas: [                     // opções
+      'É um cartão de crédito internacional',
+      'É um meio de pagamento instantâneo, disponível 24 horas por dia em todos os dias',
+      'É um aplicativo de investimento em ações',
+      'É uma criptomoeda brasileira',
+      'É um tipo de boleto bancário com prazo de compensação'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'O PIX é o sistema de pagamentos instantâneos do Banco Central: transferências e pagamentos em segundos, 24 horas por dia, usando chave PIX, QR Code, dados bancários ou aproximação.', // explicação
+    dica: 'PIX não é criptomoeda nem cartão: é um sistema de pagamento instantâneo com trilha bancária. A banca explora a confusão entre PIX e cripto.', // pegadinha
+    video: 'o que é pix banco central como funciona' // busca no YouTube
   }
 ];
