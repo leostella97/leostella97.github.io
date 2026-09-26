@@ -1,40 +1,411 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<!-- TEAM_001: Portfólio inicial de Leonardo Stella — HTML semântico, sem dependências de build -->
+<html lang="pt-BR" data-tema="escuro">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProtocolFit — abrindo…</title>
-  <meta name="description" content="ProtocolFit: treino e dieta personalizados com cálculo determinístico. 100% gratuito." />
-  <link rel="icon" href="https://leostella97.github.io/ProtocolFit/favicon.png" />
-  <!-- Redireciona imediatamente para o sistema (funciona com qualquer caixa: / ou /ProtocolFit/). -->
-  <meta http-equiv="refresh" content="0; url=/ProtocolFit/" />
-  <style>
-    /* Estilo mínimo com a paleta de saúde do ProtocolFit. */
-    body {
-      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #10a37f, #14b8a6); color: #fff; text-align: center;
-    }
-    .caixa { padding: 32px; }
-    h1 { font-size: 22px; margin: 14px 0 6px; }
-    p { opacity: .9; font-size: 15px; margin: 0 0 18px; }
-    a {
-      display: inline-block; background: #fff; color: #0b7d61; font-weight: 700;
-      text-decoration: none; padding: 12px 24px; border-radius: 10px;
-    }
-  </style>
+  <!-- Metadados essenciais: charset e viewport sempre primeiro -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título e descrição para SEO e compartilhamento -->
+  <title>Leonardo Stella | Infraestrutura, Suporte &amp; Desenvolvimento</title>
+  <meta name="description" content="Especialista em infraestrutura e gestão de TI com mais de 8 anos de atuação prática — da estabilidade de redes ao desenvolvimento de sistemas que funcionam de verdade.">
+  <meta name="author" content="Leonardo Stella">
+  <!-- Cor da barra do navegador no mobile (acompanha o tema escuro padrão) -->
+  <meta name="theme-color" content="#070a12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f6fc" media="(prefers-color-scheme: light)">
+
+  <!-- Open Graph: pré-visualização ao compartilhar o link -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Leonardo Stella | Infraestrutura, Suporte &amp; Desenvolvimento">
+  <meta property="og:description" content="Tecnologia que trabalha a favor do seu negócio. Infraestrutura, suporte e desenvolvimento com 8+ anos de prática.">
+  <meta property="og:image" content="https://leostella97.github.io/img/3x4-26.jpg">
+  <meta property="og:url" content="https://leostella97.github.io/">
+
+  <!-- Ícone do site (monograma LS em SVG) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Pré-conexão com os servidores de fonte para acelerar o carregamento -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fontes: Space Grotesk (títulos, autoridade técnica) + Inter (texto, legibilidade) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Script inline: define o tema ANTES da pintura para evitar flash de tema errado -->
+  <script>
+    // TEAM_001: aplica o tema salvo ou a preferência do sistema antes do primeiro paint
+    (function () {
+      var temaSalvo = localStorage.getItem('tema');            // lê a escolha anterior do visitante
+      var prefereClaro = matchMedia('(prefers-color-scheme: light)').matches; // lê a preferência do sistema
+      var tema = temaSalvo || (prefereClaro ? 'claro' : 'escuro'); // decide o tema inicial
+      document.documentElement.dataset.tema = tema;            // aplica no <html> antes do CSS pintar
+    })();
+  </script>
 </head>
 <body>
-  <div class="caixa">
-    <div style="font-size:40px">💚</div>
-    <h1>ProtocolFit</h1>
-    <p>Abrindo o sistema…</p>
-    <!-- Link manual para quem tiver o JavaScript desativado. -->
-    <a href="/ProtocolFit/">Entrar no ProtocolFit</a>
+
+  <!-- Barra de progresso de leitura no topo da página -->
+  <div class="progresso-leitura" aria-hidden="true"></div>
+
+  <!-- Fundo aurora: três manchas de cor desfocadas que flutuam suavemente -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora__mancha aurora__mancha--1"></div>
+    <div class="aurora__mancha aurora__mancha--2"></div>
+    <div class="aurora__mancha aurora__mancha--3"></div>
   </div>
-  <script>
-    // Redireciona preservando a caixa correta da URL do projeto.
-    window.location.replace('/ProtocolFit/');
-  </script>
+
+  <!-- Textura de grão sutil sobre tudo (efeito filme) -->
+  <div class="grao" aria-hidden="true"></div>
+
+  <!-- ===================== CABEÇALHO / NAVEGAÇÃO ===================== -->
+  <header class="cabecalho" id="topo">
+    <nav class="navegacao container" aria-label="Navegação principal">
+
+      <!-- Logotipo: monograma que rola de volta ao topo -->
+      <a href="#topo" class="navegacao__logo" aria-label="Voltar ao topo">
+        <span class="navegacao__monograma">LS</span>
+        <span class="navegacao__nome">Leonardo Stella</span>
+      </a>
+
+      <!-- Links de navegação entre as seções -->
+      <ul class="navegacao__links">
+        <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+        <li><a href="#formacao" data-i18n="nav.formacao">Formação</a></li>
+        <li><a href="#projetos" data-i18n="nav.projetos">Projetos</a></li>
+      </ul>
+
+      <!-- Controles da direita: idiomas, tema e CTA -->
+      <div class="navegacao__controles">
+
+        <!-- Seletor de idioma: três bandeiras SVG inline -->
+        <div class="idiomas" role="group" aria-label="Selecionar idioma">
+
+          <!-- Português: metade Portugal (esquerda) + metade Brasil (direita) -->
+          <button class="idiomas__botao" data-idioma="pt" aria-label="Português" title="Português">
+            <svg viewBox="0 0 28 20" class="idiomas__bandeira" aria-hidden="true">
+              <defs>
+                <clipPath id="flg-pt"><rect width="28" height="20" rx="3"/></clipPath>
+                <!-- Corte na diagonal ascendente: triângulo sup-esq = Portugal, inf-dir = Brasil -->
+                <clipPath id="flg-pt-sup"><polygon points="0,0 28,0 0,20"/></clipPath>
+                <clipPath id="flg-pt-inf"><polygon points="28,0 28,20 0,20"/></clipPath>
+              </defs>
+              <g clip-path="url(#flg-pt)">
+                <g clip-path="url(#flg-pt-sup)">
+                  <rect width="28" height="20" fill="#da291c"/>            <!-- campo vermelho de Portugal -->
+                  <rect width="11.2" height="20" fill="#046a38"/>          <!-- faixa verde de Portugal -->
+                  <circle cx="11.2" cy="10" r="3.2" fill="#ffe900"/>       <!-- escudo amarelo simplificado -->
+                  <circle cx="11.2" cy="10" r="1.7" fill="#da291c"/>       <!-- centro do escudo -->
+                </g>
+                <g clip-path="url(#flg-pt-inf)">
+                  <rect width="28" height="20" fill="#009c3b"/>            <!-- campo verde do Brasil -->
+                  <path d="M14 2.6 26.4 10 14 17.4 1.6 10Z" fill="#ffdf00"/> <!-- losango amarelo -->
+                  <circle cx="14" cy="10" r="3.2" fill="#002776"/>         <!-- círculo azul do Brasil -->
+                </g>
+              </g>
+            </svg>
+          </button>
+
+          <!-- Inglês: bandeira da Inglaterra (cruz de São Jorge) -->
+          <button class="idiomas__botao" data-idioma="en" aria-label="English" title="English">
+            <svg viewBox="0 0 28 20" class="idiomas__bandeira" aria-hidden="true">
+              <defs><clipPath id="flg-en"><rect width="28" height="20" rx="3"/></clipPath></defs>
+              <g clip-path="url(#flg-en)">
+                <rect width="28" height="20" fill="#ffffff"/>            <!-- fundo branco -->
+                <rect x="12" width="4" height="20" fill="#ce1124"/>      <!-- braço vertical da cruz -->
+                <rect y="8" width="28" height="4" fill="#ce1124"/>       <!-- braço horizontal da cruz -->
+              </g>
+            </svg>
+          </button>
+
+          <!-- Espanhol: bandeira da Espanha (vermelho-amarelo-vermelho) -->
+          <button class="idiomas__botao" data-idioma="es" aria-label="Español" title="Español">
+            <svg viewBox="0 0 28 20" class="idiomas__bandeira" aria-hidden="true">
+              <defs><clipPath id="flg-es"><rect width="28" height="20" rx="3"/></clipPath></defs>
+              <g clip-path="url(#flg-es)">
+                <rect width="28" height="20" fill="#aa151b"/>            <!-- base vermelha -->
+                <rect y="5" width="28" height="10" fill="#f1bf00"/>      <!-- faixa central amarela (dobro) -->
+                <rect x="7" y="8" width="2.4" height="4" rx=".5" fill="#aa151b"/> <!-- brasão simplificado -->
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Interruptor de tema claro/escuro -->
+        <button class="tema-interruptor" aria-label="Alternar tema claro/escuro" data-i18n-aria="ui.tema">
+          <span class="tema-interruptor__trilho">
+            <!-- Ícone de sol (tema claro) -->
+            <svg class="tema-interruptor__icone tema-interruptor__icone--sol" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.4" fill="currentColor"/>
+              <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/>
+              </g>
+            </svg>
+            <!-- Ícone de lua (tema escuro) -->
+            <svg class="tema-interruptor__icone tema-interruptor__icone--lua" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M20.6 14.8A8.6 8.6 0 0 1 9.2 3.4a8.6 8.6 0 1 0 11.4 11.4Z"/>
+            </svg>
+            <span class="tema-interruptor__botao"></span>
+          </span>
+        </button>
+
+        <!-- CTA principal da navegação -->
+        <a class="botao botao--primario botao--pequeno" href="https://linktr.ee/leostella97" target="_blank" rel="noopener" data-i18n="nav.contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero container" aria-label="Apresentação">
+
+      <!-- Selo de disponibilidade com ponto pulsante -->
+      <p class="hero__selo revelar">
+        <span class="hero__pulso" aria-hidden="true"></span>
+        <span data-i18n="hero.selo">Disponível para novos projetos</span>
+      </p>
+
+      <!-- Foto central com anel de gradiente animado -->
+      <div class="hero__moldura revelar">
+        <div class="hero__anel" aria-hidden="true"></div>
+        <img class="hero__foto" src="img/3x4-26.jpg" alt="Foto de Leonardo Stella" width="200" height="267" fetchpriority="high">
+      </div>
+
+      <!-- Nome em destaque com gradiente no sobrenome -->
+      <h1 class="hero__titulo revelar">
+        Leonardo <span class="texto-gradiente">Stella</span>
+      </h1>
+
+      <!-- Função principal -->
+      <p class="hero__funcao revelar" data-i18n="hero.funcao">Infraestrutura, Suporte &amp; Desenvolvimento</p>
+
+      <!-- Frase rotativa digitada/apagada em loop -->
+      <p class="hero__digitacao revelar" aria-hidden="true">
+        <span id="texto-digitado"></span><span class="hero__cursor" aria-hidden="true"></span>
+      </p>
+
+      <!-- Parágrafo de apoio persuasivo -->
+      <p class="hero__texto revelar" data-i18n="hero.texto">
+        Há mais de 8 anos transformo complexidade técnica em tranquilidade operacional —
+        para que a tecnologia nunca seja o seu problema.
+      </p>
+
+      <!-- Chamadas para ação -->
+      <div class="hero__acoes revelar">
+        <a class="botao botao--primario botao--magnetico" href="https://linktr.ee/leostella97" target="_blank" rel="noopener">
+          <span data-i18n="hero.cta">Contato</span>
+          <svg viewBox="0 0 24 24" class="botao__icone" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="botao botao--fantasma" href="#projetos" data-i18n="hero.cta2">Ver projetos</a>
+      </div>
+
+      <!-- Indicador de rolagem -->
+      <a class="hero__rolagem" href="#sobre" aria-label="Rolar para a próxima seção" data-i18n-aria="ui.rolagem">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- Faixa em movimento com as áreas de atuação -->
+    <div class="letreiro" aria-hidden="true">
+      <div class="letreiro__trilho">
+        <!-- O conteúdo é duplicado pelo JS para o loop infinito -->
+        <span class="letreiro__item" data-i18n="letreiro">Infraestrutura · Redes · Segurança da Informação · Suporte Técnico · Desenvolvimento Web · Automação · Cloud · Usabilidade ·&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- ===================== SOBRE MIM ===================== -->
+    <section class="secao container" id="sobre" aria-labelledby="titulo-sobre">
+      <p class="secao__kicker revelar" data-i18n="sobre.kicker">Quem é Leonardo</p>
+      <h2 class="secao__titulo revelar" id="titulo-sobre" data-i18n="sobre.titulo">Sobre mim</h2>
+
+      <div class="sobre__grade">
+        <!-- Texto persuasivo em primeira pessoa -->
+        <div class="sobre__texto revelar">
+          <p data-i18n="sobre.p1">Especialista em infraestrutura e gestão de TI com mais de 8 anos de atuação prática. Minha rotina vai da estabilidade de redes e segurança da informação ao desenvolvimento de sistemas focados em usabilidade e eficiência operacional.</p>
+          <p data-i18n="sobre.p2">Graduado em Análise e Desenvolvimento de Sistemas, sigo me aprimorando continuamente no ecossistema de tecnologia — porque tecnologia parada é tecnologia ultrapassada.</p>
+          <p class="sobre__destaque" data-i18n="sobre.p3">Perfil analítico e mão na massa: resolvo problemas pela raiz e faço a tecnologia trabalhar a favor do negócio — nunca contra ele.</p>
+        </div>
+
+        <!-- Grade de cartões-visuais com os fatos-chave -->
+        <div class="cartoes">
+
+          <!-- Cartão 1: anos de experiência (contador animado) -->
+          <article class="cartao revelar">
+            <svg class="cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a1 1 0 0 0-1 1v4a3 3 0 0 0 3 3h.5A6 6 0 0 0 11 17.9V19H8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2h-3v-1.1a6 6 0 0 0 4.5-2.9H18a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1ZM5 9v2a1 1 0 0 0 1 1h.6A6 6 0 0 1 7 9Zm14 2a1 1 0 0 0 1-1V9h-2a6 6 0 0 1-.4 3Z"/></svg>
+            <strong class="cartao__valor"><span>+</span><span class="contador" data-alvo="10">0</span> <span data-i18n="sobre.cartao1v">anos</span></strong>
+            <span class="cartao__rotulo" data-i18n="sobre.cartao1r">de experiência prática</span>
+            <span class="cartao__sub" data-i18n="sobre.cartao1s">infra, suporte &amp; dev</span>
+          </article>
+
+          <!-- Cartão 2: graduação + estudo contínuo -->
+          <article class="cartao revelar">
+            <svg class="cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m12 4 10 5-10 5L2 9Z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5M22 9v5"/></svg>
+            <strong class="cartao__valor" data-i18n="sobre.cartao2v">Graduado</strong>
+            <span class="cartao__rotulo" data-i18n="sobre.cartao2r">&amp; estudante contínuo</span>
+            <span class="cartao__sub" data-i18n="sobre.cartao2s">mente sempre em progressão</span>
+          </article>
+
+          <!-- Cartão 3: localização -->
+          <article class="cartao revelar">
+            <svg class="cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <strong class="cartao__valor" data-i18n="sobre.cartao3v">Praia Grande – SP</strong>
+            <span class="cartao__rotulo" data-i18n="sobre.cartao3r">Baixada Santista</span>
+            <span class="cartao__sub" data-i18n="sobre.cartao3s">alcance global</span>
+          </article>
+
+          <!-- Cartão 4: modelo de trabalho -->
+          <article class="cartao revelar">
+            <svg class="cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M8 20h8M12 16v4"/></svg>
+            <strong class="cartao__valor" data-i18n="sobre.cartao4v">Remoto &amp; Híbrido</strong>
+            <span class="cartao__rotulo" data-i18n="sobre.cartao4r">onde o trabalho é preciso</span>
+            <span class="cartao__sub" data-i18n="sobre.cartao4s">sem fronteiras</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FORMAÇÃO ===================== -->
+    <section class="secao container" id="formacao" aria-labelledby="titulo-formacao">
+      <p class="secao__kicker revelar" data-i18n="formacao.kicker">Base sólida, evolução constante</p>
+      <h2 class="secao__titulo revelar" id="titulo-formacao" data-i18n="formacao.titulo">Formação</h2>
+
+      <div class="formacao__grade">
+        <!-- Linha do tempo com os três diplomas -->
+        <ol class="linha-tempo">
+          <li class="linha-tempo__item revelar">
+            <span class="linha-tempo__marcador" aria-hidden="true"></span>
+            <div class="linha-tempo__corpo">
+              <span class="etiqueta" data-i18n="formacao.tag1">Graduação</span>
+              <h3 data-i18n="formacao.item1t">Análise e Desenvolvimento de Sistemas</h3>
+              <p data-i18n="formacao.item1i">FAM — Centro Universitário</p>
+            </div>
+          </li>
+          <li class="linha-tempo__item revelar">
+            <span class="linha-tempo__marcador" aria-hidden="true"></span>
+            <div class="linha-tempo__corpo">
+              <span class="etiqueta" data-i18n="formacao.tag2">Técnico</span>
+              <h3 data-i18n="formacao.item2t">Desenvolvimento de Sistemas</h3>
+              <p data-i18n="formacao.item2i">EaDTEC / Centro Paula Souza</p>
+            </div>
+          </li>
+          <li class="linha-tempo__item revelar">
+            <span class="linha-tempo__marcador" aria-hidden="true"></span>
+            <div class="linha-tempo__corpo">
+              <span class="etiqueta" data-i18n="formacao.tag2">Técnico</span>
+              <h3 data-i18n="formacao.item3t">Informática</h3>
+              <p data-i18n="formacao.item3i">ETEC / Centro Paula Souza</p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Cartão lateral de certificados com link para o Drive -->
+        <aside class="certificados revelar">
+          <svg class="certificados__icone" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m8.5 14-1.5 7 5-3 5 3-1.5-7M12 6.5l.8 1.7 1.9.2-1.4 1.3.4 1.8-1.7-.9-1.7.9.4-1.8-1.4-1.3 1.9-.2Z"/>
+          </svg>
+          <h3 data-i18n="formacao.certt">Certificados</h3>
+          <p data-i18n="formacao.certd">Uma coleção em constante crescimento — porque aprender nunca é demais.</p>
+          <a class="botao botao--fantasma" href="https://drive.google.com/drive/folders/1-4ixvi_wSGiB8QWS9Svn0shPSrWU8JQK?usp=sharing" target="_blank" rel="noopener">
+            <span data-i18n="formacao.certb">Ver certificados</span>
+            <svg viewBox="0 0 24 24" class="botao__icone" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETOS ===================== -->
+    <section class="secao container" id="projetos" aria-labelledby="titulo-projetos">
+      <p class="secao__kicker revelar" data-i18n="projetos.kicker">Código que virou produto</p>
+      <h2 class="secao__titulo revelar" id="titulo-projetos" data-i18n="projetos.titulo">Projetos &amp; Portfólio</h2>
+
+      <!-- Dois projetos em destaque (links reais e publicados) -->
+      <div class="projetos__destaques">
+
+        <!-- ProtocolFit -->
+        <a class="projeto projeto--fit revelar" href="https://leostella97.github.io/ProtocolFit" target="_blank" rel="noopener">
+          <div class="projeto__vitrine" aria-hidden="true">
+            <svg class="projeto__glifo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>
+          </div>
+          <div class="projeto__corpo">
+            <div class="projeto__cabeca">
+              <h3>ProtocolFit</h3>
+              <svg class="projeto__seta" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+            </div>
+            <p data-i18n="projetos.fit">Treino e dieta personalizados em segundos — motor determinístico com fórmula Mifflin-St Jeor, 100% gratuito e privado.</p>
+            <ul class="projeto__etiquetas">
+              <li>Web App</li><li data-i18n="projetos.fitTag2">Determinístico</li><li data-i18n="projetos.fitTag3">100% Gratuito</li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- Gabarito Café -->
+        <a class="projeto projeto--cafe revelar" href="https://leostella97.github.io/GabaritoCafe/" target="_blank" rel="noopener">
+          <div class="projeto__vitrine" aria-hidden="true">
+            <svg class="projeto__glifo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M16 9h1.5a2.5 2.5 0 0 1 0 5H16M7.5 4.5c.5-.8.5-1.2 0-2M10.5 4.5c.5-.8.5-1.2 0-2M13.5 4.5c.5-.8.5-1.2 0-2"/></svg>
+          </div>
+          <div class="projeto__corpo">
+            <div class="projeto__cabeca">
+              <h3>Gabarito Café</h3>
+              <svg class="projeto__seta" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+            </div>
+            <p data-i18n="projetos.cafe">Plataforma de estudos para concursos: importa o edital, gera simulados com correção comentada e ensina as pegadinhas das bancas.</p>
+            <ul class="projeto__etiquetas">
+              <li>PWA</li><li data-i18n="projetos.cafeTag2">Estudo</li><li>EdTech</li>
+            </ul>
+          </div>
+        </a>
+      </div>
+
+      <!-- Dois projetos acadêmicos em cartões menores -->
+      <div class="projetos__secundarios">
+
+        <!-- Plataforma Web para Freelancers -->
+        <article class="mini-cartao revelar">
+          <div class="mini-cartao__cabeca">
+            <svg class="mini-cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 18a4 4 0 0 0-8 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM3 20h18"/></svg>
+            <span class="etiqueta" data-i18n="projetos.tagAcad1">Acadêmico · EaDTEC</span>
+          </div>
+          <h3 data-i18n="projetos.freeT">Plataforma Web para Freelancers</h3>
+          <p data-i18n="projetos.freeD">Divulgação de serviços autônomos com conexão direta ao cliente e foco total em usabilidade.</p>
+        </article>
+
+        <!-- Website Institucional ONG Ecophalt -->
+        <article class="mini-cartao revelar">
+          <div class="mini-cartao__cabeca">
+            <svg class="mini-cartao__icone" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 21c4-3 8-7.2 8-11.5A5.5 5.5 0 0 0 12 6a5.5 5.5 0 0 0-8 3.5C4 13.8 8 18 12 21Z"/></svg>
+            <span class="etiqueta" data-i18n="projetos.tagAcad2">Acadêmico · ETEC</span>
+          </div>
+          <h3 data-i18n="projetos.ecoT">Website Institucional — ONG Ecophalt</h3>
+          <p data-i18n="projetos.ecoD">Plataforma web criada para expandir a presença digital e o engajamento da organização.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="cta-final container" aria-labelledby="titulo-cta">
+      <div class="cta-final__caixa revelar">
+        <h2 id="titulo-cta" data-i18n="cta.titulo">Vamos construir algo que funcione?</h2>
+        <p data-i18n="cta.texto">Infraestrutura estável, suporte que responde e desenvolvimento que entrega. O próximo projeto pode ser o seu.</p>
+        <a class="botao botao--primario botao--magnetico" href="https://linktr.ee/leostella97" target="_blank" rel="noopener">
+          <span data-i18n="cta.botao">Contato</span>
+          <svg viewBox="0 0 24 24" class="botao__icone" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape">
+    <div class="container rodape__linha">
+      <p>© 2026 Leonardo Stella — <span data-i18n="rodape.funcao">Infraestrutura, Suporte &amp; Desenvolvimento</span></p>
+      <p class="rodape__assinatura" data-i18n="rodape.feito">Feito com café, código e boas práticas.</p>
+    </div>
+  </footer>
+
+  <!-- Script principal: tema, idiomas e efeitos (defer para não bloquear o render) -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>
