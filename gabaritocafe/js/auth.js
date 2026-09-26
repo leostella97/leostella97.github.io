@@ -51,12 +51,12 @@ const Auth = {
   async cadastrar(nome, email, senha) {
     nome = String(nome || '').trim();         // limpa espaços do nome
     email = String(email || '').trim().toLowerCase(); // limpa e padroniza o e-mail
-    if (nome.length < 2) return { ok: false, erro: 'Hmm, esse nome está curto demais. Como te chamam?' }; // valida nome
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, erro: 'Esse e-mail não parece certo. Confere aí?' }; // valida e-mail
-    if (senha.length < 4) return { ok: false, erro: 'Senha muito curta! Mínimo de 4 caracteres, combinado?' }; // valida senha
+    if (nome.length < 2) return { ok: false, erro: T('erro_nome_curto') }; // valida nome
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, erro: T('erro_email_invalido') }; // valida e-mail
+    if (senha.length < 4) return { ok: false, erro: T('erro_senha_curta') }; // valida senha
 
     const usuarios = this.usuarios();         // pega a lista atual
-    if (usuarios.some(u => u.email === email)) return { ok: false, erro: 'Já tem uma conta com esse e-mail. Tenta entrar?' }; // evita duplicado
+    if (usuarios.some(u => u.email === email)) return { ok: false, erro: T('erro_email_existe') }; // evita duplicado
 
     const novo = {                            // monta o novo usuário
       id: 'u_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), // id único improvisado
@@ -76,9 +76,9 @@ const Auth = {
   async entrar(email, senha) {
     email = String(email || '').trim().toLowerCase(); // padroniza o e-mail
     const usuario = this.usuarios().find(u => u.email === email); // procura o usuário
-    if (!usuario) return { ok: false, erro: 'Não achei conta com esse e-mail. Bora criar uma?' }; // e-mail desconhecido
+    if (!usuario) return { ok: false, erro: T('erro_email_nao_encontrado') }; // e-mail desconhecido
     const hashDigitado = await this.hash(senha); // embaralha a senha digitada
-    if (hashDigitado !== usuario.senhaHash) return { ok: false, erro: 'Senha errada... acontece! Tenta de novo.' }; // senha não bate
+    if (hashDigitado !== usuario.senhaHash) return { ok: false, erro: T('erro_senha_errada') }; // senha não bate
     Armazenamento.salvar(this.CHAVE_SESSAO, { usuarioId: usuario.id, inicio: Date.now() }); // abre a sessão
     return { ok: true, usuario: usuario };    // sucesso!
   },

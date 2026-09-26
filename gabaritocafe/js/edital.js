@@ -52,7 +52,7 @@ const EditalUI = {
     document.getElementById('btn-analisar-cola').addEventListener('click', () => { // clique no botão
       const texto = document.getElementById('edital-cola').value.trim(); // pega o texto colado
       if (texto.length < 40) {                              // texto curto demais
-        App.torrada('Cola um pedaço maior do edital aí — precisa de conteúdo para analisar!', 'erro'); // avisa
+        App.torrada(T('toast_cola_curto'), 'erro'); // avisa
         return;                                             // para por aqui
       }
       const analise = AnaliseEdital.analisar(texto);        // analisa o texto colado
@@ -65,7 +65,8 @@ const EditalUI = {
       const cargo = document.getElementById('edital-cargo').value.trim(); // pega o cargo digitado
       Auth.salvarFoco(cargo);                               // salva no perfil
       App.atualizarPerfil();                                // atualiza lateral e saudação
-      App.torrada(cargo ? 'Foco guardado! Bora mirar em ' + cargo + ' 🎯' : 'Foco limpo. Escolhe um cargo quando quiser.', 'sucesso'); // confirma
+      // Confirma o que aconteceu (com foco salvo ou limpo), traduzido
+      App.torrada(cargo ? T('toast_foco_guardado', { cargo: cargo }) : T('toast_foco_limpo'), 'sucesso');
     });
 
     // Pré-preenche o campo de foco com o que já estava salvo
@@ -76,19 +77,19 @@ const EditalUI = {
   async processarArquivo(arquivo) {
     const estado = document.getElementById('edital-estado'); // caixa de status
     estado.classList.remove('oculto');                     // mostra a caixa
-    estado.innerHTML = '<div class="girando"></div><p class="mensagem">Passando o café... lendo seu edital ☕</p>'; // estado "lendo"
+    estado.innerHTML = '<div class="girando"></div><p class="mensagem">' + T('ed_lendo') + '</p>'; // estado "lendo"
 
     try {
       const texto = await this.textoDoPdf(arquivo);         // extrai o texto do PDF
       const analise = AnaliseEdital.analisar(texto);        // analisa o texto extraído
       this.ultimaAnalise = analise;                         // guarda a análise
       this.renderizarResultado(analise);                    // desenha o resultado na tela
-      App.torrada('Edital na mesa! Olha o que encontrei 📄', 'sucesso'); // avisa que deu certo
+      App.torrada(T('toast_edital_ok'), 'sucesso'); // avisa que deu certo
     } catch (erro) {
       console.warn('Falha ao ler o PDF', erro);             // registra o erro no console
-      // Aviso honesto com o plano B
-      estado.innerHTML = '<p class="mensagem">😅 Não consegui ler esse PDF (pode estar protegido ou com layout complicado).</p><p class="texto-suave">Plano B: abre o edital, copia o texto e cola no campo abaixo. A análise funciona do mesmo jeito!</p>'; // orienta
-      App.torrada('Não consegui ler o PDF. Tenta colar o texto abaixo!', 'erro'); // torrada de erro
+      // Aviso honesto com o plano B (traduzido)
+      estado.innerHTML = '<p class="mensagem">' + T('ed_erro_t') + '</p><p class="texto-suave">' + T('ed_erro_sub') + '</p>'; // orienta
+      App.torrada(T('toast_edital_erro'), 'erro'); // torrada de erro
     }
   },
 
@@ -117,7 +118,7 @@ const EditalUI = {
     estado.classList.add('oculto');                        // esconde o "lendo"
 
     if (!analise.valido) {                                  // análise vazia (texto curto)
-      document.getElementById('edital-resultado').innerHTML = '<div class="nota">Hmm, o texto estava curto demais para analisar. Tenta colar mais conteúdo (o edital inteiro, de preferência).</div>'; // avisa
+      document.getElementById('edital-resultado').innerHTML = '<div class="nota">' + T('ed_curto_aviso') + '</div>'; // avisa
       return;                                               // para
     }
 
@@ -126,9 +127,9 @@ const EditalUI = {
 
     // ---- Cartão 1: o edital em resumo (título + trechos citados) ----
     html += '<div class="cartao destaque bloco-edital aparecer">'; // abre o cartão
-    html += '<h3>📋 ' + this.escape(analise.titulo || 'Seu edital em resumo') + '</h3>'; // título do concurso
+    html += '<h3>📋 ' + this.escape(analise.titulo || T('ed_resumo')) + '</h3>'; // título do concurso
     if (analise.trechos.length === 0) {                     // se não achamos trechos
-      html += '<p class="texto-suave">Não consegui separar seções claras, mas olha o que encontrei abaixo. 👇</p>'; // explica
+      html += '<p class="texto-suave">' + T('ed_sem_trechos') + '</p>'; // explica
     }
     for (const trecho of analise.trechos) {                 // percorre os trechos achados
       html += '<p style="font-weight:800;margin:0.7rem 0 0.2rem">' + this.escape(trecho.nome) + '</p>'; // nome da seção
@@ -138,7 +139,7 @@ const EditalUI = {
 
     // ---- Cartão 2: cargos encontrados ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
-    html += '<h3>💼 Cargos que encontrei</h3>';             // título da seção
+    html += '<h3>' + T('ed_cargos_t') + '</h3>';            // título da seção
     if (analise.cargos.length > 0) {                        // se achamos cargos
       html += '<div class="lista-chips">';                  // abre a fileira de chips
       for (const cargo of analise.cargos) {                 // percorre os cargos
@@ -146,13 +147,13 @@ const EditalUI = {
       }
       html += '</div>';                                     // fecha a fileira
     } else {                                                // se não achamos
-      html += '<p class="texto-suave">Não consegui identificar cargos automaticamente (alguns editais usam tabelas complexas). Dá uma conferida no PDF e me diz o cargo no campo "Meu foco" lá embaixo. 👇</p>'; // pede ajuda
+      html += '<p class="texto-suave">' + T('ed_cargos_vazio') + '</p>'; // pede ajuda
     }
     html += '</div>';                                       // fecha o cartão
 
     // ---- Cartão 3: matérias identificadas ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
-    html += '<h3>📚 Matérias que identifiquei</h3>';        // título da seção
+    html += '<h3>' + T('ed_materias_t') + '</h3>';          // título da seção
     if (analise.materias.length > 0) {                      // se achamos matérias
       html += '<div class="lista-chips">';                  // abre a fileira de chips
       for (const materia of analise.materias) {             // percorre as matérias
@@ -160,27 +161,27 @@ const EditalUI = {
         html += '<span class="chip ' + (materia.temBanco ? 'verde' : '') + '">' + this.escape(rotulo) + '</span>'; // chip de cada matéria
       }
       html += '</div>';                                     // fecha a fileira
-      html += '<p class="texto-suave" style="font-size:0.8rem;margin-top:0.6rem">✓ = temos questões prontas no simulado · 🕮 = ainda não temos questões dessa matéria (estude pelo edital)</p>'; // legenda
+      html += '<p class="texto-suave" style="font-size:0.8rem;margin-top:0.6rem">' + T('ed_legenda') + '</p>'; // legenda
     } else {                                                // se não achamos
-      html += '<p class="texto-suave">Não identifiquei matérias nesse texto. Pode ser um edital com formatação diferente — confere o PDF e, se quiser, usa o campo de colar texto com o conteúdo programático.</p>'; // orienta
+      html += '<p class="texto-suave">' + T('ed_materias_vazio') + '</p>'; // orienta
     }
     html += '</div>';                                       // fecha o cartão
 
     // ---- Cartão 4: plano de estudo sugerido ----
     html += '<div class="cartao bloco-edital aparecer">';   // abre o cartão
-    html += '<h3>🗺️ Por onde começar (plano de estudo)</h3>'; // título da seção
+    html += '<h3>' + T('ed_plano_t') + '</h3>';             // título da seção
     if (analise.materias.length > 0) {                      // se temos matérias para planejar
       for (const materia of analise.materias) {             // percorre as matérias
         html += this.planoDeMateria(materia.rotulo);        // monta o item de plano de cada uma
       }
     } else {                                                // sem matérias, sem plano
-      html += '<p class="texto-suave">Sem matérias detectadas, não consigo montar o plano ainda. Cola o conteúdo programático no campo abaixo! 📋</p>'; // orienta
+      html += '<p class="texto-suave">' + T('ed_plano_vazio') + '</p>'; // orienta
     }
     html += '</div>';                                       // fecha o cartão
 
     // ---- Botão: gerar simulado com as matérias do edital ----
     if (analise.materias.some(m => m.temBanco)) {           // só mostra se há questões disponíveis
-      html += '<button id="btn-simulado-edital" class="botao botao-primario grande">📝 Gerar simulado com as matérias do edital</button>'; // botão de ação
+      html += '<button id="btn-simulado-edital" class="botao botao-primario grande">' + T('ed_btn_simulado') + '</button>'; // botão de ação
     }
 
     caixa.innerHTML = html;                                 // despeja o HTML na tela
@@ -204,12 +205,12 @@ const EditalUI = {
     const fonte = DadosTemas.concursos.concat(DadosTemas.vestibular) // junta as duas listas
       .find(t => t.materia === rotuloMateria);              // acha pelo nome
     if (!fonte) {                                           // matéria sem resumo pronto no app
-      return '<div class="plano-item"><span class="materia-nome">' + this.escape(rotuloMateria) + '</span><br><span class="texto-suave">Ainda não temos resumo pronto dessa matéria — estude direto pelo conteúdo programático do edital. Anota os tópicos e manda ver!</span></div>'; // item honesto
+      return '<div class="plano-item"><span class="materia-nome">' + this.escape(rotuloMateria) + '</span><br><span class="texto-suave">' + T('ed_plano_sem_resumo') + '</span></div>'; // item honesto
     }
     let html = '<div class="plano-item">';                  // abre o item
     html += '<span class="materia-nome">' + fonte.icone + ' ' + this.escape(rotuloMateria) + '</span>'; // nome com emoji
     html += '<p style="font-size:0.88rem;margin:0.3rem 0">' + this.escape(fonte.resumo) + '</p>'; // resumo da matéria
-    html += '<p style="font-size:0.85rem"><strong>Começa por:</strong> '; // abre a lista de tópicos
+    html += '<p style="font-size:0.85rem"><strong>' + T('ed_plano_comeca') + '</strong> '; // abre a lista de tópicos
     const top = fonte.topicos.slice(0, 3);                  // pega os 3 tópicos que mais caem
     html += top.map(t => this.escape(t.nome)).join(' · ');  // junta com pontinhos
     html += '.</p>';                                        // fecha a lista

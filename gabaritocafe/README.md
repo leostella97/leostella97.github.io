@@ -51,6 +51,8 @@ Tudo com **login local** (localStorage) — nada de servidor, nada de cadastro r
 | 🕵️ **Bancas** | 9 bancas (CESPE/Cebraspe, FGV, FCC, Vunesp, IBFC, FUMARC, AOCP, ENEM, Fuvest/Unicamp) com perfil, pegadinhas favoritas e como se dar bem. |
 | 📚 **Temas que mais caem** | Lista dos temas campeões de concursos e vestibulares, com frequência em "xícaras" (☕☕☕☕☕) e dicas de como estudar cada um. |
 | 🔐 **Login local** | Criar conta, entrar ou modo visitante. Senhas guardadas com hash — tudo no localStorage do navegador. |
+| 🌙 **Tema claro / escuro** | Botão que troca o visual na hora (tema escuro "café à noite", bem confortável de madrugada) e guarda a escolha. |
+| 🌎 **Três idiomas** | Português 🇧🇷, English 🇺🇸 e Español 🇪🇸 com bandeirinhas. A interface toda é traduzida; o conteúdo das questões fica em português (são provas brasileiras). |
 | 🎨 **Tema café** | Cores de café torrado, caramelo e creme, fontes artesanais (Fraunces + Nunito + Caveat), post-its de dica, vapor animado no logo e microtextos em tom de estudante. |
 
 ---
@@ -90,15 +92,22 @@ gabarito-cafe/
 ├── .gitignore                 # O que o Git deve ignorar
 ├── assets/
 │   ├── logo.svg               # Logo: xícara de café com o "visto" (gabarito)
-│   └── icone.svg              # Favicon da aba do navegador
+│   ├── icone.svg              # Favicon da aba do navegador
+│   ├── bandeira-br.svg        # Bandeira do Brasil (seletor de idioma)
+│   ├── bandeira-us.svg        # Bandeira dos EUA (seletor de idioma)
+│   └── bandeira-es.svg        # Bandeira da Espanha (seletor de idioma)
 ├── css/
 │   ├── base.css               # Reset, paleta de cores (tema café) e utilitários
 │   ├── componentes.css        # Botões, cartões, chips, post-its, toasts, menu...
-│   └── telas.css              # Layouts: login, dashboard, edital, simulado, bancas...
+│   ├── telas.css              # Layouts: login, dashboard, edital, simulado, bancas...
+│   └── tema-escuro.css        # Tema escuro "café à noite" e ajustes de contraste
 ├── js/
 │   ├── armazenamento.js       # Camada única de acesso ao localStorage
+│   ├── idioma.js              # Dicionário PT/EN/ES, T('chave') e troca de idioma
+│   ├── tema.js                # Liga/desliga o tema escuro e salva a escolha
 │   ├── auth.js                # Contas, sessão, hash de senha e foco do usuário
-│   ├── dados-temas.js         # Temas que mais caem + dicas rápidas + frases do dia
+│   ├── dados-temas.js         # Temas que mais caem + dicas e frases (por idioma)
+│   ├── frases.js              # Sorteia a frase motivadora de cada acesso
 │   ├── dados-bancas.js        # Bancas famosas e suas pegadinhas
 │   ├── banco-questoes.js      # Banco com 68 questões comentadas
 │   ├── analise-edital.js      # Heurísticas: detecta cargos, matérias e trechos
@@ -110,6 +119,7 @@ gabarito-cafe/
 │   └── app.js                 # "Gerente": rotas, login, avisos e inicialização
 └── scripts/
     ├── validar-banco.js       # (dev) Confere a integridade das questões
+    ├── validar-idiomas.js     # (dev) Confere se as traduções estão completas
     └── testar-analise.js      # (dev) Testa a análise de edital com um edital fake
 ```
 
@@ -226,12 +236,24 @@ A análise é uma **heurística honesta** (sem servidor, sem IA paga):
 # Confere se todas as 68 questões estão íntegras (ids, alternativas, campos)
 node scripts/validar-banco.js
 
+# Confere as traduções: chaves faltando, placeholders diferentes e tamanhos
+node scripts/validar-idiomas.js
+
 # Testa a análise de edital com um edital fictício
 node scripts/testar-analise.js
 
 # Checa a sintaxe de todos os JS do projeto
 node --check js/arquivo.js   # (um por um)
 ```
+
+### Como adicionar um idioma novo
+
+1. Abra `js/idioma.js` e copie o bloco do `pt` dentro de `DICIONARIO`;
+2. Traduza os textos e ajuste o `IDIOMAS` (código + bandeira);
+3. Rode `node scripts/validar-idiomas.js` — ele aponta qualquer chave que faltar;
+4. Adicione as frases e dicas do novo idioma em `js/dados-temas.js`.
+
+> 💡 **Sobre o conteúdo:** a interface (menus, botões, mensagens, resultados) é traduzida nos três idiomas. O conteúdo de estudo — questões, resumos de matérias e pegadinhas das bancas — permanece em português, porque são provas brasileiras. O app avisa isso nas telas de conteúdo.
 
 ---
 
@@ -242,7 +264,8 @@ node --check js/arquivo.js   # (um por um)
 - [ ] Importar questões de arquivos JSON do usuário
 - [ ] Revisão espaçada (reaparecer questões erradas após X dias)
 - [ ] PWA (instalar no celular e usar offline)
-- [ ] Tema escuro "café à noite"
+- [x] Tema escuro "café à noite" ~~(feito!)~~
+- [x] Interface em inglês e espanhol ~~(feito!)~~
 
 ---
 

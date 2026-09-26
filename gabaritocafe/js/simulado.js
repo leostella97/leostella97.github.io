@@ -43,30 +43,30 @@ const SimuladoUI = {
 
     // ---- Cartão principal de montagem ----
     let html = '<div class="cartao destaque aparecer">';    // abre o cartão
-    html += '<h3>☕ Monte seu simulado</h3>';                // título
-    html += '<p class="texto-suave">Escolhe o tamanho do desafio. O café é por nossa conta.</p>'; // legenda
+    html += '<h3>' + T('sim_t') + '</h3>';                  // título traduzido
+    html += '<p class="texto-suave">' + T('sim_sub') + '</p>'; // legenda traduzida
 
     // Botões de quantidade (5, 10, 15, 20, 30, 50)
-    html += '<p style="font-weight:900;margin:1rem 0 0.4rem">Quantas questões?</p>'; // rótulo
+    html += '<p style="font-weight:900;margin:1rem 0 0.4rem">' + T('sim_quantas') + '</p>'; // rótulo traduzido
     html += '<div class="sim-escolhas">';                   // abre a fileira de botões
     for (const qtd of [5, 10, 15, 20, 30, 50]) {            // percorre as quantidades
       html += '<button class="sim-quantidade" data-qtd="' + qtd + '">' + qtd + '</button>'; // botão de cada quantidade
     }
     html += '</div>';                                       // fecha a fileira
 
-    // Filtro de matérias
-    html += '<div class="campo" style="margin-top:1rem"><label for="sim-materia">Matéria</label>'; // campo
+    // Filtro de matérias (nomes das matérias são conteúdo, ficam em português)
+    html += '<div class="campo" style="margin-top:1rem"><label for="sim-materia">' + T('sim_materia_l') + '</label>'; // campo
     html += '<select id="sim-materia">';                    // abre o select
-    html += '<option value="todas">Todas as matérias (prova misturada)</option>'; // opção padrão
+    html += '<option value="todas">' + T('sim_materia_todas') + '</option>'; // opção padrão
     for (const m of materias) {                             // percorre as matérias do banco
-      html += '<option value="' + this.escape(m.nome) + '">' + this.escape(m.nome) + ' (' + m.quantidade + ' questões)</option>'; // opção com contagem
+      html += '<option value="' + this.escape(m.nome) + '">' + this.escape(m.nome) + ' (' + m.quantidade + ')</option>'; // opção com contagem
     }
     html += '</select></div>';                              // fecha select e campo
 
     // Filtro de banca (estilo)
-    html += '<div class="campo"><label for="sim-banca">Estilo de banca (pegadinhas)</label>'; // campo
+    html += '<div class="campo"><label for="sim-banca">' + T('sim_banca_l') + '</label>'; // campo
     html += '<select id="sim-banca">';                      // abre o select
-    html += '<option value="">Todas as bancas (misturado)</option>'; // opção padrão
+    html += '<option value="">' + T('sim_banca_todas') + '</option>'; // opção padrão
     for (const b of bancas) {                               // percorre as bancas
       html += '<option value="' + this.escape(b.nome) + '">' + this.escape(b.nome) + ' (' + b.quantidade + ')</option>'; // opção
     }
@@ -76,21 +76,21 @@ const SimuladoUI = {
     if (e.materiasEdital.length > 0) {                      // se temos matérias do edital
       html += '<label style="display:flex;gap:0.5rem;align-items:center;font-weight:800;cursor:pointer">'; // abre a caixinha
       html += '<input type="checkbox" id="sim-so-edital"' + (e.soEdital ? ' checked' : '') + '>'; // check do filtro
-      html += '🎯 Usar só as matérias do meu edital (' + e.materiasEdital.length + ' detectadas)</label>'; // rótulo
+      html += T('sim_edital_check', { n: e.materiasEdital.length }) + '</label>'; // rótulo traduzido
     }
 
     // Aviso de quantas questões estão disponíveis com os filtros atuais
     html += '<div id="sim-disponiveis" class="nota" style="margin-top:1rem"></div>'; // caixa de aviso
 
     // Botão de começar
-    html += '<button id="btn-comecar" class="botao botao-primario grande" style="margin-top:1rem">▶️ Passar o café e começar</button>'; // CTA
+    html += '<button id="btn-comecar" class="botao botao-primario grande" style="margin-top:1rem">' + T('sim_btn_comecar') + '</button>'; // CTA traduzido
     html += '</div>';                                       // fecha o cartão
 
-    // ---- Dicas abaixo do simulado (pedido especial do projeto) ----
-    html += '<div class="titulo-secao"><h3>📝 Dicas antes de começar</h3></div>'; // título da seção
+    // ---- Dicas abaixo do simulado (no idioma atual) ----
+    html += '<div class="titulo-secao"><h3>' + T('sim_dicas_t') + '</h3></div>'; // título da seção
     html += '<div class="cartao">';                         // abre o cartão de dicas
     html += '<ul class="banca-lista" style="font-size:0.92rem">'; // lista de dicas
-    for (const dica of DadosTemas.dicasRapidas) {           // percorre as dicas rápidas
+    for (const dica of this.dicasDoIdioma()) {              // percorre as dicas do idioma atual
       html += '<li>' + this.escape(dica) + '</li>';         // cada dica
     }
     html += '</ul></div>';                                  // fecha lista e cartão
@@ -145,8 +145,9 @@ const SimuladoUI = {
     const disponiveis = MotorSimulado.contarDisponiveis({ materias, banca }); // conta questões
     const caixa = document.getElementById('sim-disponiveis'); // caixa do aviso
     if (!caixa) return;                                     // se não existe (não está na tela), sai
-    // Monta o texto do aviso
-    caixa.textContent = '☕ Com esses filtros temos ' + disponiveis + ' questões no estoque. ' + (disponiveis < 5 ? 'Relaxa os filtros para liberar mais!' : 'Escolhe o tamanho aí em cima.'); // aviso humanizado
+    // Monta o texto do aviso (traduzido, com o número de questões)
+    const complemento = disponiveis < 5 ? T('sim_disp_poucas') : T('sim_disp_ok'); // parte final do aviso
+    caixa.textContent = T('sim_disp', { n: disponiveis }) + complemento; // aviso humanizado
     // Desabilita os botões de quantidade maiores que o estoque
     document.querySelectorAll('.sim-quantidade').forEach(btn => { // percorre os botões
       const qtd = parseInt(btn.dataset.qtd, 10);            // quantidade do botão
@@ -159,7 +160,7 @@ const SimuladoUI = {
     const e = this.estado;                                  // atalho para o estado
     const selecionado = document.querySelector('.sim-quantidade.selecionado'); // botão escolhido
     if (!selecionado) {                                     // se o usuário não escolheu quantidade
-      App.torrada('Escolhe a quantidade de questões primeiro! 😉', 'erro'); // avisa
+      App.torrada(T('toast_qtd'), 'erro'); // avisa
       return;                                               // não começa
     }
     const quantidade = parseInt(selecionado.dataset.qtd, 10); // quantidade escolhida
@@ -216,7 +217,7 @@ const SimuladoUI = {
     // ---- Cartão da questão ----
     html += '<div class="cartao aparecer">';                // abre o cartão
     html += '<div class="questao-topo">';                   // cabeçalho da questão
-    html += '<span class="questao-numero">Questão ' + (indice + 1) + ' de ' + e.perguntas.length + '</span>'; // numeração
+    html += '<span class="questao-numero">' + T('sim_questao', { n: indice + 1, total: e.perguntas.length }) + '</span>'; // numeração traduzida
     html += '<span class="chip materia">' + this.escape(q.materia) + '</span>'; // chip da matéria
     html += '<span class="chip caramelo">🎯 ' + this.escape(q.banca) + '</span>'; // chip do estilo de banca
     html += '<span id="questao-relogio" class="questao-relogio">⏱ 00:00</span>'; // cronômetro
@@ -235,7 +236,7 @@ const SimuladoUI = {
     html += '</div>';                                       // fecha a coluna
 
     // ---- Botão de responder ----
-    html += '<button id="btn-responder" class="botao botao-primario" style="margin-top:1.2rem" disabled>Responder</button>'; // botão (começa desligado)
+    html += '<button id="btn-responder" class="botao botao-primario" style="margin-top:1.2rem" disabled>' + T('sim_responder') + '</button>'; // botão (começa desligado)
     html += '<div id="feedback"></div>';                    // área do feedback (vazia por ora)
     html += '</div>';                                       // fecha o cartão
 
@@ -289,17 +290,17 @@ const SimuladoUI = {
     let html = '<div class="feedback ' + (acertou ? 'certo' : 'errado') + '">'; // abre o bloco (verde ou vermelho)
 
     if (acertou) {                                          // se acertou
-      html += '<h3>✅ Mandou bem!</h3>';                    // celebra
+      html += '<h3>' + T('sim_certo') + '</h3>';            // celebra (traduzido)
       html += '<p class="explicacao">' + this.escape(q.explicacao) + '</p>'; // mostra a explicação mesmo assim
     } else {                                                // se errou
-      // Mostra o que errou + o gabarito + como fazer
-      html += '<h3>❌ Ops! Você marcou a alternativa ' + String.fromCharCode(65 + resposta) + '.</h3>'; // o que o usuário marcou
-      html += '<p class="explicacao"><strong>A certa é a ' + String.fromCharCode(65 + q.correta) + '.</strong> ' + this.escape(q.explicacao) + '</p>'; // gabarito + explicação
+      // Mostra o que errou + o gabarito + como fazer (traduzido)
+      html += '<h3>' + T('sim_errou', { letra: String.fromCharCode(65 + resposta) }) + '</h3>'; // o que o usuário marcou
+      html += '<p class="explicacao"><strong>' + T('sim_certa_e', { letra: String.fromCharCode(65 + q.correta) }) + '</strong> ' + this.escape(q.explicacao) + '</p>'; // gabarito + explicação
     }
 
     // Passo a passo (se a questão tiver)
     if (q.passos && q.passos.length > 0) {                  // se existe passo a passo
-      html += '<div class="bloco"><p style="font-weight:900">🧭 Como fazer, passo a passo:</p>'; // título
+      html += '<div class="bloco"><p style="font-weight:900">' + T('sim_como') + '</p>'; // título traduzido
       html += '<ol class="passos">';                        // abre a lista numerada
       for (const passo of q.passos) {                       // percorre os passos
         html += '<li>' + this.escape(passo) + '</li>';      // cada passo
@@ -308,17 +309,17 @@ const SimuladoUI = {
     }
 
     // Dica do barista (pegadinha da banca) em post-it
-    html += '<div class="bloco"><div class="postit">☕ Dica do barista: ' + this.escape(q.dica) + '</div></div>'; // post-it
+    html += '<div class="bloco"><div class="postit">' + T('sim_dica') + this.escape(q.dica) + '</div></div>'; // post-it traduzido
 
     // Vídeo aula no YouTube sobre o tema
     const url = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q.video); // monta a busca
-    html += '<div class="bloco"><a class="link-video" href="' + url + '" target="_blank" rel="noopener">▶️ Assistir aula sobre "' + this.escape(q.tema) + '" no YouTube</a></div>'; // link da aula
+    html += '<div class="bloco"><a class="link-video" href="' + url + '" target="_blank" rel="noopener">' + T('sim_aula', { tema: this.escape(q.tema) }) + '</a></div>'; // link da aula
 
     html += '</div>';                                       // fecha o feedback
 
     // Botão próxima (ou finalizar, se for a última)
     const ultima = indice === e.perguntas.length - 1;       // confere se é a última questão
-    html += '<button id="btn-proxima" class="botao ' + (ultima ? 'botao-sucesso' : 'botao-primario') + '" style="margin-top:1rem;width:100%">' + (ultima ? '🏁 Finalizar e ver resultado' : 'Próxima questão →') + '</button>'; // botão de avançar
+    html += '<button id="btn-proxima" class="botao ' + (ultima ? 'botao-sucesso' : 'botao-primario') + '" style="margin-top:1rem;width:100%">' + (ultima ? T('sim_finalizar') : T('sim_proxima')) + '</button>'; // botão de avançar
 
     feedback.innerHTML = html;                              // despeja o feedback
 
@@ -417,23 +418,23 @@ const SimuladoUI = {
 
     // Resumo e frase
     html += '<div>';                                        // coluna de texto
-    html += '<h3>' + (resultado.refazendo ? '🔄 Revisão concluída!' : '🏁 Simulado concluído!') + '</h3>'; // título
+    html += '<h3>' + (resultado.refazendo ? T('sim_resultado_refez') : T('sim_resultado_t')) + '</h3>'; // título traduzido
     html += '<p class="resultado-frase">' + frase + '</p>'; // frase de desempenho
-    html += '<p class="texto-suave" style="margin:0">' + resultado.total + ' questões · ' + this.tempoFormatado(resultado.duracaoSeg) + ' de prova</p>'; // resumo
+    html += '<p class="texto-suave" style="margin:0">' + T('sim_resumo', { total: resultado.total, tempo: this.tempoFormatado(resultado.duracaoSeg) }) + '</p>'; // resumo
     html += '</div>';                                       // fecha a coluna
     html += '</div>';                                       // fecha o cabeçalho
 
     // Cartõezinhos de acertos e erros
     html += '<div class="grade-estatisticas" style="margin-top:1.2rem">'; // abre a grade
-    html += '<div class="estatistica"><div class="valor" style="color:var(--verde)">' + resultado.acertos + '</div><div class="rotulo">✅ Acertos</div></div>'; // cartão de acertos
-    html += '<div class="estatistica"><div class="valor" style="color:var(--vermelho)">' + resultado.erros + '</div><div class="rotulo">❌ Erros</div></div>'; // cartão de erros
-    html += '<div class="estatistica"><div class="valor">' + resultado.percentual + '%</div><div class="rotulo">🎯 Aproveitamento</div></div>'; // cartão de percentual
-    html += '<div class="estatistica"><div class="valor" style="font-size:1.2rem;padding-top:0.5rem">' + this.tempoFormatado(resultado.duracaoSeg) + '</div><div class="rotulo">⏱ Tempo de prova</div></div>'; // cartão de tempo
+    html += '<div class="estatistica"><div class="valor" style="color:var(--verde)">' + resultado.acertos + '</div><div class="rotulo">' + T('sim_stat_acertos') + '</div></div>'; // cartão de acertos
+    html += '<div class="estatistica"><div class="valor" style="color:var(--vermelho)">' + resultado.erros + '</div><div class="rotulo">' + T('sim_stat_erros') + '</div></div>'; // cartão de erros
+    html += '<div class="estatistica"><div class="valor">' + resultado.percentual + '%</div><div class="rotulo">' + T('sim_stat_aproveitamento') + '</div></div>'; // cartão de percentual
+    html += '<div class="estatistica"><div class="valor" style="font-size:1.2rem;padding-top:0.5rem">' + this.tempoFormatado(resultado.duracaoSeg) + '</div><div class="rotulo">' + T('sim_stat_tempo') + '</div></div>'; // cartão de tempo
     html += '</div>';                                       // fecha a grade
 
     // Desempenho por matéria
     if (Object.keys(resultado.porMateria).length > 0) {     // se há dados por matéria
-      html += '<div class="titulo-secao"><h3>📚 Desempenho por matéria</h3></div>'; // título da seção
+      html += '<div class="titulo-secao"><h3>' + T('sim_por_materia_t') + '</h3></div>'; // título da seção
       for (const materia in resultado.porMateria) {         // percorre as matérias
         const dados = resultado.porMateria[materia];        // dados da matéria
         const pct = Math.round((dados.acertos / dados.total) * 100); // percentual da matéria
@@ -447,38 +448,39 @@ const SimuladoUI = {
 
     // Erradas em acordeão (dá para revisar na hora)
     if (resultado.erradas.length > 0) {                     // se houve erros
-      html += '<div class="titulo-secao"><h3>🔍 Onde você escorregou</h3></div>'; // título
+      html += '<div class="titulo-secao"><h3>' + T('sim_escorregou_t') + '</h3></div>'; // título
       html += '<div class="lista-erradas">';                // abre a lista
       for (const item of resultado.erradas) {               // percorre as erradas
         const letraCerta = String.fromCharCode(65 + item.correta); // letra da resposta certa
         html += '<details class="questao-revisao">';        // abre o acordeão
-        html += '<summary>' + this.escape(item.materia) + ' · ' + this.escape(item.tema) + ' <span style="margin-left:auto;font-size:0.8rem">gabarito: ' + letraCerta + '</span></summary>'; // cabeçalho
+        html += '<summary>' + this.escape(item.materia) + ' · ' + this.escape(item.tema) + ' <span style="margin-left:auto;font-size:0.8rem">' + T('sim_gabarito', { letra: letraCerta }) + '</span></summary>'; // cabeçalho
         html += '<div class="corpo">';                      // corpo do acordeão
         html += '<p style="font-size:0.9rem">' + this.escape(item.enunciado) + '</p>'; // enunciado
-        html += '<p style="font-size:0.9rem"><strong>Gabarito: ' + letraCerta + '.</strong> ' + this.escape(item.explicacao) + '</p>'; // explicação
+        html += '<p style="font-size:0.9rem"><strong>' + T('sim_certa_e', { letra: letraCerta }) + '</strong> ' + this.escape(item.explicacao) + '</p>'; // explicação
         html += '<div class="postit" style="margin-top:0.6rem">☕ ' + this.escape(item.dica) + '</div>'; // dica em post-it
         const url = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(item.video); // busca do vídeo
-        html += '<div style="margin-top:0.6rem"><a class="link-video" href="' + url + '" target="_blank" rel="noopener">▶️ Aula sobre "' + this.escape(item.tema) + '"</a></div>'; // link da aula
+        html += '<div style="margin-top:0.6rem"><a class="link-video" href="' + url + '" target="_blank" rel="noopener">' + T('sim_aula', { tema: this.escape(item.tema) }) + '</a></div>'; // link da aula
         html += '</div></details>';                         // fecha corpo e acordeão
       }
       html += '</div>';                                     // fecha a lista
     } else {                                                // gabaritou!
-      html += '<div class="vazio"><div class="vazio-icone">🏆</div><p>Zero erros! Essa prova saiu perfeita, igual café coado na medida.</p></div>'; // celebração
+      html += '<div class="vazio"><div class="vazio-icone">🏆</div><p>' + T('sim_zero') + '</p></div>'; // celebração
     }
 
     // Botões de ação
     html += '<div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.4rem">'; // fileira de botões
     if (resultado.erradas.length > 0) {                     // se há erradas para refazer
-      html += '<button id="btn-refazer" class="botao botao-contorno">🔄 Refazer as ' + resultado.erradas.length + ' que errei</button>'; // botão refazer
+      html += '<button id="btn-refazer" class="botao botao-contorno">' + T('sim_refazer', { n: resultado.erradas.length }) + '</button>'; // botão refazer
     }
-    html += '<button id="btn-novo" class="botao botao-primario">📝 Novo simulado</button>'; // botão novo simulado
-    html += '<button id="btn-ir-dashboard" class="botao botao-fantasma">🏠 Ver no dashboard</button>'; // botão dashboard
+    html += '<button id="btn-novo" class="botao botao-primario">' + T('sim_novo') + '</button>'; // botão novo simulado
+    html += '<button id="btn-ir-dashboard" class="botao botao-fantasma">' + T('sim_ir_dash') + '</button>'; // botão dashboard
     html += '</div>';                                       // fecha a fileira
 
-    // Dicas abaixo do simulado (pedido do projeto)
-    html += '<div class="titulo-secao"><h3>📝 Dicas do barista para a próxima</h3></div>'; // título
-    const dica1 = DadosTemas.dicasRapidas[resultado.erros % DadosTemas.dicasRapidas.length]; // dica pseudo-aleatória 1
-    const dica2 = DadosTemas.dicasRapidas[(resultado.erros + 2) % DadosTemas.dicasRapidas.length]; // dica pseudo-aleatória 2
+    // Dicas abaixo do simulado (no idioma atual)
+    html += '<div class="titulo-secao"><h3>' + T('sim_dicas_proxima_t') + '</h3></div>'; // título
+    const dicas = this.dicasDoIdioma();                     // dicas no idioma atual
+    const dica1 = dicas[resultado.erros % dicas.length];    // dica pseudo-aleatória 1
+    const dica2 = dicas[(resultado.erros + 2) % dicas.length]; // dica pseudo-aleatória 2
     html += '<div class="cartao"><div class="postit" style="margin-bottom:0.7rem">' + this.escape(dica1) + '</div><div class="postit">' + this.escape(dica2) + '</div></div>'; // post-its de dicas
 
     html += '</div>';                                       // fecha o cartão principal
@@ -503,12 +505,30 @@ const SimuladoUI = {
     }
   },
 
-  // Frase de desempenho conforme o percentual (tom de estudante)
+  // Frase de desempenho conforme o percentual (traduzida)
   fraseDeDesempenho(percentual) {
-    if (percentual >= 90) return 'Café forte e gabarito limpo! Você está voando! 🚀'; // excelente
-    if (percentual >= 70) return 'Bom demais! A aprovação está no seu radar. ☕'; // bom
-    if (percentual >= 50) return 'Na medida! Revise as erradas e sobe mais um degrau. 📈'; // mediano
-    return 'Todo barista queima o primeiro café. Revisa as erradas e volta! 💪'; // precisa melhorar
+    if (percentual >= 90) return T('sim_frase_alta');       // excelente
+    if (percentual >= 70) return T('sim_frase_boa');        // bom
+    if (percentual >= 50) return T('sim_frase_media');      // mediano
+    return T('sim_frase_baixa');                            // precisa melhorar
+  },
+
+  // Devolve as dicas rápidas no idioma atual (com reserva no português)
+  dicasDoIdioma() {
+    const porIdioma = DadosTemas.dicasRapidas;              // dicas separadas por idioma
+    return porIdioma[Idioma.atual] || porIdioma.pt;         // do idioma atual ou português
+  },
+
+  // Redesenha a tela do simulado depois de trocar de idioma
+  atualizarIdioma() {
+    const e = this.estado;                                  // atalho para o estado
+    if (e.fase === 'config') { this.renderizarConfig(); return; } // configuração: redesenha
+    if (e.fase === 'resultado' && e.ultimoResultado) { this.renderizarResultado(e.ultimoResultado); return; } // resultado: redesenha
+    if (e.fase === 'jogo' && e.perguntas.length > 0) {      // durante o jogo
+      // Recomeça a questão atual sem o feedback (a tela é remontada traduzida)
+      const indice = Math.max(0, e.respostas.findIndex(r => r === -1)); // primeira ainda sem resposta
+      this.renderizarPergunta(indice < 0 ? 0 : indice);     // mostra a questão por traduzir
+    }
   },
 
   // Modo "refazer as erradas": monta um simulado só com as questões erradas
@@ -526,7 +546,7 @@ const SimuladoUI = {
     e.respostas = new Array(e.perguntas.length).fill(-1);   // zera as respostas
     e.fase = 'jogo';                                        // entra no jogo
     e.comecouEm = Date.now();                               // marca o início
-    App.torrada('Bora refazer as ' + ids.length + ' que escaparam! 🔄', 'sucesso'); // avisa
+    App.torrada(T('toast_refazer', { n: ids.length }), 'sucesso'); // avisa
     this.renderizarPergunta(0);                             // mostra a primeira
     this.iniciarTimer();                                    // liga o cronômetro
   },

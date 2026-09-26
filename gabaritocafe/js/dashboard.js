@@ -25,29 +25,30 @@ const DashboardUI = {
     // ---- Cartão de boas-vindas com a frase do acesso ----
     // Usa a frase (tema estudo) sorteada para ESTA visita pelo frases.js.
     // Se por algum motivo ela não existir, cai na primeira do acervo para não ficar vazio.
-    const frase = FrasesEstudo.fraseDoAcesso || DadosTemas.frasesMotivacionais[0]; // frase do acesso
+    const frase = FrasesEstudo.fraseDoAcesso || FrasesEstudo.acervo()[0]; // frase do acesso
     html += '<div class="cartao destaque dash-cabecalho">'; // abre o cartão
     html += '<img src="assets/logo.svg" alt="Xícara do Gabarito Café">'; // logo
     html += '<div>';                                        // coluna de texto
-    html += '<h3>' + (usuario ? 'E aí, ' + this.escape(usuario.nome) + '! ☕' : 'E aí! ☕') + '</h3>'; // saudação
+    // Saudação com o nome do usuário (ou genérica), traduzida
+    html += '<h3>' + (usuario ? T('dash_ola', { nome: this.escape(usuario.nome) }) : T('dash_ola_sem_nome')) + '</h3>';
     html += '<p class="dash-frase">“' + frase + '”</p>';    // frase do acesso em letra de mão
     html += '</div></div>';                                 // fecha coluna e cartão
 
     // ---- Atalhos rápidos ----
     html += '<div class="dash-acoes">';                     // abre a grade de atalhos
-    html += '<button class="dash-atalho" data-ir="edital"><span class="atalho-icone">📄</span><span class="atalho-titulo">Importar edital</span><span class="atalho-sub">Descubra cargos e matérias</span></button>'; // atalho edital
-    html += '<button class="dash-atalho" data-ir="simulado"><span class="atalho-icone">📝</span><span class="atalho-titulo">Fazer simulado</span><span class="atalho-sub">De 5 a 50 questões</span></button>'; // atalho simulado
-    html += '<button class="dash-atalho" data-ir="bancas"><span class="atalho-icone">🕵️</span><span class="atalho-titulo">Estudar bancas</span><span class="atalho-sub">As pegadinhas de cada uma</span></button>'; // atalho bancas
-    html += '<button class="dash-atalho" data-ir="temas"><span class="atalho-icone">📚</span><span class="atalho-titulo">Temas que caem</span><span class="atalho-sub">O mapa das matérias</span></button>'; // atalho temas
+    html += '<button class="dash-atalho" data-ir="edital"><span class="atalho-icone">📄</span><span class="atalho-titulo">' + T('dash_atalho_edital_t') + '</span><span class="atalho-sub">' + T('dash_atalho_edital_s') + '</span></button>'; // atalho edital
+    html += '<button class="dash-atalho" data-ir="simulado"><span class="atalho-icone">📝</span><span class="atalho-titulo">' + T('dash_atalho_sim_t') + '</span><span class="atalho-sub">' + T('dash_atalho_sim_s') + '</span></button>'; // atalho simulado
+    html += '<button class="dash-atalho" data-ir="bancas"><span class="atalho-icone">🕵️</span><span class="atalho-titulo">' + T('dash_atalho_bancas_t') + '</span><span class="atalho-sub">' + T('dash_atalho_bancas_s') + '</span></button>'; // atalho bancas
+    html += '<button class="dash-atalho" data-ir="temas"><span class="atalho-icone">📚</span><span class="atalho-titulo">' + T('dash_atalho_temas_t') + '</span><span class="atalho-sub">' + T('dash_atalho_temas_s') + '</span></button>'; // atalho temas
     html += '</div>';                                       // fecha a grade
 
     // ---- Se nunca fez simulado: estado vazio acolhedor ----
     if (historico.length === 0) {                           // sem resultados ainda
       html += '<div class="cartao vazio">';                 // abre o cartão vazio
       html += '<div class="vazio-icone">🫗</div>';          // xícara vazia
-      html += '<h3>Sua xícara de progresso está vazia</h3>'; // título
-      html += '<p class="texto-suave">Que tal o primeiro gole? Faz um simulado rapidinho — 5 questões bastam para começar.</p>'; // convite
-      html += '<button class="botao botao-primario" data-ir="simulado">☕ Fazer meu primeiro simulado</button>'; // CTA
+      html += '<h3>' + T('dash_vazio_t') + '</h3>';         // título traduzido
+      html += '<p class="texto-suave">' + T('dash_vazio_x') + '</p>'; // convite traduzido
+      html += '<button class="botao botao-primario" data-ir="simulado">' + T('dash_vazio_btn') + '</button>'; // CTA traduzido
       html += '</div>';                                     // fecha o cartão
       caixa.innerHTML = html;                               // despeja e termina (sem estatísticas)
       this.ligarAtalhos(caixa);                             // liga os botões data-ir
@@ -63,17 +64,17 @@ const DashboardUI = {
     const sequencia = this.calcularSequencia(historico);    // dias seguidos
 
     html += '<div class="grade-estatisticas">';             // abre a grade de números
-    html += '<div class="estatistica"><div class="valor">' + historico.length + '</div><div class="rotulo">📝 Simulados feitos</div></div>'; // total de simulados
-    html += '<div class="estatistica"><div class="valor">' + media + '%</div><div class="rotulo">🎯 Aproveitamento geral</div></div>'; // média geral
-    html += '<div class="estatistica"><div class="valor">' + melhor + '%</div><div class="rotulo">🏆 Melhor resultado</div></div>'; // melhor resultado
-    html += '<div class="estatistica"><div class="valor">' + totalQuestoes + '</div><div class="rotulo">✅ Questões respondidas</div></div>'; // questões respondidas
-    html += '<div class="estatistica"><div class="valor">🔥 ' + sequencia + '</div><div class="rotulo">dias seguidos estudando</div></div>'; // sequência
+    html += '<div class="estatistica"><div class="valor">' + historico.length + '</div><div class="rotulo">' + T('dash_stat_simulados') + '</div></div>'; // total de simulados
+    html += '<div class="estatistica"><div class="valor">' + media + '%</div><div class="rotulo">' + T('dash_stat_aproveitamento') + '</div></div>'; // média geral
+    html += '<div class="estatistica"><div class="valor">' + melhor + '%</div><div class="rotulo">' + T('dash_stat_melhor') + '</div></div>'; // melhor resultado
+    html += '<div class="estatistica"><div class="valor">' + totalQuestoes + '</div><div class="rotulo">' + T('dash_stat_questoes') + '</div></div>'; // questões respondidas
+    html += '<div class="estatistica"><div class="valor">🔥 ' + sequencia + '</div><div class="rotulo">' + T('dash_stat_sequencia') + '</div></div>'; // sequência
     html += '</div>';                                       // fecha a grade
 
     // ---- Gráfico de evolução (últimas 10 provas) ----
-    html += '<div class="titulo-secao"><h3>📈 Sua evolução</h3></div>'; // título da seção
+    html += '<div class="titulo-secao"><h3>' + T('dash_evolucao') + '</h3></div>'; // título da seção
     html += '<div class="cartao">';                         // abre o cartão do gráfico
-    html += '<p class="texto-suave" style="font-size:0.85rem;margin:0">Percentual de acertos nos últimos simulados (o último é o ' + ultimo.percentual + '% de hoje).</p>'; // legenda
+    html += '<p class="texto-suave" style="font-size:0.85rem;margin:0">' + T('dash_evolucao_sub', { pct: ultimo.percentual }) + '</p>'; // legenda traduzida
     html += '<div class="grafico">';                        // abre a área do gráfico
     const ultimas = historico.slice(-10);                   // pega no máximo as 10 últimas
     for (const r of ultimas) {                              // percorre as provas
@@ -94,11 +95,11 @@ const DashboardUI = {
         porMateria[materia].acertos += r.porMateria[materia].acertos; // soma acertos
       }
     }
-    html += '<div class="titulo-secao"><h3>📚 Como você está por matéria</h3></div>'; // título da seção
+    html += '<div class="titulo-secao"><h3>' + T('dash_materia') + '</h3></div>'; // título da seção
     html += '<div class="cartao">';                         // abre o cartão
     const nomes = Object.keys(porMateria);                  // nomes das matérias
     if (nomes.length === 0) {                               // sem dados por matéria
-      html += '<p class="texto-suave">Faz um simulado por matéria para ver seu desempenho aqui.</p>'; // orienta
+      html += '<p class="texto-suave">' + T('dash_materia_vazio') + '</p>'; // orienta
     }
     for (const materia of nomes) {                          // percorre as matérias
       const dados = porMateria[materia];                    // dados da matéria

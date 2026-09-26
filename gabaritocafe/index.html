@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- Gabarito Café — sistema de estudos para concursos e vestibulares -->
-<html lang="pt-BR">
+<!-- data-tema começa em "claro"; o js/tema.js troca para "escuro" se o usuário escolher -->
+<html lang="pt-BR" data-tema="claro">
 <head>
   <!-- Codificação padrão com suporte a acentos -->
   <meta charset="UTF-8">
@@ -17,10 +18,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Fontes do tema: Fraunces (serifa artesanal), Nunito (corpo) e Caveat (letra de mão) -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,700&family=Nunito:wght@400;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
-  <!-- Estilos do app: base, componentes e telas -->
+  <!-- Estilos do app: base, componentes, telas e tema escuro -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/telas.css">
+  <link rel="stylesheet" href="css/tema-escuro.css">
   <!-- PDF.js (biblioteca que lê o PDF do edital direto no navegador) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
@@ -38,71 +40,90 @@
       <img src="assets/logo.svg" alt="Logo do Gabarito Café: xícara de café com um visto">
       <!-- Nome do sistema -->
       <h1>Gabarito <span>Café</span></h1>
-      <!-- Slogan manuscrito -->
-      <p class="login-slogan">estude com sabor de aprovação</p>
+      <!-- Slogan manuscrito (traduzido pelo js/idioma.js) -->
+      <p class="login-slogan" data-i18n="app_slogan">estude com sabor de aprovação</p>
       <!-- O que o visitante encontra por aqui -->
       <ul class="login-destaques">
-        <li>📄 Importe o edital e descubra cargos e matérias</li>
-        <li>📝 Simulados de 5 a 50 questões, com correção comentada</li>
-        <li>🎥 Errou? Veja a explicação e uma aula no YouTube</li>
-        <li>🕵️ Aprenda as pegadinhas das bancas famosas</li>
-        <li>📈 Acompanhe seu progresso no dashboard</li>
+        <li data-i18n="login_destaque_1">📄 Importe o edital e descubra cargos e matérias</li>
+        <li data-i18n="login_destaque_2">📝 Simulados de 5 a 50 questões, com correção comentada</li>
+        <li data-i18n="login_destaque_3">🎥 Errou? Veja a explicação e uma aula no YouTube</li>
+        <li data-i18n="login_destaque_4">🕵️ Aprenda as pegadinhas das bancas famosas</li>
+        <li data-i18n="login_destaque_5">📈 Acompanhe seu progresso no dashboard</li>
       </ul>
       <!-- Frase motivadora de estudo: o JavaScript sorteia uma nova a cada acesso -->
-      <blockquote class="login-citacao">“<span id="frase-login">Aprovação não se faz num gole só: se faz em goles diários.</span>” — o barista</blockquote>
+      <blockquote class="login-citacao">“<span id="frase-login">Aprovação não se faz num gole só: se faz em goles diários.</span>” <span class="login-assinatura">— o barista</span></blockquote>
     </div>
 
     <!-- Metade direita: o cartão de entrada -->
     <div class="login-painel">
+
+      <!-- Controles de idioma (bandeiras) e tema, no canto do painel -->
+      <div class="controles controles-login">
+        <!-- Seletor de idioma: cada botão tem a bandeira e o código do idioma -->
+        <div class="seletor-idioma" role="group" data-i18n-title="idioma_titulo">
+          <button class="bandeira" type="button" data-idioma="pt" title="Português" aria-label="Português">
+            <img src="assets/bandeira-br.svg" alt="Português">
+          </button>
+          <button class="bandeira" type="button" data-idioma="en" title="English" aria-label="English">
+            <img src="assets/bandeira-us.svg" alt="English">
+          </button>
+          <button class="bandeira" type="button" data-idioma="es" title="Español" aria-label="Español">
+            <img src="assets/bandeira-es.svg" alt="Español">
+          </button>
+        </div>
+        <!-- Botão de alternar tema claro/escuro -->
+        <button class="botao-tema" type="button" data-i18n-title="tema_titulo" aria-label="Tema">🌙</button>
+      </div>
+
       <div class="cartao login-cartao">
         <!-- Abas para alternar entre entrar e criar conta -->
         <div class="abas">
-          <button id="aba-entrar" class="aba ativa" type="button">Já tenho conta</button>
-          <button id="aba-cadastro" class="aba" type="button">Criar conta</button>
+          <button id="aba-entrar" class="aba ativa" type="button" data-i18n="login_aba_entrar">Já tenho conta</button>
+          <button id="aba-cadastro" class="aba" type="button" data-i18n="login_aba_criar">Criar conta</button>
         </div>
 
         <!-- Formulário de login -->
         <form id="form-entrar">
-          <h2>Bem-vindo(a) de volta ☕</h2>
-          <p class="login-sub">Passa um café e bora revisar?</p>
+          <h2 data-i18n="login_bemvindo">Bem-vindo(a) de volta ☕</h2>
+          <p class="login-sub" data-i18n="login_bemvindo_sub">Passa um café e bora revisar?</p>
           <div class="campo">
-            <label for="login-email">E-mail</label>
-            <input id="login-email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+            <label for="login-email" data-i18n="login_email">E-mail</label>
+            <input id="login-email" type="email" data-i18n-ph="login_email_ph" placeholder="voce@exemplo.com" autocomplete="email">
           </div>
           <div class="campo">
-            <label for="login-senha">Senha</label>
-            <input id="login-senha" type="password" placeholder="Sua senha" autocomplete="current-password">
+            <label for="login-senha" data-i18n="login_senha">Senha</label>
+            <input id="login-senha" type="password" data-i18n-ph="login_senha_ph" placeholder="Sua senha" autocomplete="current-password">
           </div>
-          <button class="botao botao-primario" type="submit" style="width:100%">Entrar na cafeteria</button>
+          <button class="botao botao-primario" type="submit" style="width:100%" data-i18n="login_btn">Entrar na cafeteria</button>
         </form>
 
         <!-- Formulário de cadastro (começa escondido) -->
         <form id="form-cadastro" class="oculto">
-          <h2>Criar conta grátis ☕</h2>
-          <p class="login-sub">Leva menos tempo que passar um espresso.</p>
+          <h2 data-i18n="cad_titulo">Criar conta grátis ☕</h2>
+          <p class="login-sub" data-i18n="cad_sub">Leva menos tempo que passar um espresso.</p>
           <div class="campo">
-            <label for="cad-nome">Seu nome</label>
-            <input id="cad-nome" type="text" placeholder="Como devemos te chamar?" autocomplete="name">
+            <label for="cad-nome" data-i18n="cad_nome">Seu nome</label>
+            <input id="cad-nome" type="text" data-i18n-ph="cad_nome_ph" placeholder="Como devemos te chamar?" autocomplete="name">
           </div>
           <div class="campo">
-            <label for="cad-email">E-mail</label>
-            <input id="cad-email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+            <label for="cad-email" data-i18n="login_email">E-mail</label>
+            <input id="cad-email" type="email" data-i18n-ph="login_email_ph" placeholder="voce@exemplo.com" autocomplete="email">
           </div>
           <div class="campo">
-            <label for="cad-senha">Senha</label>
-            <input id="cad-senha" type="password" placeholder="No mínimo 4 caracteres" autocomplete="new-password">
+            <label for="cad-senha" data-i18n="login_senha">Senha</label>
+            <input id="cad-senha" type="password" data-i18n-ph="cad_senha_ph" placeholder="No mínimo 4 caracteres" autocomplete="new-password">
           </div>
-          <button class="botao botao-primario" type="submit" style="width:100%">Abrir minha conta</button>
+          <button class="botao botao-primario" type="submit" style="width:100%" data-i18n="cad_btn">Abrir minha conta</button>
         </form>
 
         <!-- Divisor "ou" -->
-        <div class="login-divisor"><span>ou</span></div>
+        <div class="login-divisor"><span data-i18n="login_ou">ou</span></div>
 
         <!-- Entrada sem cadastro: o modo degustação -->
-        <button id="btn-visitante" class="botao botao-contorno" type="button" style="width:100%">☕ Entrar como visitante (modo degustação)</button>
+        <button id="btn-visitante" class="botao botao-contorno" type="button" style="width:100%" data-i18n="login_visitante">☕ Entrar como visitante (modo degustação)</button>
 
         <!-- Aviso honesto sobre onde os dados ficam -->
-        <p class="login-aviso">🔒 Contas e resultados ficam salvos apenas neste navegador (localStorage). Nada vai para servidores.</p>
+        <p class="login-aviso" data-i18n="login_aviso">🔒 Contas e resultados ficam salvos apenas neste navegador (localStorage). Nada vai para servidores.</p>
       </div>
     </div>
   </section>
@@ -119,17 +140,34 @@
       </div>
       <!-- Menu de telas -->
       <nav class="menu">
-        <button class="item-menu ativo" data-tela="dashboard" type="button">🏠 Dashboard</button>
-        <button class="item-menu" data-tela="edital" type="button">📄 Meu edital</button>
-        <button class="item-menu" data-tela="simulado" type="button">📝 Simulado</button>
-        <button class="item-menu" data-tela="bancas" type="button">🕵️ Bancas</button>
-        <button class="item-menu" data-tela="temas" type="button">📚 Temas que caem</button>
+        <button class="item-menu ativo" data-tela="dashboard" type="button" data-i18n="nav_dashboard">🏠 Dashboard</button>
+        <button class="item-menu" data-tela="edital" type="button" data-i18n="nav_edital">📄 Meu edital</button>
+        <button class="item-menu" data-tela="simulado" type="button" data-i18n="nav_simulado">📝 Simulado</button>
+        <button class="item-menu" data-tela="bancas" type="button" data-i18n="nav_bancas">🕵️ Bancas</button>
+        <button class="item-menu" data-tela="temas" type="button" data-i18n="nav_temas">📚 Temas que caem</button>
       </nav>
       <!-- Perfil do usuário e saída -->
       <div class="lateral-rodape">
+        <!-- Controles de idioma e tema também dentro do app -->
+        <div class="controles controles-laterais">
+          <!-- Seletor de idioma (bandeiras) -->
+          <div class="seletor-idioma" role="group" data-i18n-title="idioma_titulo">
+            <button class="bandeira" type="button" data-idioma="pt" title="Português" aria-label="Português">
+              <img src="assets/bandeira-br.svg" alt="Português">
+            </button>
+            <button class="bandeira" type="button" data-idioma="en" title="English" aria-label="English">
+              <img src="assets/bandeira-us.svg" alt="English">
+            </button>
+            <button class="bandeira" type="button" data-idioma="es" title="Español" aria-label="Español">
+              <img src="assets/bandeira-es.svg" alt="Español">
+            </button>
+          </div>
+          <!-- Botão de alternar tema claro/escuro -->
+          <button class="botao-tema" type="button" data-i18n-title="tema_titulo" aria-label="Tema">🌙</button>
+        </div>
         <div id="perfil-nome" class="perfil-nome">Estudante</div>
         <div id="perfil-foco" class="perfil-foco"></div>
-        <button id="btn-sair" class="botao botao-fantasma pequeno" type="button">↩ Sair da conta</button>
+        <button id="btn-sair" class="botao botao-fantasma pequeno" type="button" data-i18n="btn_sair">↩ Sair da conta</button>
       </div>
     </aside>
 
@@ -152,9 +190,9 @@
         <!-- Zona de arrastar e soltar o PDF -->
         <div id="zona-pdf" class="zona-pdf" role="button" tabindex="0" aria-label="Enviar PDF do edital">
           <div class="pdf-icone">📄</div>
-          <h3>Bota o edital na mesa</h3>
-          <p class="texto-suave">Arraste o PDF do edital (ou manual do candidato) aqui, ou clique para escolher o arquivo.</p>
-          <p class="texto-suave" style="font-size:0.8rem">O arquivo é lido no seu navegador — nada é enviado para a internet.</p>
+          <h3 data-i18n="ed_zona_t">Bota o edital na mesa</h3>
+          <p class="texto-suave" data-i18n="ed_zona_sub">Arraste o PDF do edital (ou manual do candidato) aqui, ou clique para escolher o arquivo.</p>
+          <p class="texto-suave" style="font-size:0.8rem" data-i18n="ed_zona_aviso">O arquivo é lido no seu navegador — nada é enviado para a internet.</p>
         </div>
         <!-- Campo de arquivo invisível (a zona acima aciona ele) -->
         <input id="input-pdf" type="file" accept=".pdf,application/pdf" class="oculto">
@@ -164,20 +202,20 @@
         <div id="edital-resultado"></div>
 
         <!-- Plano B: colar o texto do edital (se o PDF não abrir) -->
-        <div class="titulo-secao"><h3>Sem PDF? Cola o texto aqui</h3></div>
+        <div class="titulo-secao"><h3 data-i18n="ed_cola_t">Sem PDF? Cola o texto aqui</h3></div>
         <div class="campo">
-          <textarea id="edital-cola" placeholder="Cole aqui o conteúdo do edital (conteúdo programático, cargos, requisitos...)"></textarea>
+          <textarea id="edital-cola" data-i18n-ph="ed_cola_ph" placeholder="Cole aqui o conteúdo do edital (conteúdo programático, cargos, requisitos...)"></textarea>
         </div>
-        <button id="btn-analisar-cola" class="botao botao-contorno" type="button">🔍 Analisar texto colado</button>
+        <button id="btn-analisar-cola" class="botao botao-contorno" type="button" data-i18n="ed_cola_btn">🔍 Analisar texto colado</button>
 
         <!-- Foco do usuário: qual cargo ele está disputando -->
-        <div class="titulo-secao"><h3>Meu foco 🎯</h3></div>
+        <div class="titulo-secao"><h3 data-i18n="ed_foco_t">Meu foco 🎯</h3></div>
         <div class="cartao" style="display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center">
           <div class="campo" style="flex:1;margin:0">
-            <label for="edital-cargo">Qual cargo você vai disputar?</label>
-            <input id="edital-cargo" type="text" placeholder="Ex.: Técnico Administrativo, Auditor Fiscal, Medicina...">
+            <label for="edital-cargo" data-i18n="ed_foco_label">Qual cargo você vai disputar?</label>
+            <input id="edital-cargo" type="text" data-i18n-ph="ed_foco_ph" placeholder="Ex.: Técnico Administrativo, Auditor Fiscal, Medicina...">
           </div>
-          <button id="btn-salvar-cargo" class="botao botao-primario" type="button">Guardar foco</button>
+          <button id="btn-salvar-cargo" class="botao botao-primario" type="button" data-i18n="ed_foco_btn">Guardar foco</button>
         </div>
       </section>
 
@@ -191,12 +229,14 @@
       <section id="tela-temas" class="tela"></section>
 
       <!-- Rodapé carinhoso -->
-      <footer class="rodape">Feito com ☕ e muitas horas de estudo — Gabarito Café · seus dados ficam só com você</footer>
+      <footer class="rodape" data-i18n="rodape">Feito com ☕ e muitas horas de estudo — Gabarito Café · seus dados ficam só com você</footer>
     </main>
   </div>
 
   <!-- Scripts em ordem de dependência (dados antes, lógica depois) -->
   <script src="js/armazenamento.js"></script>
+  <script src="js/idioma.js"></script>
+  <script src="js/tema.js"></script>
   <script src="js/dados-temas.js"></script>
   <script src="js/frases.js"></script>
   <script src="js/dados-bancas.js"></script>

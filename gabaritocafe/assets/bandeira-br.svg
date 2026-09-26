@@ -1,0 +1,11 @@
+<!-- Bandeira do Brasil (simplificada, para o seletor de idioma) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" role="img" aria-label="Brasil">
+  <!-- Fundo verde -->
+  <rect width="28" height="20" fill="#009b3a" />
+  <!-- Losango amarelo -->
+  <path d="M14 2.4 25.6 10 14 17.6 2.4 10Z" fill="#fedf00" />
+  <!-- Círculo azul -->
+  <circle cx="14" cy="10" r="4.4" fill="#002776" />
+  <!-- Faixa branca -->
+  <path d="M9.9 8.6a13 13 0 0 1 8.2 0" stroke="#fff" stroke-width="1.1" fill="none" />
+</svg>

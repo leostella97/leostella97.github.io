@@ -1,0 +1,158 @@
+/* ============================================================
+   GABARITO CAFÉ — css/tema-escuro.css
+   Tema escuro "café à noite". O app inteiro usa variáveis CSS,
+   então aqui a gente só troca os valores e ajusta alguns
+   detalhes que precisam de contraste extra no fundo escuro.
+   O tema é ligado pelo atributo data-tema="escuro" no <html>.
+   ============================================================ */
+
+/* ---------- Novos valores das variáveis no tema escuro ---------- */
+html[data-tema="escuro"] {
+  --cafe-escuro: #f3e7d8;           /* texto principal vira creme claro */
+  --creme: #181110;                 /* fundo geral: café bem escuro */
+  --creme-escuro: #221913;          /* fundo de seções alternadas */
+  --superficie: #241b15;            /* superfície dos cartões */
+  --borda: #3d2d21;                 /* bordas discretas no escuro */
+  --marrom-suave: #b5a08e;          /* texto secundário legível no escuro */
+  --verde: #74c491;                 /* verde mais claro para contraste */
+  --verde-claro: #16301f;           /* fundo de acerto no escuro */
+  --vermelho: #e58a7c;              /* vermelho mais claro para contraste */
+  --vermelho-claro: #331d1a;        /* fundo de erro no escuro */
+  --sombra-suave: 0 10px 24px rgba(0, 0, 0, 0.5);  /* sombra visível no escuro */
+  --sombra-media: 0 16px 40px rgba(0, 0, 0, 0.65); /* sombra dos flutuantes */
+}
+
+/* Transição suave ao trocar de tema (não "pisca" na cara do usuário) */
+body {                              /* corpo do app */
+  transition: background-color 0.3s ease, color 0.3s ease; /* anima a troca */
+}
+
+/* ---------- Ajustes de contraste (cores fixas em marrom) ---------- */
+/* Vários elementos usam o marrom "café" como cor de TEXTO.
+   No fundo escuro isso some, então clareamos para caramelo. */
+html[data-tema="escuro"] .estatistica .valor,
+html[data-tema="escuro"] .banca-nome,
+html[data-tema="escuro"] .questao-numero,
+html[data-tema="escuro"] .aba.ativa,
+html[data-tema="escuro"] .plano-item .materia-nome,
+html[data-tema="escuro"] .topo-saudacao,
+html[data-tema="escuro"] .banca-dica strong,
+html[data-tema="escuro"] .chip.caramelo {
+  color: var(--caramelo-claro);     /* texto em caramelo claro */
+}
+
+/* Chip caramelo: fundo escuro e borda caramelo */
+html[data-tema="escuro"] .chip.caramelo {
+  background: #33231a;              /* fundo marrom escuro */
+  border-color: #5a3d28;            /* borda caramelo apagada */
+}
+
+/* Chip comum: fundo escuro com borda discreta */
+html[data-tema="escuro"] .chip {
+  background: #2b2018;              /* fundo escuro */
+  border-color: var(--borda);       /* borda do tema */
+  color: var(--cafe-escuro);        /* texto claro */
+}
+
+/* Chip de matéria (fundo café sólido) continua com texto creme */
+html[data-tema="escuro"] .chip.materia {
+  background: #43291b;              /* café sólido menos escuro */
+  border-color: #5a3d28;            /* borda combinando */
+  color: #ffe9cf;                   /* texto creme */
+}
+
+/* ---------- Campos de formulário ---------- */
+html[data-tema="escuro"] .campo input,
+html[data-tema="escuro"] .campo textarea,
+html[data-tema="escuro"] .campo select {
+  background: #1d1511;              /* campo escuro */
+  color: var(--cafe-escuro);        /* texto claro */
+}
+
+/* ---------- Botões ---------- */
+html[data-tema="escuro"] .botao-contorno {
+  border-color: var(--caramelo);    /* borda caramelo visível */
+  color: var(--caramelo-claro);     /* texto caramelo */
+}
+
+html[data-tema="escuro"] .botao-fantasma {
+  color: var(--marrom-suave);       /* texto apagado do tema */
+}
+
+/* ---------- Cartões, blocos e citações ---------- */
+html[data-tema="escuro"] .trecho-citado,
+html[data-tema="escuro"] .passos li,
+html[data-tema="escuro"] .tema-como,
+html[data-tema="escuro"] .nota,
+html[data-tema="escuro"] .banca-dica {
+  background: #1f1712;              /* fundo escuro para blocos creme */
+}
+
+html[data-tema="escuro"] .cartao.destaque {
+  background: linear-gradient(180deg, #2b2016, var(--superficie)); /* topo dourado escuro */
+}
+
+/* ---------- Zona de upload do edital ---------- */
+html[data-tema="escuro"] .zona-pdf {
+  background: #1f1813;              /* fundo escuro pontilhado */
+}
+
+html[data-tema="escuro"] .zona-pdf:hover,
+html[data-tema="escuro"] .zona-pdf.arrastando {
+  background: #2a2018;              /* fundo um pouco mais claro no hover */
+}
+
+/* ---------- Alternativas do simulado ---------- */
+html[data-tema="escuro"] .alternativa {
+  background: #221a14;              /* fundo da alternativa */
+}
+
+html[data-tema="escuro"] .alternativa.selecionada {
+  background: #33241a;              /* alternativa escolhida */
+}
+
+html[data-tema="escuro"] .alternativa .letra {
+  background: #2e231b;              /* bolinha da letra */
+}
+
+/* Alternativas certa/errada usam verde/vermelho claros já ajustados */
+html[data-tema="escuro"] .alternativa.certa { border-color: var(--verde); }   /* borda verde */
+html[data-tema="escuro"] .alternativa.errada { border-color: var(--vermelho); } /* borda vermelha */
+
+/* ---------- Post-it (mantém cara de papel, um pouco mais suave) ---------- */
+html[data-tema="escuro"] .postit {
+  background: #e7cd93;              /* amarelo levemente apagado */
+  color: #4a3620;                   /* texto de caneta */
+}
+
+/* ---------- Link de vídeo do YouTube ---------- */
+html[data-tema="escuro"] .link-video {
+  background: #2c1a19;              /* fundo rosado escuro */
+  border-color: #57302c;            /* borda rosada escura */
+  color: #ff9a92;                   /* vermelho claro legível */
+}
+
+/* ---------- Barras de progresso e gráfico ---------- */
+html[data-tema="escuro"] .barra-progresso {
+  background: #2b2018;              /* trilho escuro */
+}
+
+html[data-tema="escuro"] .anel-fundo {
+  stroke: #2b2018;                  /* anel de fundo escuro */
+}
+
+/* ---------- Menu lateral e login (já escuros) ---------- */
+html[data-tema="escuro"] .barra-lateral {
+  background: linear-gradient(180deg, #130d0a, #0c0806); /* lateral ainda mais escura */
+}
+
+html[data-tema="escuro"] .login-hero {
+  background: linear-gradient(160deg, #241811, #120c09); /* hero do login mais escuro */
+}
+
+/* ---------- Rodapé e textos apagados ---------- */
+html[data-tema="escuro"] .rodape,
+html[data-tema="escuro"] .texto-suave,
+html[data-tema="escuro"] .topo-sub {
+  color: var(--marrom-suave);       /* garante leitura no fundo escuro */
+}

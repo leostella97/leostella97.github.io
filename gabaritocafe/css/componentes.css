@@ -411,3 +411,90 @@
 }
 
 .estatistica .rotulo { font-size: 0.82rem; color: var(--marrom-suave); font-weight: 700; } /* legendinha */
+
+/* ---------- Controles: idioma (bandeiras) e tema ---------- */
+.controles {                        /* fileira de controles */
+  display: flex;                    /* itens lado a lado */
+  align-items: center;              /* centralizados na vertical */
+  gap: 0.5rem;                      /* respiro entre seletor e botão */
+}
+
+.seletor-idioma {                   /* pílula com as três bandeiras */
+  display: flex;                    /* bandeiras lado a lado */
+  gap: 0.25rem;                     /* respiro entre elas */
+  padding: 0.25rem;                 /* preenchimento interno da pílula */
+  border-radius: 999px;             /* pílula */
+  background: var(--creme-escuro);  /* fundo creme (tema claro) */
+  border: 1px solid var(--borda);   /* borda discreta */
+}
+
+.bandeira {                         /* botão de cada idioma */
+  display: flex;                    /* centraliza a bandeira */
+  align-items: center;              /* vertical */
+  justify-content: center;          /* horizontal */
+  padding: 0.2rem;                  /* respiro */
+  border-radius: 999px;             /* cantos redondos */
+  line-height: 0;                   /* sem espaço fantasma da imagem */
+  transition: all 0.15s ease;       /* reação suave */
+  opacity: 0.55;                    /* bandeira "apagada" quando inativa */
+}
+
+.bandeira img {                     /* a bandeira em si */
+  width: 24px;                      /* largura */
+  height: 17px;                     /* altura */
+  border-radius: 3px;               /* cantinhos */
+  display: block;                   /* sem espaço embaixo */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* sombrinha para destacar */
+}
+
+.bandeira:hover { opacity: 0.85; }  /* clareia no hover */
+
+.bandeira.ativa {                   /* idioma escolhido */
+  background: var(--superficie);    /* fundo destacado */
+  opacity: 1;                       /* totalmente visível */
+  box-shadow: 0 2px 6px rgba(61, 43, 31, 0.2); /* sombrinha */
+}
+
+.botao-tema {                       /* botão de trocar o tema */
+  width: 40px;                      /* quadradinho */
+  height: 40px;                     /* quadradinho */
+  border-radius: 50%;               /* redondo */
+  background: var(--creme-escuro);  /* fundo creme */
+  border: 1px solid var(--borda);   /* borda discreta */
+  font-size: 1.1rem;                /* tamanho do emoji */
+  display: flex;                    /* centraliza o emoji */
+  align-items: center;              /* vertical */
+  justify-content: center;          /* horizontal */
+  transition: all 0.15s ease;       /* reação suave */
+}
+
+.botao-tema:hover {                 /* ao passar o mouse */
+  transform: translateY(-2px);      /* levita */
+  border-color: var(--caramelo);    /* borda acende */
+}
+
+/* Controles flutuando no canto da tela de login */
+.controles-login {                  /* posição no login */
+  position: absolute;               /* sobrepõe o painel */
+  top: 1.2rem;                      /* distância do topo */
+  right: 1.2rem;                    /* distância da direita */
+  z-index: 5;                       /* acima do cartão */
+}
+
+/* Controles dentro do menu lateral (fundo escuro) */
+.controles-laterais {               /* posição no menu */
+  margin-bottom: 0.8rem;            /* respiro antes do perfil */
+  justify-content: space-between;   /* bandeiras de um lado, tema do outro */
+}
+
+.barra-lateral .seletor-idioma {    /* pílula do idioma no menu escuro */
+  background: rgba(255, 255, 255, 0.1); /* fundo translúcido */
+  border-color: rgba(255, 255, 255, 0.15); /* borda translúcida */
+}
+
+.barra-lateral .bandeira.ativa { background: rgba(255, 255, 255, 0.22); } /* ativa no escuro */
+
+.barra-lateral .botao-tema {        /* botão de tema no menu escuro */
+  background: rgba(255, 255, 255, 0.1); /* fundo translúcido */
+  border-color: rgba(255, 255, 255, 0.15); /* borda translúcida */
+}

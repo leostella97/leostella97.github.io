@@ -174,37 +174,101 @@ const DadosTemas = {
     }
   ],
 
-  // ---------- Dicas rápidas mostradas abaixo dos simulados ----------
-  dicasRapidas: [
-    'Leia o enunciado duas vezes: a banca esconde o verbo principal atrás de enfeite. Sublinhe o que a questão realmente pede.',
-    'Elimine primeiro as alternativas absurdas — cada eliminação aumenta (e muito) sua chance de acertar o chute consciente.',
-    'Na hora da prova CESPE/Cebraspe, questão errada costuma anular uma certa: responda só o que tem confiança. Leia o edital para confirmar!',
-    'Controle o relógio: 3 minutos por questão é o ritmo médio da maioria das provas. Se travou, pula e volta depois.',
-    'Marque sua resposta no rascunho antes de passar para o gabarito oficial — transcrever tudo no fim evita erro de bolinha.',
-    'Guarde os 10 minutos finais para revisar as questões em dúvida. A pressa é a maior aliada da banca.'
-  ],
+  // ---------- Dicas rápidas mostradas abaixo dos simulados (por idioma) ----------
+  dicasRapidas: {
+    pt: [
+      'Leia o enunciado duas vezes: a banca esconde o verbo principal atrás de enfeite. Sublinhe o que a questão realmente pede.',
+      'Elimine primeiro as alternativas absurdas — cada eliminação aumenta (e muito) sua chance de acertar o chute consciente.',
+      'Na hora da prova CESPE/Cebraspe, questão errada costuma anular uma certa: responda só o que tem confiança. Leia o edital para confirmar!',
+      'Controle o relógio: 3 minutos por questão é o ritmo médio da maioria das provas. Se travou, pula e volta depois.',
+      'Marque sua resposta no rascunho antes de passar para o gabarito oficial — transcrever tudo no fim evita erro de bolinha.',
+      'Guarde os 10 minutos finais para revisar as questões em dúvida. A pressa é a maior aliada da banca.'
+    ],
+    en: [
+      'Read the question twice: the board hides the main verb behind decoration. Underline what the question really asks.',
+      'Eliminate the absurd options first — each one removed hugely increases your chance of a smart guess.',
+      'On CESPE/Cebraspe tests a wrong answer often cancels a right one: only answer what you are sure about. Check the notice to confirm!',
+      'Watch the clock: 3 minutes per question is the average pace in most tests. If you get stuck, skip it and come back later.',
+      'Mark your answer on the draft sheet before transferring it to the official answer sheet — copying everything at the end avoids bubbling mistakes.',
+      'Save the last 10 minutes to review the questions you doubted. Hurry is the board’s best ally.'
+    ],
+    es: [
+      'Lee el enunciado dos veces: el comité esconde el verbo principal detrás de adornos. Subraya lo que la pregunta pide de verdad.',
+      'Elimina primero las opciones absurdas — cada una que descartas aumenta muchísimo tu chance de acertar con criterio.',
+      'En exámenes CESPE/Cebraspe, una pregunta errada suele anular una correcta: responde solo lo que dominas. ¡Revisa la convocatoria para confirmar!',
+      'Controla el reloj: 3 minutos por pregunta es el ritmo medio de la mayoría de los exámenes. Si te trabas, sáltala y vuelve después.',
+      'Marca tu respuesta en el borrador antes de pasarla a la hoja oficial — copiar todo al final evita errores de marcado.',
+      'Guarda los últimos 10 minutos para revisar las preguntas dudosas. La prisa es la mejor aliada del comité.'
+    ]
+  },
 
-  // ---------- Frases motivacionais de estudo (sorteadas a cada acesso) ----------
-  frasesMotivacionais: [
-    'A aprovação não chega de uma vez: chega em goles diários.',
-    'Cada questão errada hoje é uma certa amanhã.',
-    'O edital é o mapa; o simulado, o caminho.',
-    'Constância vence intensidade: 1 hora por dia vale mais que 10 no domingo.',
-    'Você não precisa ser o melhor do mundo — precisa passar da nota de corte.',
-    'Estudar é como passar café: devagar, o sabor sai melhor.',
-    'Foca no processo que a aprovação vira consequência.',
-    'Descansar também é estudo: cérebro cansado não aprende. Vai dormir, campeão(a).',
-    'Quem revisa hoje responde com segurança amanhã.',
-    'Não existe matéria impossível: existe matéria ainda não revisada.',
-    'Três páginas por dia viram um livro por mês. E um livro vira aprovação.',
-    'A banca cobra justamente o que você evitou estudar. Encara a matéria chata primeiro.',
-    'Fazer questão é o único jeito de descobrir o que você ainda não sabe.',
-    'Anota o erro, revisa a anotação: é assim que a nota sobe.',
-    'Disciplina é lembrar do objetivo quando a vontade passa longe.',
-    'Você não está atrasado(a) — está no caminho. Só não pare.',
-    'Resumo bom é resumo curto: se não couber numa página, ainda não ficou claro.',
-    'Aprovação é feita de dias comuns bem aproveitados.',
-    'Teoria, questão, correção do erro. Repete. É simples, não é fácil.',
-    'Pequenos avanços diários constroem grandes notas.'
-  ]
+  // ---------- Frases motivacionais de estudo (sorteadas a cada acesso), por idioma ----------
+  frasesMotivacionais: {
+    pt: [
+      'A aprovação não chega de uma vez: chega em goles diários.',
+      'Cada questão errada hoje é uma certa amanhã.',
+      'O edital é o mapa; o simulado, o caminho.',
+      'Constância vence intensidade: 1 hora por dia vale mais que 10 no domingo.',
+      'Você não precisa ser o melhor do mundo — precisa passar da nota de corte.',
+      'Estudar é como passar café: devagar, o sabor sai melhor.',
+      'Foca no processo que a aprovação vira consequência.',
+      'Descansar também é estudo: cérebro cansado não aprende. Vai dormir, campeão(a).',
+      'Quem revisa hoje responde com segurança amanhã.',
+      'Não existe matéria impossível: existe matéria ainda não revisada.',
+      'Três páginas por dia viram um livro por mês. E um livro vira aprovação.',
+      'A banca cobra justamente o que você evitou estudar. Encara a matéria chata primeiro.',
+      'Fazer questão é o único jeito de descobrir o que você ainda não sabe.',
+      'Anota o erro, revisa a anotação: é assim que a nota sobe.',
+      'Disciplina é lembrar do objetivo quando a vontade passa longe.',
+      'Você não está atrasado(a) — está no caminho. Só não pare.',
+      'Resumo bom é resumo curto: se não couber numa página, ainda não ficou claro.',
+      'Aprovação é feita de dias comuns bem aproveitados.',
+      'Teoria, questão, correção do erro. Repete. É simples, não é fácil.',
+      'Pequenos avanços diários constroem grandes notas.'
+    ],
+    en: [
+      'Approval doesn’t come all at once: it comes in daily sips.',
+      'Every question you miss today is a right answer tomorrow.',
+      'The exam notice is the map; the mock test is the road.',
+      'Consistency beats intensity: 1 hour a day is worth more than 10 on Sunday.',
+      'You don’t have to be the best in the world — you just have to beat the cut-off score.',
+      'Studying is like brewing coffee: slowly, the flavour comes out better.',
+      'Focus on the process and approval becomes a consequence.',
+      'Resting is studying too: a tired brain doesn’t learn. Go to sleep, champ.',
+      'Whoever reviews today answers with confidence tomorrow.',
+      'There is no impossible subject: only a subject you haven’t reviewed yet.',
+      'Three pages a day become a book a month. And a book becomes approval.',
+      'The board tests exactly what you avoided studying. Face the boring subject first.',
+      'Solving questions is the only way to find out what you still don’t know.',
+      'Write down the mistake, review the note: that’s how the score goes up.',
+      'Discipline is remembering the goal when motivation is far away.',
+      'You are not behind — you are on the way. Just don’t stop.',
+      'A good summary is a short summary: if it doesn’t fit on one page, it’s not clear yet.',
+      'Approval is made of ordinary days well used.',
+      'Theory, question, fix the mistake. Repeat. It’s simple, not easy.',
+      'Small daily steps build big scores.'
+    ],
+    es: [
+      'La aprobación no llega de una vez: llega a sorbos diarios.',
+      'Cada pregunta fallada hoy es un acierto mañana.',
+      'La convocatoria es el mapa; el simulacro, el camino.',
+      'La constancia vence a la intensidad: 1 hora al día vale más que 10 el domingo.',
+      'No necesitas ser el mejor del mundo — necesitas superar la nota de corte.',
+      'Estudiar es como preparar café: despacio, el sabor sale mejor.',
+      'Enfócate en el proceso y la aprobación será una consecuencia.',
+      'Descansar también es estudiar: un cerebro cansado no aprende. A dormir, campeón(a).',
+      'Quien repasa hoy responde con seguridad mañana.',
+      'No existe materia imposible: existe materia aún no repasada.',
+      'Tres páginas al día se vuelven un libro al mes. Y un libro se vuelve aprobación.',
+      'El comité evalúa justo lo que evitaste estudiar. Enfrenta primero la materia aburrida.',
+      'Resolver preguntas es la única forma de descubrir lo que aún no sabes.',
+      'Anota el error, repasa la nota: así sube la calificación.',
+      'La disciplina es recordar el objetivo cuando las ganas están lejos.',
+      'No estás atrasado(a) — estás en el camino. Solo no pares.',
+      'Un buen resumen es un resumen corto: si no cabe en una página, aún no está claro.',
+      'La aprobación se hace de días comunes bien aprovechados.',
+      'Teoría, pregunta, corrección del error. Repite. Es simple, no fácil.',
+      'Los pequeños avances diarios construyen grandes notas.'
+    ]
+  }
 };

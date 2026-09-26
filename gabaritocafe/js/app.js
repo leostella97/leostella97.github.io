@@ -8,13 +8,16 @@
 // Objeto global do aplicativo
 const App = {
 
-  // Títulos e legendas de cada tela (para o topo da página)
+  // Tela que está aberta agora (usado para redesenhar ao trocar o idioma)
+  telaAtual: 'dashboard',
+
+  // Chaves de tradução dos títulos de cada tela (texto montado na hora, no idioma atual)
   TELAS: {
-    dashboard: { titulo: 'Dashboard', sub: 'Seu progresso, fresquinho como café passado na hora.' }, // dashboard
-    edital: { titulo: 'Seu edital na mesa', sub: 'Importe o PDF e descubra cargos, matérias e por onde começar.' }, // edital
-    simulado: { titulo: 'Hora do simulado', sub: 'Escolha o tamanho do desafio e bora.' }, // simulado
-    bancas: { titulo: 'Conheça as bancas', sub: 'Cada banca tem manias — aqui você aprende todas as pegadinhas.' }, // bancas
-    temas: { titulo: 'O que mais cai', sub: 'Os temas campeões de concursos e vestibulares, com mapa de estudo.' } // temas
+    dashboard: { titulo: 'tela_dashboard_t', sub: 'tela_dashboard_s' }, // dashboard
+    edital: { titulo: 'tela_edital_t', sub: 'tela_edital_s' },          // edital
+    simulado: { titulo: 'tela_simulado_t', sub: 'tela_simulado_s' },    // simulado
+    bancas: { titulo: 'tela_bancas_t', sub: 'tela_bancas_s' },          // bancas
+    temas: { titulo: 'tela_temas_t', sub: 'tela_temas_s' }              // temas
   },
 
   // Inicializa o app inteiro (chamado uma vez, no fim da página)
@@ -24,11 +27,42 @@ const App = {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; // aponta para o worker
     }
 
+    // O idioma (js/idioma.js) e o tema (js/tema.js) já se aplicam ao carregar a página
+    this.ligarControles();                                  // liga as bandeiras e o botão de tema
     this.ligarLogin();                                      // liga os eventos da tela de login
     this.ligarMenu();                                       // liga o menu lateral e o sair
 
     // Se já existe sessão salva, entra direto no app
     if (Auth.usuarioAtual()) this.entrarNoApp();            // pula o login
+  },
+
+  // Liga os controles de idioma (bandeiras) e de tema
+  ligarControles() {
+    // Cada bandeira troca o idioma do app
+    document.querySelectorAll('.bandeira').forEach(botao => { // percorre as bandeiras
+      botao.addEventListener('click', () => {                 // ao clicar
+        Idioma.definir(botao.dataset.idioma);                 // troca o idioma (salva e traduz)
+        FrasesEstudo.trocar();                                // sorteia uma frase no novo idioma
+        App.torrada(T('toast_idioma', { idioma: botao.title })); // avisa qual idioma foi escolhido
+      });
+    });
+    // O botão de tema já é ligado pelo js/tema.js (classe .botao-tema)
+  },
+
+  // Redesenha a tela aberta (usado depois de trocar o idioma)
+  redesenharTelaAtual() {
+    const tela = this.telaAtual;                            // pega a tela aberta
+    if (document.getElementById('area-app').classList.contains('oculto')) return; // logado? senão, nada
+    const info = this.TELAS[tela] || this.TELAS.dashboard;  // informações da tela
+    document.getElementById('topo-titulo').textContent = T(info.titulo); // título traduzido
+    document.getElementById('topo-subtitulo').textContent = T(info.sub); // legenda traduzida
+    this.atualizarPerfil();                                 // refaz a saudação no idioma novo
+    // Redesenha o conteúdo conforme a tela
+    if (tela === 'dashboard') DashboardUI.renderizar();     // dashboard
+    if (tela === 'simulado') SimuladoUI.atualizarIdioma();  // simulado (config/perguntas/resultado)
+    if (tela === 'bancas') ConteudoUI.renderizarBancas();   // bancas
+    if (tela === 'temas') ConteudoUI.renderizarTemas();     // temas
+    if (tela === 'edital' && EditalUI.ultimaAnalise) EditalUI.renderizarResultado(EditalUI.ultimaAnalise); // edital analisado
   },
 
   // Liga todos os eventos da tela de login
@@ -55,7 +89,7 @@ const App = {
       const resultado = await Auth.entrar(email, senha);    // tenta entrar
       if (resultado.ok) {                                   // se deu certo
         this.entrarNoApp();                                 // abre o app
-        this.torrada('Bem-vindo(a) de volta, ' + resultado.usuario.nome + '! ☕', 'sucesso'); // saúda
+        this.torrada(T('toast_bemvindo', { nome: resultado.usuario.nome }), 'sucesso'); // saúda
       } else {                                              // se falhou
         this.torrada(resultado.erro, 'erro');               // mostra o motivo
       }
@@ -70,7 +104,7 @@ const App = {
       const resultado = await Auth.cadastrar(nome, email, senha); // tenta criar a conta
       if (resultado.ok) {                                   // se deu certo
         this.entrarNoApp();                                 // abre o app
-        this.torrada('Conta criada! A cafeteria é sua, ' + resultado.usuario.nome + ' ☕', 'sucesso'); // celebra
+        this.torrada(T('toast_conta_criada', { nome: resultado.usuario.nome }), 'sucesso'); // celebra
       } else {                                              // se falhou
         this.torrada(resultado.erro, 'erro');               // mostra o motivo
       }
@@ -80,7 +114,7 @@ const App = {
     document.getElementById('btn-visitante').addEventListener('click', () => { // clique
       Auth.entrarVisitante();                               // abre a sessão de visitante
       this.entrarNoApp();                                   // entra no app
-      this.torrada('Modo degustação ativado! Pode explorar à vontade ☕', 'sucesso'); // avisa
+      this.torrada(T('toast_visitante'), 'sucesso'); // avisa
     });
   },
 
@@ -101,43 +135,30 @@ const App = {
   entrarNoApp() {
     document.getElementById('tela-login').classList.remove('ativa'); // esconde o login
     document.getElementById('area-app').classList.remove('oculto'); // mostra o app
-    const usuario = Auth.usuarioAtual();
-    const ehVisitante = usuario && usuario.id === 'visitante';
-    if (ehVisitante) {
-      // Modo degustação: esconde textos da lateral (nome, foco, botão sair)
-      document.getElementById('perfil-nome').style.display = 'none';
-      document.getElementById('perfil-foco').style.display = 'none';
-      document.getElementById('btn-sair').style.display = 'none';
-    } else {
-      // Usuário logado: mostra textos da lateral
-      document.getElementById('perfil-nome').style.display = '';
-      document.getElementById('perfil-foco').style.display = '';
-      document.getElementById('btn-sair').style.display = '';
-    }
     this.atualizarPerfil();                                 // nome, foco e saudação
     this.irPara('dashboard');                               // começa no dashboard
   },
 
   // Atualiza nome do usuário, foco e saudação do topo
   atualizarPerfil() {
-    const usuario = Auth.usuarioAtual();                    // pega o usuário logado
-    if (!usuario) return;                                   // sem usuário, nada a fazer
-    const ehVisitante = usuario.id === 'visitante';
-    if (!ehVisitante) {
-      document.getElementById('perfil-nome').textContent = usuario.nome; // nome na lateral
-    }
-    const foco = Auth.focoAtual();                          // cargo focado
-    if (!ehVisitante) {
-      document.getElementById('perfil-foco').textContent = foco ? '🎯 Foco: ' + foco : ''; // foco na lateral
-    }
+    // usuarioAtual() devolve null para o visitante (ele não está na lista de contas),
+    // por isso tratamos o "sem usuário" como modo degustação.
+    const usuario = Auth.usuarioAtual();                    // pega o usuário logado (ou null)
+    const ehVisitante = !usuario;                           // sem conta = visitante
+    const nome = ehVisitante ? 'Visitante' : usuario.nome;  // nome a exibir
+    document.getElementById('perfil-nome').textContent = nome; // nome na lateral
+    const foco = ehVisitante ? '' : Auth.focoAtual();       // visitante não tem foco salvo
+    document.getElementById('perfil-foco').textContent = foco ? T('foco_prefixo') + foco : ''; // foco na lateral
     const hora = new Date().getHours();                     // hora atual
-    const periodo = hora < 12 ? 'Bom dia' : (hora < 18 ? 'Boa tarde' : 'Boa noite'); // período do dia
-    const nomeSaudacao = ehVisitante ? 'Visitante' : usuario.nome;
-    document.getElementById('topo-saudacao').textContent = periodo + ', ' + nomeSaudacao + '! ✨'; // saudação
+    // Período do dia traduzido (bom dia / boa tarde / boa noite)
+    const periodo = hora < 12 ? T('saudacao_dia') : (hora < 18 ? T('saudacao_tarde') : T('saudacao_noite'));
+    document.getElementById('topo-saudacao').textContent = periodo + ', ' + nome + '! ✨'; // saudação
   },
 
   // Navega entre telas (troca título, menu ativo e conteúdo)
   irPara(tela) {
+    this.telaAtual = tela;                                  // guarda a tela aberta (para o idioma)
+
     // Marca a tela ativa e apaga as outras
     document.querySelectorAll('.tela').forEach(sec => sec.classList.remove('ativa')); // limpa todas
     const alvo = document.getElementById('tela-' + tela);   // pega a tela destino
@@ -148,10 +169,10 @@ const App = {
       item.classList.toggle('ativo', item.dataset.tela === tela); // destaca o item da tela atual
     });
 
-    // Atualiza título e legenda do topo
+    // Atualiza título e legenda do topo (traduzidos na hora)
     const info = this.TELAS[tela] || this.TELAS.dashboard;  // informações da tela (ou padrão)
-    document.getElementById('topo-titulo').textContent = info.titulo; // título do topo
-    document.getElementById('topo-subtitulo').textContent = info.sub;  // legenda do topo
+    document.getElementById('topo-titulo').textContent = T(info.titulo); // título do topo
+    document.getElementById('topo-subtitulo').textContent = T(info.sub);  // legenda do topo
 
     // Prepara o conteúdo da tela conforme necessário
     if (tela === 'dashboard') DashboardUI.renderizar();     // dashboard sempre recalculado

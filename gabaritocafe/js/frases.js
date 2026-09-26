@@ -21,9 +21,9 @@ const FrasesEstudo = {
   // Frase escolhida para este acesso (vazia até o iniciar rodar)
   fraseDoAcesso: '',
 
-  // Sorteia uma frase diferente da última mostrada
+  // Sorteia uma frase diferente da última mostrada (no idioma atual)
   proxima() {
-    const frases = DadosTemas.frasesMotivacionais;          // pega o acervo de frases
+    const frases = this.acervo();                           // pega o acervo no idioma atual
     const ultima = Armazenamento.ler(this.CHAVE_ULTIMA, -1); // lê o índice da última exibida
     let indice = Math.floor(Math.random() * frases.length); // sorteia um índice qualquer
     // Se caiu justamente na última, pula para a próxima (garante variedade)
@@ -34,10 +34,23 @@ const FrasesEstudo = {
     return frases[indice];                                  // devolve a frase sorteada
   },
 
+  // Devolve a lista de frases do idioma em uso (com reserva no português)
+  acervo() {
+    const porIdioma = DadosTemas.frasesMotivacionais;        // acervo separado por idioma
+    const idioma = (typeof Idioma !== 'undefined') ? Idioma.atual : 'pt'; // idioma atual (ou pt)
+    return porIdioma[idioma] || porIdioma.pt;                // devolve o do idioma ou o português
+  },
+
   // Coloca a frase escolhida na tela de login
   aplicarNoLogin() {
     const alvo = document.getElementById('frase-login');    // procura o espaço da frase no login
     if (alvo) alvo.textContent = this.fraseDoAcesso;        // escreve a frase (se o elemento existe)
+  },
+
+  // Troca a frase na hora (usado quando o usuário muda de idioma)
+  trocar() {
+    this.fraseDoAcesso = this.proxima();                    // sorteia uma frase no novo idioma
+    this.aplicarNoLogin();                                  // aplica no login
   },
 
   // Inicia: sorteia a frase do acesso e já aplica no login
