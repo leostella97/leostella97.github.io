@@ -1,0 +1,11 @@
+# robots.txt — raiz do domínio leostella97.github.io
+# ---------------------------------------------------------------------------
+# Libera o rastreamento de TODOS os projetos publicados neste domínio
+# (ProtocolFit, GabaritoCafe e os próximos).
+#
+# Serve também para o Google encontrar sem ruído os arquivos de verificação
+# que ficam na raiz, como o ads.txt exigido pelo Google AdSense.
+# ---------------------------------------------------------------------------
+
+User-agent: *
+Allow: /
