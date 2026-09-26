@@ -36,6 +36,17 @@ Criação do site portfólio de Leonardo Stella (`leostella97.github.io`) a part
 - Bandeira PT refeita com corte diagonal ascendente (Portugal sup-esq, Brasil inf-dir)
 - "Send element / Send console / Errors (0)": é a toolbar do preview do Devin, não do site — nada a remover
 
+## Iteração 3 — deploy em produção
+- Workspace transformado no clone real do repo (`git init` + `fetch` + `reset --hard origin/main`), preservando `protocolofit/`, `gabaritocafe/`, `404.html`, `ads.txt`, `robots.txt`, `.nojekyll`, `README.md`
+- Commit `4287997` em `main`, push via HTTPS com GCM
+- Verificado em produção: raiz com novo portfólio, /ProtocolFit e /GabaritoCafe intactos (200), assets 200
+- Observação: CDN do Pages tem `max-age=600` — mudanças podem levar até ~10 min para refletir
+
+## Iteração 4 — sincronização de edições do usuário
+- Usuário editou `index.html` diretamente (10 anos, sem travessões, "concursos/vestibulares")
+- Textos com `data-i18n` são sobrescritos pelo dicionário em `js/main.js` — dicionário sincronizado com as edições (pt + espelho en/es)
+- Regra para o futuro: editar texto = mexer no `DICIONARIO` do `js/main.js`; o HTML é só o fallback inicial
+
 ## Próximos passos sugeridos (não bloqueantes)
 - Publicar via GitHub Pages (branch `main`, raiz)
 - Opcional: otimizar `img/3x4-26.jpg` para WebP/AVIF
