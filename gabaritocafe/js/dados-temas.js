@@ -184,7 +184,7 @@ const DadosTemas = {
     'Guarde os 10 minutos finais para revisar as questões em dúvida. A pressa é a maior aliada da banca.'
   ],
 
-  // ---------- Frases motivacionais do dashboard (uma por dia) ----------
+  // ---------- Frases motivacionais de estudo (sorteadas a cada acesso) ----------
   frasesMotivacionais: [
     'A aprovação não chega de uma vez: chega em goles diários.',
     'Cada questão errada hoje é uma certa amanhã.',
@@ -193,6 +193,18 @@ const DadosTemas = {
     'Você não precisa ser o melhor do mundo — precisa passar da nota de corte.',
     'Estudar é como passar café: devagar, o sabor sai melhor.',
     'Foca no processo que a aprovação vira consequência.',
-    'Descansar também é estudo: cérebro cansado não aprende. Vai dormir, campeão(a).'
+    'Descansar também é estudo: cérebro cansado não aprende. Vai dormir, campeão(a).',
+    'Quem revisa hoje responde com segurança amanhã.',
+    'Não existe matéria impossível: existe matéria ainda não revisada.',
+    'Três páginas por dia viram um livro por mês. E um livro vira aprovação.',
+    'A banca cobra justamente o que você evitou estudar. Encara a matéria chata primeiro.',
+    'Fazer questão é o único jeito de descobrir o que você ainda não sabe.',
+    'Anota o erro, revisa a anotação: é assim que a nota sobe.',
+    'Disciplina é lembrar do objetivo quando a vontade passa longe.',
+    'Você não está atrasado(a) — está no caminho. Só não pare.',
+    'Resumo bom é resumo curto: se não couber numa página, ainda não ficou claro.',
+    'Aprovação é feita de dias comuns bem aproveitados.',
+    'Teoria, questão, correção do erro. Repete. É simples, não é fácil.',
+    'Pequenos avanços diários constroem grandes notas.'
   ]
 };

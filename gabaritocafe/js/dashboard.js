@@ -22,14 +22,15 @@ const DashboardUI = {
     const caixa = document.getElementById('tela-dashboard'); // pega a seção da tela
     let html = '';                                          // acumulador de HTML
 
-    // ---- Cartão de boas-vindas com a frase do dia ----
-    const diaDoAno = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000); // dia do ano
-    const frase = DadosTemas.frasesMotivacionais[diaDoAno % DadosTemas.frasesMotivacionais.length]; // frase do dia
+    // ---- Cartão de boas-vindas com a frase do acesso ----
+    // Usa a frase (tema estudo) sorteada para ESTA visita pelo frases.js.
+    // Se por algum motivo ela não existir, cai na primeira do acervo para não ficar vazio.
+    const frase = FrasesEstudo.fraseDoAcesso || DadosTemas.frasesMotivacionais[0]; // frase do acesso
     html += '<div class="cartao destaque dash-cabecalho">'; // abre o cartão
     html += '<img src="assets/logo.svg" alt="Xícara do Gabarito Café">'; // logo
     html += '<div>';                                        // coluna de texto
     html += '<h3>' + (usuario ? 'E aí, ' + this.escape(usuario.nome) + '! ☕' : 'E aí! ☕') + '</h3>'; // saudação
-    html += '<p class="dash-frase">“' + frase + '”</p>';    // frase do dia em letra de mão
+    html += '<p class="dash-frase">“' + frase + '”</p>';    // frase do acesso em letra de mão
     html += '</div></div>';                                 // fecha coluna e cartão
 
     // ---- Atalhos rápidos ----
