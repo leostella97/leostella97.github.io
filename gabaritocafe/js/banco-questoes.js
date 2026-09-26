@@ -1310,5 +1310,408 @@ const BancoQuestoes = [
     explicacao: 'O relevo brasileiro é antigo (escudos cristalinos e bacias sedimentares) e fica distante das bordas de placas tectônicas, onde surgem os dobramentos modernos (montanhas). Por isso predominam planaltos e depressões.', // explicação
     dica: 'Sem encontro de placas = sem montanhas. O ponto mais alto do Brasil (Pico da Neblina, ~3.000 m) é modesto perto dos 8.000 m do Himalaia.', // pegadinha
     video: 'relevo brasileiro planaltos depressões para vestibular' // busca no YouTube
+  },
+
+  /* ===================== NOVAS QUESTÕES ADICIONADAS ===================== */
+
+  /* ---------- PORTUGUÊS (7 novas) ---------- */
+  {
+    id: 'p11',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Crase',                      // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'Complete corretamente: "Os candidatos chegaram ___ sala de provas às 13h."', // pergunta
+    alternativas: [                     // opções
+      'a',
+      'à',
+      'há',
+      'aa',
+      'á'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Quem chega, chega A algum lugar (preposição pedida pelo verbo "chegar"). "Sala" pede artigo "a". Preposição a + artigo a = crase (à).', // explicação
+    dica: 'A FGV ama trocar "a" por "há": "há" indica tempo passado ("há dois anos"), nunca lugar. Se dá para trocar por "ao", tem crase.', // pegadinha
+    video: 'crase para concursos como usar' // busca no YouTube
+  },
+  {
+    id: 'p12',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Regência verbal (preferir)', // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Assinale a frase que segue a norma culta:', // pergunta
+    alternativas: [                     // opções
+      'Prefiro estudar do que assistir séries.',
+      'Prefiro mais estudar que assistir séries.',
+      'Prefiro estudar a assistir séries.',
+      'Prefiro estudar que assistir séries.',
+      'Prefiro antes estudar que assistir séries.'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: 'O verbo "preferir" rege a preposição "a": prefere-se uma coisa A outra. Formas como "prefiro X do que Y" ou "prefiro mais X que Y" são vícios de linguagem reprovados pela norma culta.', // explicação
+    dica: 'Pegadinha da FCC: "preferir mais... do que" soa natural na fala — e é exatamente aí que a banca fisga o candidato desavisado.', // pegadinha
+    video: 'regência verbal preferir a concurso' // busca no YouTube
+  },
+  {
+    id: 'p13',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Uso dos porquês',            // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Complete: "Ninguém entendeu o ___ daquela decisão."', // pergunta
+    alternativas: [                     // opções
+      'porque',
+      'por que',
+      'porquê',
+      'por quê'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: '"Porquê" (junto e com acento) é substantivo: vem acompanhado de artigo ("o porquê") e significa "motivo". "Porque" é conjunção; "por que" é preposição + pronome; "por quê" só aparece no fim de frase.', // explicação
+    dica: 'Atalho de prova: antes de artigo ("o", "um") ou no fim da frase, é "porquê" substantivo. A banca confia que você vai marcar "porque" no automático.', // pegadinha
+    video: 'uso dos porquês para concurso' // busca no YouTube
+  },
+  {
+    id: 'p14',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Colocação pronominal',       // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Assinale a frase que obedece à norma culta:', // pergunta
+    alternativas: [                     // opções
+      'Me empresta o caderno, por favor?',
+      'Empresta-me o caderno, por favor?',
+      'Não empresta-me o caderno, por favor?',
+      'Emprestaria-me o caderno?',
+      'Nunca esqueça-se do edital.'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Não se inicia frase com pronome oblíquo ("me empresta" é coloquial). Depois de palavra negativa ("não"), a próclise é obrigatória: "não me empresta". Com futuro do pretérito, o correto é mesóclise: "emprestar-me-ia".', // explicação
+    dica: 'A FCC e a IBFC adoram o "não + pronome": palavra negativa puxa o pronome para antes do verbo (próclise).', // pegadinha
+    video: 'colocação pronominal próclise ênclise mesóclise concurso' // busca no YouTube
+  },
+  {
+    id: 'p15',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Pontuação (vírgula)',        // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Em qual frase a vírgula está bem empregada?', // pergunta
+    alternativas: [                     // opções
+      'Os alunos, estudaram muito para a prova.',
+      'Depois da aula, fomos tomar um café.',
+      'O edital, será publicado amanhã.',
+      'A prova de hoje, está muito difícil.',
+      'Todos os candidatos, receberam o cartão.'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Em "b", a vírgula separa uma expressão deslocada para o início da frase (adjunto adverbial). Nas demais alternativas, a vírgula separa o sujeito do verbo — erro grave e o mais cobrado em provas.', // explicação
+    dica: 'Regra de ouro: sujeito e verbo são inseparáveis. Se a frase tem vírgula entre eles, desconfie na hora — é a pegadinha número 1 de pontuação.', // pegadinha
+    video: 'vírgula entre sujeito e verbo erro para concurso' // busca no YouTube
+  },
+  {
+    id: 'p16',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Interpretação de texto',     // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'Leia o trecho: "Estudar todos os dias, nem que seja por meia hora, rende mais do que virar a noite na véspera. O cérebro consolida a memória aos poucos, como um café passado lentamente: a pressa queima o grão e amarga o resultado." A ideia central do texto é:', // pergunta
+    alternativas: [                     // opções
+      'O café passado rápido é o mais saboroso.',
+      'Estudar na véspera é a estratégia mais eficiente.',
+      'A constância diária vale mais que a maratona de última hora.',
+      'Memória não se relaciona com frequência de estudo.',
+      'Só se aprende estudando muitas horas seguidas.'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: 'O texto compara o estudo ao café passado devagar: a regularidade (goles diários) consolida a memória melhor do que a correria da véspera. A metáfora do café reforça a ideia de processo lento e constante.', // explicação
+    dica: 'Em interpretação, desconfie de alternativas com palavras radicais ("só", "nunca", "mais", "todo"). O texto raramente é tão absoluto quanto a alternativa.', // pegadinha
+    video: 'interpretação de texto para concursos dicas' // busca no YouTube
+  },
+  {
+    id: 'p17',                          // identificador único
+    materia: 'Língua Portuguesa',       // matéria
+    tema: 'Concordância nominal',       // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Complete: "Seguem ___ os documentos solicitados."', // pergunta
+    alternativas: [                     // opções
+      'anexo',
+      'anexos',
+      'anexas',
+      'em anexo',
+      'anexada'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: '"Anexo" é adjetivo e concorda com o substantivo a que se refere: documentos anexos. "Em anexo" é expressão invariável, mas não se encaixa na construção pedida ("seguem anexos" seria aceitável em registro informal, não é o padrão cobrado em prova).', // explicação
+    dica: 'Pegadinha recorrente: "segue anexo" (um documento) x "seguem anexos" (vários). A banca inverte o número do substantivo para derrubar quem concorda no automático.', // pegadinha
+    video: 'concordância nominal anexo incluso obrigado para concurso' // busca no YouTube
+  },
+
+  /* ---------- MATEMÁTICA (6 novas) ---------- */
+  {
+    id: 'm11',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Porcentagem',                // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Em um concurso, 12.000 candidatos se inscreveram. No dia da prova, 25% faltaram. Quantos candidatos fizeram a prova?', // pergunta
+    alternativas: [                     // opções
+      '3.000',
+      '8.000',
+      '9.000',
+      '9.600',
+      '10.000'
+    ],
+    correta: 2,                         // índice da certa
+    passos: [                           // passo a passo
+      'Calcule quem faltou: 25% de 12.000 = 12.000 × 0,25 = 3.000.',
+      'Subtraia dos inscritos: 12.000 − 3.000 = 9.000.'
+    ],
+    explicacao: 'A pergunta é sobre quem FEZ a prova, não sobre quem faltou. Dos 12.000 inscritos, 3.000 faltaram, então 9.000 compareceram.', // explicação
+    dica: 'A Vunesp sempre oferece "3.000" nas alternativas — o valor dos que FALTARAM. A banca aposta que você responde a primeira conta que aparece. Leia o comando até o fim!', // pegadinha
+    video: 'porcentagem para concursos como calcular' // busca no YouTube
+  },
+  {
+    id: 'm12',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Regra de três composta',     // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Uma gráfica, com 4 impressoras, produz 600 provas em 3 horas. Mantendo o ritmo, quantas provas 6 impressoras produziriam em 2 horas?', // pergunta
+    alternativas: [                     // opções
+      '600',
+      '900',
+      '450',
+      '800',
+      '1.200'
+    ],
+    correta: 0,                         // índice da certa
+    passos: [                           // passo a passo
+      'Monte a proporção composta: provas = 600 × (6/4) × (2/3).',
+      'Impressoras: 6/4 = 1,5 (mais impressoras, mais provas — proporção direta).',
+      'Tempo: 2/3 ≈ 0,667 (menos tempo, menos provas — proporção direta).',
+      '600 × 1,5 × 0,667 = 600 provas.'
+    ],
+    explicacao: 'Com 50% mais impressoras a produção cresce 50%; com 1/3 a menos de tempo ela cai 1/3. Os dois efeitos se anulam: continuam 600 provas.', // explicação
+    dica: 'Em regra de três composta, escreva cada grandeza e classifique direta/inversa ANTES de multiplicar. O erro clássico é inverter a grandeza errada.', // pegadinha
+    video: 'regra de três composta para concurso passo a passo' // busca no YouTube
+  },
+  {
+    id: 'm13',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Juros simples',              // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'Um estudante aplicou R$ 1.500,00 a juros simples de 2% ao mês. Qual será o montante após 8 meses?', // pergunta
+    alternativas: [                     // opções
+      'R$ 1.560,00',
+      'R$ 1.740,00',
+      'R$ 1.800,00',
+      'R$ 2.400,00',
+      'R$ 1.620,00'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Aplique a fórmula dos juros simples: J = C × i × t.',
+      'J = 1.500 × 0,02 × 8 = 1.500 × 0,16 = R$ 240,00.',
+      'Montante: M = C + J = 1.500 + 240 = R$ 1.740,00.'
+    ],
+    explicacao: 'No regime simples, o juro incide sempre sobre o capital inicial: 2% de 1.500 é R$ 30,00 por mês, vezes 8 meses = R$ 240,00 de juros.', // explicação
+    dica: 'Confira as unidades antes de calcular: taxa mensal com tempo em meses. A alternativa "1.800" engana quem usou 2,5% ou errou o número de meses.', // pegadinha
+    video: 'juros simples para concursos fórmula' // busca no YouTube
+  },
+  {
+    id: 'm14',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Juros compostos',            // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'R$ 10.000,00 aplicados a juros compostos de 10% ao ano renderão, em 2 anos, um montante de:', // pergunta
+    alternativas: [                     // opções
+      'R$ 12.000,00',
+      'R$ 12.100,00',
+      'R$ 12.200,00',
+      'R$ 11.000,00',
+      'R$ 12.010,00'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Aplique a fórmula do montante composto: M = C × (1 + i)^t.',
+      'M = 10.000 × (1,10)² = 10.000 × 1,21.',
+      'M = R$ 12.100,00.'
+    ],
+    explicacao: 'No regime composto, o juro do 2º ano incide sobre o montante do 1º: 10.000 → 11.000 → 12.100. A alternativa "12.000" é a armadilha de quem calculou juros simples.', // explicação
+    dica: 'Quando a banca mistura regimes na mesma questão, ela quer que você confunda. Tempo maior que 1 período + "juros compostos" no enunciado = eleve à potência, não multiplique.', // pegadinha
+    video: 'juros compostos para concurso fórmula montante' // busca no YouTube
+  },
+  {
+    id: 'm15',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Média aritmética',           // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'As notas de um candidato em 4 provas foram 7, 8, 9 e 10. A média aritmética dessas notas é:', // pergunta
+    alternativas: [                     // opções
+      '8,0',
+      '8,5',
+      '8,75',
+      '9,0',
+      '8,25'
+    ],
+    correta: 1,                         // índice da certa
+    passos: [                           // passo a passo
+      'Some as notas: 7 + 8 + 9 + 10 = 34.',
+      'Divida pela quantidade de provas: 34 ÷ 4 = 8,5.'
+    ],
+    explicacao: 'Média aritmética é a soma de todos os valores dividida pela quantidade de valores. 34 ÷ 4 = 8,5.', // explicação
+    dica: 'Média não é a "nota do meio" (isso é mediana). A banca troca os conceitos de propósito e ainda oferece a mediana nas alternativas.', // pegadinha
+    video: 'média aritmética para concursos exercícios' // busca no YouTube
+  },
+  {
+    id: 'm16',                          // identificador único
+    materia: 'Matemática',              // matéria
+    tema: 'Equação do 1º grau',         // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'Resolva a equação: 3(x − 2) = 2x + 4', // pergunta
+    alternativas: [                     // opções
+      'x = 10',
+      'x = 8',
+      'x = 6',
+      'x = 4',
+      'x = 2'
+    ],
+    correta: 0,                         // índice da certa
+    passos: [                           // passo a passo
+      'Aplique a distributiva: 3x − 6 = 2x + 4.',
+      'Leve os termos com x para um lado e os números para o outro: 3x − 2x = 4 + 6.',
+      'x = 10.'
+    ],
+    explicacao: 'O erro campeão é esquecer de distribuir o 3 para o "−2", ficando "3x − 2 = 2x + 4", que daria x = 6 — e essa resposta está entre as alternativas.', // explicação
+    dica: 'A banca coloca exatamente o resultado da conta errada (sem distributiva) nas alternativas. Distribua o número para TODOS os termos do parêntese, com o sinal.', // pegadinha
+    video: 'equação do primeiro grau para concurso resolvida' // busca no YouTube
+  },
+
+  /* ---------- RACIOCÍNIO LÓGICO (4 novas) ---------- */
+  {
+    id: 'r09',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Negação de proposições',     // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'A negação lógica de "Todo candidato estuda" é:', // pergunta
+    alternativas: [                     // opções
+      'Nenhum candidato estuda.',
+      'Todo candidato não estuda.',
+      'Algum candidato não estuda.',
+      'Algum candidato estuda.',
+      'Pelo menos um candidato estuda.'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: 'A negação do TODO é o ALGUM NÃO: basta existir um único candidato que não estuda para a afirmação original ser falsa. "Nenhum estuda" é a negação de "algum estuda", não de "todo".', // explicação
+    dica: 'Pegadinha CESPE clássica: a negação de "todo" NUNCA é "nenhum" — é "algum não". Grave o par: todo ↔ algum não.', // pegadinha
+    video: 'negação de proposições todo algum nenhum raciocínio lógico' // busca no YouTube
+  },
+  {
+    id: 'r10',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Equivalência lógica (contrapositiva)', // assunto
+    banca: 'FGV',                       // banca inspiradora
+    enunciado: 'A proposição logicamente equivalente a "Se chove, então a rua molha" é:', // pergunta
+    alternativas: [                     // opções
+      'Se a rua molha, então chove.',
+      'Se não chove, então a rua não molha.',
+      'Se a rua não molha, então não chove.',
+      'Chove e a rua não molha.',
+      'Não chove e a rua molha.'
+    ],
+    correta: 2,                         // índice da certa
+    explicacao: 'A contrapositiva (inverte a ordem e nega os dois lados) é equivalente ao condicional: "Se não B, então não A". Se a rua não molhou, é impossível ter chovido.', // explicação
+    dica: 'A FGV ama a contrapositiva. As duas armadilhas: inverter sem negar (alternativa a) e negar sem inverter (alternativa b) — nenhuma das duas equivale ao condicional.', // pegadinha
+    video: 'equivalência lógica contrapositiva se então para concurso' // busca no YouTube
+  },
+  {
+    id: 'r11',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Leis de De Morgan',          // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'A negação de "Estudo português e estudo matemática" é:', // pergunta
+    alternativas: [                     // opções
+      'Não estudo português e não estudo matemática.',
+      'Não estudo português ou não estudo matemática.',
+      'Estudo português ou estudo matemática.',
+      'Não estudo português e estudo matemática.',
+      'Estudo português ou não estudo matemática.'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Pela Lei de De Morgan, a negação de "p e q" é "não p OU não q": basta uma das partes falhar para o "e" ser falso.', // explicação
+    dica: 'Na negação, o "e" vira "ou" e cada parte é negada. Quem troca só as negações e mantém o "e" (alternativa a) cai na pegadinha mais repetida da lógica.', // pegadinha
+    video: 'leis de de morgan negação e ou raciocínio lógico' // busca no YouTube
+  },
+  {
+    id: 'r12',                          // identificador único
+    materia: 'Raciocínio Lógico',       // matéria
+    tema: 'Sequências lógicas',         // assunto
+    banca: 'Vunesp',                    // banca inspiradora
+    enunciado: 'Na sequência 2, 6, 12, 20, 30, ..., o próximo termo é:', // pergunta
+    alternativas: [                     // opções
+      '36',
+      '40',
+      '42',
+      '44',
+      '48'
+    ],
+    correta: 2,                         // índice da certa
+    passos: [                           // passo a passo
+      'Observe as diferenças entre termos seguidos: 4, 6, 8, 10.',
+      'As diferenças crescem de 2 em 2: a próxima será 12.',
+      '30 + 12 = 42.'
+    ],
+    explicacao: 'Os termos seguem o padrão n(n+1): 1×2, 2×3, 3×4, 4×5, 5×6... O próximo é 6×7 = 42.', // explicação
+    dica: 'Quando a sequência não é PA nem PG, olhe as DIFERENÇAS entre os termos. A banca conta com você tentando multiplicar tudo por 3 ou somar 4 direto.', // pegadinha
+    video: 'sequências lógicas para concurso padrão diferenças' // busca no YouTube
+  },
+
+  /* ---------- INFORMÁTICA (3 novas) ---------- */
+  {
+    id: 'i09',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Excel — função MÉDIA',       // assunto
+    banca: 'IBFC',                      // banca inspiradora
+    enunciado: 'No Excel, para calcular a média dos valores do intervalo A1 até A10, utiliza-se a fórmula:', // pergunta
+    alternativas: [                     // opções
+      '=SOMA(A1:A10)/MÉDIA',
+      '=MÉDIA(A1:A10)',
+      '=MED(A1:A10)',
+      '=MÉDIA(A1;A10)',
+      '=AVERAGE(A1:A10)'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'A função MÉDIA recebe um intervalo (com dois-pontos) e devolve a média aritmética. "AVERAGE" é o nome em inglês, que não vale no Excel em português. Ponto e vírgula (alternativa d) separaria apenas dois valores, não o intervalo.', // explicação
+    dica: 'A IBFC adora "AVERAGE" para pegar quem decora em inglês, e ";" no lugar de ":" para pegar quem não domina intervalo. Dois-pontos = intervalo.', // pegadinha
+    video: 'função média no excel para concurso' // busca no YouTube
+  },
+  {
+    id: 'i10',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Excel — atalhos',            // assunto
+    banca: 'FCC',                       // banca inspiradora
+    enunciado: 'No Excel, o atalho de teclado que insere a SOMA automática (AutoSoma) é:', // pergunta
+    alternativas: [                     // opções
+      'Ctrl + S',
+      'Alt + =',
+      'Ctrl + =',
+      'Shift + =',
+      'Alt + S'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Alt + = insere =SOMA() automaticamente sobre as células vizinhas. É o atalho mais cobrado em provas de informática junto com os de copiar/colar.', // explicação
+    dica: 'Ctrl + = insere célula; Alt + = soma. A banca troca Ctrl por Alt e Shift entre as alternativas de propósito — decore o par exato.', // pegadinha
+    video: 'atalhos do excel para concursos autosoma' // busca no YouTube
+  },
+  {
+    id: 'i11',                          // identificador único
+    materia: 'Informática',             // matéria
+    tema: 'Segurança — phishing',       // assunto
+    banca: 'CESPE/Cebraspe',            // banca inspiradora
+    enunciado: 'Phishing é:', // pergunta
+    alternativas: [                     // opções
+      'Um antivírus gratuito',
+      'Golpe em que criminosos imitam bancos e órgãos para roubar seus dados',
+      'Um tipo de backup na nuvem',
+      'Um vírus que apaga arquivos',
+      'Uma técnica de criptografia'
+    ],
+    correta: 1,                         // índice da certa
+    explicacao: 'Phishing ("pescaria") é o golpe da mensagem falsa: e-mail ou SMS imitando banco, loja ou governo para fisgar senhas e dados, geralmente com um link para um site falso.', // explicação
+    dica: 'Pegadinha de prova: phishing não é vírus — é engenharia social. A vítima entrega os dados de boa vontade, achando que fala com o banco. O alvo é você, não a máquina.', // pegadinha
+    video: 'o que é phishing segurança da informação para concurso' // busca no YouTube
   }
 ];
