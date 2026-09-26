@@ -25,14 +25,13 @@
 <body>
   <div class="caixa">
     <div style="font-size:40px">🔎</div>
-    <h1>Redirecionando para o ProtocolFit…</h1>
+    <h1>Redirecionando…</h1>
     <p>
-      O endereço oficial é <code>/ProtocolFit</code> (P e F maiúsculos, sem o
-      "o" extra de <code>ProtocoloFit</code>). Você digitou um endereço parecido
-      e estamos te levando para o lugar certo automaticamente.
+      Você digitou <code id="aliasDigitado"></code> — o endereço oficial é
+      <code id="enderecoOficial"></code>. Estamos te levando para lá automaticamente.
     </p>
     <!-- Link manual (também usado quando o JavaScript está desativado). -->
-    <a id="linkManual" href="/ProtocolFit/">Ir agora para o ProtocolFit</a>
+    <a id="linkManual" href="/">Ir para o site</a>
   </div>
   <script>
     /*
@@ -58,31 +57,44 @@
       // Primeiro segmento do caminho (nome do "projeto" digitado).
       var primeiro = segmentos[0].toLowerCase();
       
-      // Variações conhecidas do ProtocolFit que devem ser redirecionadas.
-      var variacoesProtocolFit = [
-        'protocolfit',   // minúsculo
-        'protocolofit',  // com 'o' extra (o typo comum)
-        'protocolfit'    // sem o 'o' extra mas minúsculo
-      ];
+      // Variações conhecidas que devem ser redirecionadas para seus endereços oficiais.
+      // Cada entrada: chave = variação digitada (lowercase), valor = caminho oficial.
+      var redirecionamentos = {
+        // ProtocolFit
+        'protocolfit': '/ProtocolFit/',
+        'protocolofit': '/ProtocolFit/',
+        'protocolfit': '/ProtocolFit/',
+        // GabaritoCafe
+        'gabaritocafe': '/GabaritoCafe/',
+        'gabaritocafé': '/GabaritoCafe/',
+        'gabaritocafe': '/GabaritoCafe/'
+      };
       
-      // Verifica se o primeiro segmento é uma variação conhecida do ProtocolFit.
-      var ehVariacaoProtocolFit = variacoesProtocolFit.indexOf(primeiro) !== -1;
+      // Verifica se o primeiro segmento é uma variação conhecida.
+      var destino = redirecionamentos[primeiro];
+      var ehVariacaoConhecida = destino !== undefined;
       
-      if (!ehVariacaoProtocolFit) {
-        // Não é uma variação do ProtocolFit - não redireciona.
+      if (!ehVariacaoConhecida) {
+        // Não é uma variação conhecida - não redireciona.
         // O navegador mostra esta página 404 normalmente.
         return;
       }
       
-      // É uma variação do ProtocolFit - redireciona para o endereço oficial.
+      // É uma variação conhecida - redireciona para o endereço oficial.
       var resto = segmentos.slice(1).join('/');
-      var destino = '/ProtocolFit/' + (resto ? resto + '/' : '') + (window.location.search || '') + (window.location.hash || '');
+      // O destino já inclui a barra final (ex.: '/ProtocolFit/')
+      var destinoCompleto = destino + (resto ? resto + '/' : '') + (window.location.search || '') + (window.location.hash || '');
       
-      // Atualiza o link manual para o mesmo destino.
-      document.getElementById('linkManual').setAttribute('href', destino);
+      // Preenche as informações na página.
+      document.getElementById('aliasDigitado').textContent = '/' + segmentos[0] + '/';
+      document.getElementById('enderecoOficial').textContent = destino;
+      
+      // Atualiza o link manual.
+      document.getElementById('linkManual').setAttribute('href', destinoCompleto);
+      document.getElementById('linkManual').textContent = 'Ir para ' + destino;
       
       // Redireciona imediatamente (replace evita poluir o histórico).
-      window.location.replace(destino);
+      window.location.replace(destinoCompleto);
     })();
   </script>
 </body>
