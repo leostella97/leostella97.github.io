@@ -45,7 +45,7 @@ Tudo com **login local** (localStorage) — nada de servidor, nada de cadastro r
 | 💡 **Tela de dicas** | 16 dicas importantes em 4 categorias (rotina, técnicas de estudo, hora da prova, corpo e véspera) + as dicas rápidas de prova. |
 | 🎯 **Onde focar agora** | O dashboard analisa seu histórico, aponta a matéria mais fraca e cria um simulado focado nela com um clique. |
 | 🗺️ **Plano de estudo** | Para cada matéria detectada, mostra o que mais cai e por onde começar (ou avisa honestamente se ainda não tem resumo daquela matéria). |
-| 📝 **Simulados** | 5, 10, 15, 20, 30 ou 50 questões, com filtro por matéria e por estilo de banca. Alternativas sempre embaralhadas. |
+| 📝 **Simulados** | 5, 10, 15, 20, 30 ou 50 questões, com filtro por **uma ou várias matérias** (chips de múltipla escolha, com a contagem de cada uma) e por estilo de banca. Alternativas sempre embaralhadas. |
 | ✅ **Correção comentada** | Acertou: explicação para consolidar. Errou: o que errou, o gabarito, o **passo a passo** e a **pegadinha da banca**. |
 | 🎥 **Aula no YouTube** | Toda questão tem um link "Assistir aula sobre o tema" que abre a busca do YouTube com a matéria certa. |
 | 🏁 **Resultado final** | Acertos, erros, aproveitamento, tempo de prova, desempenho por matéria e revisão das erradas (com a opção de **refazer só as erradas**). |

@@ -54,14 +54,21 @@ const SimuladoUI = {
     }
     html += '</div>';                                       // fecha a fileira
 
-    // Filtro de matérias (nomes das matérias são conteúdo, ficam em português)
-    html += '<div class="campo" style="margin-top:1rem"><label for="sim-materia">' + T('sim_materia_l') + '</label>'; // campo
-    html += '<select id="sim-materia">';                    // abre o select
-    html += '<option value="todas">' + T('sim_materia_todas') + '</option>'; // opção padrão
+    // Filtro de matérias: pode escolher MAIS DE UMA (chips clicáveis)
+    html += '<div class="campo" style="margin-top:1rem"><label>' + T('sim_materias_l') + '</label>'; // rótulo traduzido
+    html += '<div class="chips-escolha" id="sim-materias">'; // abre a fileira de matérias
     for (const m of materias) {                             // percorre as matérias do banco
-      html += '<option value="' + this.escape(m.nome) + '">' + this.escape(m.nome) + ' (' + m.quantidade + ')</option>'; // opção com contagem
+      // Chip clicável com o nome da matéria e a quantidade de questões disponíveis
+      html += '<button type="button" class="chip-opcao" data-materia="' + this.escape(m.nome) + '">' + this.escape(m.nome) + ' <span class="chip-num">' + m.quantidade + '</span></button>'; // chip
     }
-    html += '</select></div>';                              // fecha select e campo
+    html += '</div>';                                       // fecha a fileira
+    // Botõezinhos de atalho + contador da seleção
+    html += '<div class="linha-acoes" style="margin-top:0.5rem">'; // abre a linha de ações
+    html += '<button type="button" class="botao botao-fantasma pequeno" id="sim-todas">' + T('sim_todas') + '</button>'; // marcar todas
+    html += '<button type="button" class="botao botao-fantasma pequeno" id="sim-limpar">' + T('sim_limpar') + '</button>'; // limpar seleção
+    html += '<span id="sim-contador" class="texto-suave" style="font-size:0.8rem;align-self:center"></span>'; // contador
+    html += '</div>';                                       // fecha a linha
+    html += '</div>';                                       // fecha o campo
 
     // Filtro de banca (estilo)
     html += '<div class="campo"><label for="sim-banca">' + T('sim_banca_l') + '</label>'; // campo
@@ -106,7 +113,21 @@ const SimuladoUI = {
       });
     });
 
-    document.getElementById('sim-materia').addEventListener('change', () => { // muda a matéria
+    // Cada chip de matéria liga/desliga a matéria do simulado
+    caixa.querySelectorAll('#sim-materias .chip-opcao').forEach(chip => { // percorre os chips
+      chip.addEventListener('click', () => {               // no clique
+        chip.classList.toggle('ativa');                     // marca/desmarca a matéria
+        this.atualizarDisponiveis();                        // atualiza o aviso de disponíveis
+      });
+    });
+    // Botão "selecionar todas" marca todos os chips
+    document.getElementById('sim-todas').addEventListener('click', () => { // clique
+      caixa.querySelectorAll('#sim-materias .chip-opcao').forEach(c => c.classList.add('ativa')); // marca todos
+      this.atualizarDisponiveis();                          // atualiza o aviso
+    });
+    // Botão "limpar" desmarca todos (nenhum = todas as matérias)
+    document.getElementById('sim-limpar').addEventListener('click', () => { // clique
+      caixa.querySelectorAll('#sim-materias .chip-opcao').forEach(c => c.classList.remove('ativa')); // limpa
       this.atualizarDisponiveis();                          // atualiza o aviso
     });
     document.getElementById('sim-banca').addEventListener('change', () => { // muda a banca
@@ -120,20 +141,27 @@ const SimuladoUI = {
       this.comecar();                                       // inicia o jogo
     });
 
+    // Marca os chips das matérias que vieram de fora (edital ou recomendação do dashboard)
+    if (e.filtroMaterias.length > 0) {                      // se o simulado já foi aberto com matérias
+      caixa.querySelectorAll('#sim-materias .chip-opcao').forEach(chip => { // percorre os chips
+        if (e.filtroMaterias.includes(chip.dataset.materia)) chip.classList.add('ativa'); // marca os escolhidos
+      });
+    }
+
     this.atualizarDisponiveis();                            // preenche o aviso inicial
   },
 
-  // Calcula os filtros atuais e atualiza o aviso de questões disponíveis
+  // Calcula os filtros atuais (matérias marcadas nos chips + banca) 
   filtrosAtuais() {
     const e = this.estado;                                  // atalho para o estado
-    const materiaSel = document.getElementById('sim-materia'); // select de matéria
     const bancaSel = document.getElementById('sim-banca');  // select de banca
     const checkEdital = document.getElementById('sim-so-edital'); // check do edital
     let materias = [];                                      // lista de matérias filtradas
     if (checkEdital && checkEdital.checked) {               // se o filtro do edital está ligado
       materias = e.materiasEdital.slice();                  // usa as matérias do edital
-    } else if (materiaSel && materiaSel.value !== 'todas') { // se escolheu uma matéria específica
-      materias = [materiaSel.value];                        // usa só ela
+    } else {                                                // senão, usa as matérias marcadas
+      // Junta TODAS as matérias com o chip ligado (múltipla escolha)
+      materias = Array.from(document.querySelectorAll('#sim-materias .chip-opcao.ativa')).map(c => c.dataset.materia); // pega as marcadas
     }
     const banca = (bancaSel && bancaSel.value) || '';       // banca escolhida (ou vazia)
     return { materias, banca };                             // devolve o par de filtros
@@ -148,6 +176,20 @@ const SimuladoUI = {
     // Monta o texto do aviso (traduzido, com o número de questões)
     const complemento = disponiveis < 5 ? T('sim_disp_poucas') : T('sim_disp_ok'); // parte final do aviso
     caixa.textContent = T('sim_disp', { n: disponiveis }) + complemento; // aviso humanizado
+    // Atualiza o contador de matérias escolhidas
+    const contador = document.getElementById('sim-contador'); // contador da seleção
+    const checkEdital = document.getElementById('sim-so-edital'); // check do edital
+    const usandoEdital = !!(checkEdital && checkEdital.checked); // está usando o filtro do edital?
+    if (contador) {                                         // se o contador existe na tela
+      // Mais de uma matéria: plural | uma matéria: singular | nenhuma: todas
+      contador.textContent = materias.length > 1
+        ? T('sim_sel_n', { n: materias.length })            // plural
+        : (materias.length === 1 ? T('sim_sel_1') : T('sim_materia_todas')); // singular ou todas
+    }
+    // Quando o filtro do edital está ligado, os chips ficam esmaecidos (não valem)
+    document.querySelectorAll('#sim-materias .chip-opcao').forEach(chip => { // percorre os chips
+      chip.classList.toggle('desativado', usandoEdital);    // esmaece se o edital manda
+    });
     // Desabilita os botões de quantidade maiores que o estoque
     document.querySelectorAll('.sim-quantidade').forEach(btn => { // percorre os botões
       const qtd = parseInt(btn.dataset.qtd, 10);            // quantidade do botão

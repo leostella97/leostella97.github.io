@@ -173,6 +173,11 @@ const Idioma = {
       sim_banca_l: 'Estilo de banca (pegadinhas)',          // rótulo do filtro
       sim_banca_todas: 'Todas as bancas (misturado)',       // opção padrão
       sim_edital_check: '🎯 Usar só as matérias do meu edital ({n} detectadas)', // filtro do edital
+      sim_materias_l: 'Matérias (escolha uma ou mais)',     // rótulo da múltipla escolha
+      sim_todas: 'Selecionar todas',                        // marcar todas as matérias
+      sim_limpar: 'Limpar',                                 // limpar a seleção
+      sim_sel_1: '1 matéria selecionada',                   // contador (singular)
+      sim_sel_n: '{n} matérias selecionadas',               // contador (plural)
       sim_disp: '☕ Com esses filtros temos {n} questões no estoque. ', // aviso de estoque
       sim_disp_poucas: 'Relaxa os filtros para liberar mais!', // estoque baixo
       sim_disp_ok: 'Escolhe o tamanho aí em cima.',         // estoque ok
@@ -404,6 +409,11 @@ const Idioma = {
       sim_banca_l: 'Exam board style (traps)',
       sim_banca_todas: 'All boards (mixed)',
       sim_edital_check: '🎯 Use only my notice subjects ({n} detected)',
+      sim_materias_l: 'Subjects (pick one or more)',
+      sim_todas: 'Select all',
+      sim_limpar: 'Clear',
+      sim_sel_1: '1 subject selected',
+      sim_sel_n: '{n} subjects selected',
       sim_disp: '☕ With these filters we have {n} questions in stock. ',
       sim_disp_poucas: 'Loosen the filters to unlock more!',
       sim_disp_ok: 'Pick the size up there.',
@@ -635,6 +645,11 @@ const Idioma = {
       sim_banca_l: 'Estilo de comité (trampas)',
       sim_banca_todas: 'Todos los comités (mezclado)',
       sim_edital_check: '🎯 Usar solo las materias de mi convocatoria ({n} detectadas)',
+      sim_materias_l: 'Materias (elige una o más)',
+      sim_todas: 'Seleccionar todas',
+      sim_limpar: 'Limpiar',
+      sim_sel_1: '1 materia seleccionada',
+      sim_sel_n: '{n} materias seleccionadas',
       sim_disp: '☕ Con estos filtros tenemos {n} preguntas en stock. ',
       sim_disp_poucas: '¡Relaja los filtros para liberar más!',
       sim_disp_ok: 'Elige el tamaño ahí arriba.',

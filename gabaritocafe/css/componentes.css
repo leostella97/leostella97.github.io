@@ -558,3 +558,57 @@
 
 .dica-item .dica-titulo { font-weight: 900; }             /* título da dica */
 .dica-item .dica-texto { font-size: 0.9rem; margin: 0.15rem 0 0; } /* texto da dica */
+
+/* ---------- Chips de múltipla escolha (filtro de matérias do simulado) ---------- */
+.chips-escolha {                    /* fileira de chips que quebra linha */
+  display: flex;                    /* flexível */
+  flex-wrap: wrap;                  /* quebra quando enche */
+  gap: 0.45rem;                     /* respiro entre os chips */
+}
+
+.chip-opcao {                       /* cada matéria clicável */
+  display: inline-flex;             /* nome + número alinhados */
+  align-items: center;              /* centraliza na vertical */
+  gap: 0.4rem;                      /* espaço entre nome e número */
+  padding: 0.45rem 0.85rem;         /* área clicável confortável */
+  border-radius: 999px;             /* pílula */
+  border: 2px solid var(--borda);   /* borda discreta quando desmarcado */
+  background: var(--superficie);    /* fundo claro */
+  color: var(--cafe-escuro);        /* texto escuro */
+  font-weight: 700;                 /* firme */
+  font-size: 0.88rem;               /* discreto */
+  transition: all 0.15s ease;       /* reação suave */
+}
+
+.chip-opcao:hover { border-color: var(--caramelo); } /* acende no hover */
+
+.chip-opcao.ativa {                 /* matéria marcada */
+  background: var(--cafe);          /* fundo café */
+  border-color: var(--cafe);        /* borda café */
+  color: #fff7ea;                   /* texto creme */
+}
+
+.chip-opcao.desativado {            /* quando o filtro do edital manda */
+  opacity: 0.4;                     /* esmaece */
+  pointer-events: none;             /* e não responde ao clique */
+}
+
+.chip-num {                         /* bolinha com a quantidade de questões */
+  background: var(--creme-escuro);  /* fundo creme */
+  border-radius: 999px;             /* pílula */
+  padding: 0.05rem 0.45rem;         /* respiro pequeno */
+  font-size: 0.75rem;               /* miúdo */
+  font-weight: 900;                 /* firme */
+}
+
+.chip-opcao.ativa .chip-num {       /* número dentro do chip marcado */
+  background: rgba(255, 255, 255, 0.22); /* fundo translúcido */
+  color: #fff7ea;                   /* texto creme */
+}
+
+.linha-acoes {                      /* linha de botõezinhos de atalho */
+  display: flex;                    /* lado a lado */
+  flex-wrap: wrap;                  /* quebra se faltar espaço */
+  gap: 0.4rem;                      /* respiro */
+  align-items: center;              /* centraliza na vertical */
+}
